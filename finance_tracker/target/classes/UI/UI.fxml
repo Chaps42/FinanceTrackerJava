@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutX="149.0" layoutY="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane layoutX="14.0" layoutY="29.0" prefHeight="371.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+        <tabs>
+          <Tab text="Overview">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="144.0" layoutY="23.0" prefHeight="338.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <left>
+                              <AnchorPane prefHeight="470.0" prefWidth="191.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <PieChart layoutX="3.0" layoutY="22.0" prefHeight="214.0" prefWidth="200.0" title="Monthly Budget" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ComboBox layoutX="4.0" layoutY="214.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="214.0" />
+                                    <Text layoutX="10.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Income" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="247.515625">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="10.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="10.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="10.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget Remaining" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField editable="false" layoutX="-20.0" layoutY="270.0" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField editable="false" layoutX="10.0" layoutY="322.0" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField editable="false" layoutX="10.0" layoutY="375.0" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField editable="false" layoutX="10.0" layoutY="431.0" AnchorPane.leftAnchor="10.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </AnchorPane>
+                           </left>
+                           <right>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <PieChart layoutX="-52.0" layoutY="74.0" prefHeight="214.0" prefWidth="200.0" title="Current Month Spending" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ComboBox layoutX="27.0" layoutY="215.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                           <center>
+                              <ScrollPane prefHeight="466.0" prefWidth="516.0" BorderPane.alignment="CENTER">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="586.0" prefWidth="513.0">
+                                       <children>
+                                          <Text layoutX="16.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts">
+                                             <font>
+                                                <Font name="Arial" size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <GridPane layoutX="370.0" layoutY="28.0" prefHeight="122.0" prefWidth="116.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Button alignment="CENTER" mnemonicParsing="false" text="Create Account" GridPane.rowIndex="1" />
+                                                <Button alignment="CENTER" mnemonicParsing="false" text="Edit Account" GridPane.rowIndex="2" />
+                                                <Button alignment="CENTER" mnemonicParsing="false" text="Delete Account" GridPane.rowIndex="3" />
+                                                <Button mnemonicParsing="false" text="Record" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane layoutX="29.0" layoutY="83.0" prefHeight="90.0" prefWidth="346.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assets" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Debts" GridPane.columnIndex="1" />
+                                                <TextField GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane layoutX="369.0" layoutY="170.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overveiw" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts Total" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Debts Total" GridPane.rowIndex="3" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Total" GridPane.rowIndex="5" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Net Value" GridPane.rowIndex="7" />
+                                                <TextField GridPane.rowIndex="2" />
+                                                <TextField GridPane.rowIndex="4" />
+                                                <TextField GridPane.rowIndex="6" />
+                                                <TextField GridPane.rowIndex="8" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+                           </center>
+                           <top>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overview" BorderPane.alignment="TOP_LEFT">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets left="10.0" top="6.0" />
+                                 </BorderPane.margin>
+                              </Text>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Untitled Tab 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
