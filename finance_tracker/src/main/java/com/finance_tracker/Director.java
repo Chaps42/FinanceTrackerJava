@@ -1,4 +1,4 @@
-package com.finance_tracker.dataTypes;
+package com.finance_tracker;
 
 public class Director {
     

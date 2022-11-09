@@ -1,6 +1,6 @@
-package com.finance_tracker.dataTypes.account;
+package com.finance_tracker.account;
 
-import com.finance_tracker.dataTypes.Date;
+import com.finance_tracker.Date;
 
 public class AccountRecord {
     private Date date;

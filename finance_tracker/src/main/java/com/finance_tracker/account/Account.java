@@ -1,31 +1,24 @@
-package com.finance_tracker.dataTypes.account;
+package com.finance_tracker.account;
 
 import java.util.ArrayList;
 
-import com.finance_tracker.dataTypes.Date;
-//import AccountRecord;
+import com.finance_tracker.Date;
 
 public class Account {
 
     // All attributes final in builder pattern
-    private final String name;
-    private final ArrayList<AccountRecord> accountRecords;
-    private final String tag;
-    private final double interestPercent;
-    private final InterestEnum interestEnum; // Simple, Compound, Accrued, Fixed Flat, Declining Balance, Declining Balance (Equal Installments)
-
-    enum InterestEnum {
-        SIMPLE,
-        COMPOUND,
-        ACCRUED;
-    }
+    private String name;
+    private ArrayList<AccountRecord> accountRecords;
+    private AccountEnum accountEnum;
+    private double interestRate;
+    private InterestEnum interestEnum;
 
     public Account(AccountBuilder builder) {
-        this.name = builder.name;
-        this.accountRecords = builder.accountRecords;
-        this.tag = builder.tag;
-        this.interestPercent = builder.interestPercent;
-        this.interestEnum = builder.interestEnum;
+        this.name = builder.getName();
+        this.accountRecords = builder.getAccountRecords();
+        this.accountEnum = builder.getAccountEnum();
+        this.interestRate = builder.getInterestRate();
+        this.interestEnum = builder.getInterestEnum();
     }
 
 
@@ -63,28 +56,23 @@ public class Account {
 
 
     // All getters and no setters in Builder pattern
-
     public String getName() {
         return name;
     }
-
 
     public ArrayList<AccountRecord> getAccountRecords() {
         return accountRecords;
     }
 
-
-    public String getTag() {
-        return tag;
+    public AccountEnum getAccountEnum() {
+        return accountEnum;
     }
 
-
-    public double getInterestPercent() {
-        return interestPercent;
+    public double getInterestRate() {
+        return interestRate;
     }
 
-
-    public Enum getInterestEnum() {
+    public InterestEnum getInterestEnum() {
         return interestEnum;
     }
 }

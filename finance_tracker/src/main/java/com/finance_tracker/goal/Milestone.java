@@ -1,6 +1,6 @@
-package com.finance_tracker.dataTypes.goal;
+package com.finance_tracker.goal;
 
-import com.finance_tracker.dataTypes.goal.Celebration;
+import com.finance_tracker.account.Account;
 
 public class Milestone {
     private String goalName;
@@ -9,6 +9,14 @@ public class Milestone {
     private Boolean milestoneStatus;
 
 
+    public Milestone(String goalName, int goalPercent, Account goalAccount) {
+        this.goalName = goalName;
+        this.goalPercent = goalPercent;
+        this.goalAccount = goalAccount;
+    }
+
+
+    // We need a way to check if a goal was already celebrated, so we don't celebrate 10% AND 20% or the same thing every time the App is open
     void checkCelebrate () {
         if (milestoneStatus) {
             Celebration.celebrate(this);

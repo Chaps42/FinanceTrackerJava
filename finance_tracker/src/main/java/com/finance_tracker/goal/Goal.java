@@ -1,18 +1,25 @@
-package com.finance_tracker.dataTypes.goal;
+package com.finance_tracker.goal;
+
+// This is low priority. A "nice to have"
+// Will work on after everything else is in place.
+// Since we don't need different types of kwargs for our goals, does Builder pattern even make sense here?
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.finance_tracker.account.Account;
 
 public class Goal {
     private String goalName;
     private double goalValue;
     private Account goalAccount;
-    private AbstractCategory goalCategory;
     private Boolean goalStatus;
 
 
-    void setGoal(double goalValue, Account goalAccount) {
-
+    void setGoal(String goalName, double goalValue, Account goalAccount) {
+        this.goalName = goalName;
+        this.goalValue = goalValue;
+        this.goalAccount = goalAccount;
     }
 
 

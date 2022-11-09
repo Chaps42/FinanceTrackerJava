@@ -1,6 +1,5 @@
-package com.finance_tracker.dataTypes;
+package com.finance_tracker;
 
-import java.util.Date;
 
 // Adding a date class is a change from the UML
 // We need to decide how we want the user to be able to edit
