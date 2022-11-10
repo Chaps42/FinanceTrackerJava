@@ -12,6 +12,7 @@ public class Account {
     private AccountEnum accountEnum;
     private double interestRate;
     private InterestEnum interestEnum;
+    private InterestPeriodEnum interestPeriodEnum;
 
     public Account(AccountBuilder builder) {
         this.name = builder.getName();
@@ -19,6 +20,7 @@ public class Account {
         this.accountEnum = builder.getAccountEnum();
         this.interestRate = builder.getInterestRate();
         this.interestEnum = builder.getInterestEnum();
+        this.interestPeriodEnum = builder.getInterestPeriodEnum();
     }
 
 
@@ -74,5 +76,9 @@ public class Account {
 
     public InterestEnum getInterestEnum() {
         return interestEnum;
+    }
+
+    public InterestPeriodEnum getInterestPeriodEnum() {
+        return interestPeriodEnum;
     }
 }

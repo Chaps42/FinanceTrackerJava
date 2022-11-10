@@ -3,8 +3,14 @@ package com.finance_tracker.account;
 enum InterestEnum {
     SIMPLE,
     COMPOUND,
-    ACCRUED,
     CONTINUOUS;
+}
+
+
+enum InterestPeriodEnum {
+    DAILY,
+    MONTHLY,
+    ANNUAL;
 }
 
 

@@ -11,6 +11,7 @@ public class AccountBuilder {
     private AccountEnum accountEnum;
     private double interestRate;
     private InterestEnum interestEnum;
+    private InterestPeriodEnum interestPeriodEnum;
 
     //Mark to Market at specific times (daily when to withdrwaw things) -- comment from Dwight
 
@@ -51,6 +52,11 @@ public class AccountBuilder {
         return this;
     }
 
+    public AccountBuilder setInterestPeriodEnum(InterestPeriodEnum interestPeriodEnum) {
+        this.interestPeriodEnum = interestPeriodEnum;
+        return this;
+    }
+
 
     /**
      * Using the Builder pattern to create Accounts.
@@ -79,5 +85,9 @@ public class AccountBuilder {
 
     public InterestEnum getInterestEnum() {
         return interestEnum;
+    }
+
+    public InterestPeriodEnum getInterestPeriodEnum() {
+        return interestPeriodEnum;
     }
 }
