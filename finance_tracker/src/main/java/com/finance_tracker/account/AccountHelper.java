@@ -21,5 +21,6 @@ enum AccountEnum {
     AUTO_LOAN,
     STUDENT_LOAN,
     RETIREMENT,
+    CREDIT_CARD,
     MORTGAGE;
 }

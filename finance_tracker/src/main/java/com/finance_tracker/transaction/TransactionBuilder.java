@@ -3,6 +3,7 @@ package com.finance_tracker.transaction;
 import java.util.ArrayList;
 
 import com.finance_tracker.Date;
+import com.finance_tracker.account.Account;
 
 public class TransactionBuilder{
 
@@ -11,6 +12,7 @@ public class TransactionBuilder{
     private TransactionEnum transactionEnum;
     private double transactionValue;
     private Date transactionDate;
+    private Account transactionAccount;
     // Optional attributes
     private int transactionFrequency;
     private ArrayList<Date> transactionDates;
@@ -19,11 +21,13 @@ public class TransactionBuilder{
     public TransactionBuilder(String transactionName,
         TransactionEnum transactionEnum,
         double transactionValue,
-        Date transactionDate) {
+        Date transactionDate,
+        Account transactionAccount) {
             this.transactionName = transactionName;
             this.transactionEnum = transactionEnum;
             this.transactionValue = transactionValue;
             this.transactionDate = transactionDate;
+            this.transactionAccount = transactionAccount;
         }
 
     public TransactionBuilder setTransactionFrequency(int transactionFrequency) {
@@ -59,6 +63,10 @@ public class TransactionBuilder{
 
     public Date getTransactionDate() {
         return transactionDate;
+    }
+
+    public Account getTransactionAccount() {
+        return transactionAccount;
     }
 
     public int getTransactionFrequency() {
