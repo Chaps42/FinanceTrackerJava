@@ -1,4 +1,4 @@
 /**
  * This package is 
  */
-package com.finance_tracker.dataTypes.account;
+package com.finance_tracker.account;

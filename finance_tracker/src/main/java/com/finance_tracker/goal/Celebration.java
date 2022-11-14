@@ -1,4 +1,4 @@
-package com.finance_tracker.dataTypes.goal;
+package com.finance_tracker.goal;
 
 public class Celebration {
 
@@ -6,7 +6,7 @@ public class Celebration {
     /**
      * Some GUI pop up celebration.
      */
-    void celebrate(Milestone milestone) {
+    static void celebrate(Milestone milestone) {
         String celebrationstring = "Congratulations! You have saved " + milestone.getPercent() + " to your goal " + milestone.getGoalName() + "!";
     }
 }

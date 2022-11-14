@@ -1,25 +1,19 @@
-package com.finance_tracker.dataTypes.account;
+package com.finance_tracker.account;
 
 import java.util.ArrayList;
 
-import com.finance_tracker.dataTypes.Builder;
+public class AccountBuilder {
 
-public class AccountBuilder extends Builder {
-
-    // Mandatory attributes are final
-    // https://howtodoinjava.com/design-patterns/creational/builder-pattern-in-java/
-    private final String name;
-    private final ArrayList<AccountRecord> accountRecords;
+    // Mandatory attributes
+    private String name;
+    private ArrayList<AccountRecord> accountRecords;
     // Optional attributes
-    private String tag;
-    private double interestPercent;
+    private AccountEnum accountEnum;
+    private double interestRate;
     private InterestEnum interestEnum;
+    private InterestPeriodEnum interestPeriodEnum;
 
-    enum InterestEnum {
-        SIMPLE,
-        COMPOUND,
-        ACCRUED;
-    }
+    //Mark to Market at specific times (daily when to withdrwaw things) -- comment from Dwight
 
 
     /**
@@ -36,25 +30,30 @@ public class AccountBuilder extends Builder {
 
 
     /**
-     * @param tag String
+     * @param accountEnum AccountEnum
      * @return AccountBuilder
      *
      * Optional attributes have their own methods.
      */
-    public AccountBuilder setTag(String tag) {
-        this.tag = tag;
+    public AccountBuilder setAccountEnum(AccountEnum accountEnum) {
+        this.accountEnum = accountEnum;
         return this;
     }
 
 
-    public AccountBuilder setInterestPercent(double interestPercent) {
-        this.interestPercent = interestPercent;
+    public AccountBuilder setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
         return this;
     }
 
 
-    public AccountBuilder setInterestEnum(double interestEnum) {
+    public AccountBuilder setInterestEnum(InterestEnum interestEnum) {
         this.interestEnum = interestEnum;
+        return this;
+    }
+
+    public AccountBuilder setInterestPeriodEnum(InterestPeriodEnum interestPeriodEnum) {
+        this.interestPeriodEnum = interestPeriodEnum;
         return this;
     }
 
@@ -64,5 +63,31 @@ public class AccountBuilder extends Builder {
      */
     public Account buildAccount() {
         return new Account(this);
+    }
+
+
+    // All getters
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<AccountRecord> getAccountRecords() {
+        return accountRecords;
+    }
+
+    public AccountEnum getAccountEnum() {
+        return accountEnum;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public InterestEnum getInterestEnum() {
+        return interestEnum;
+    }
+
+    public InterestPeriodEnum getInterestPeriodEnum() {
+        return interestPeriodEnum;
     }
 }
