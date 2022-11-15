@@ -56,11 +56,17 @@ public class Account {
         accountRecords.remove(record);
     }
 
+    public double getValue() {
+        accountRecords = getLast ... 
+    }
+
+
 
     // All getters and no setters in Builder pattern
     public String getName() {
         return name;
     }
+
 
     public ArrayList<AccountRecord> getAccountRecords() {
         return accountRecords;
