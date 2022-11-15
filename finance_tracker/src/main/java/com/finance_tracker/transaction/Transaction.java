@@ -44,7 +44,7 @@ public class Transaction {
         return transactionDate;
     }
 
-    public Date getTransactionAccount() {
+    public Account getTransactionAccount() {
         return transactionAccount;
     }
 

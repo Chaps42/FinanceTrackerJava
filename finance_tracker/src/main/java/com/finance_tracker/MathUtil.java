@@ -2,12 +2,14 @@ package com.finance_tracker;
 
 import java.lang.Math;
 
+import java.util.Date;
 import com.finance_tracker.account.Account;
+import com.finance_tracker.account.AccountHelper;
 
 public class MathUtil {
     
     // Not sure how we want to handle time yet
-    double calculateInterest(Account account, Time time) {
+    double calculateInterest(Account account, Date date) {
         double ammountPrincipal = account.getValue();
         double interestRate = account.getInterestRate();
 
@@ -45,7 +47,9 @@ public class MathUtil {
     }
 
     double calculateContinuousInterest(double amountPrincipal, double interestRate, double time) {
-        double amountFinal = amountPrincipal * Math.exp(interestRate * time)
+        double amountFinal = amountPrincipal * Math.exp(interestRate * time);
+        double interest = amountFinal - amountPrincipal;
+        return interest;
     }
 
     double calculateAmountFinal(double amountPrincipal, double interest) {

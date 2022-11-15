@@ -28,4 +28,10 @@ public class Mapper {
             e.printStackTrace();
         }
     }
+
+    public static void writeAccount() {}
+    public static void writeTransaction() {}
+
+    public static void readAccount() {}
+    public static void readTransaction() {}
 }

@@ -2,7 +2,7 @@ package com.finance_tracker.account;
 
 import java.util.ArrayList;
 
-import com.finance_tracker.Date;
+import java.util.Date;
 
 public class Account {
 
@@ -56,11 +56,17 @@ public class Account {
         accountRecords.remove(record);
     }
 
+    public double getValue() {
+        accountRecords = getLast ... 
+    }
+
+
 
     // All getters and no setters in Builder pattern
     public String getName() {
         return name;
     }
+
 
     public ArrayList<AccountRecord> getAccountRecords() {
         return accountRecords;

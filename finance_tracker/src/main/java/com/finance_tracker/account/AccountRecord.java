@@ -1,6 +1,6 @@
 package com.finance_tracker.account;
 
-import com.finance_tracker.Date;
+import java.util.Date;
 
 public class AccountRecord {
     private Date date;
