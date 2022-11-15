@@ -81,4 +81,10 @@ public class Account {
     public InterestPeriodEnum getInterestPeriodEnum() {
         return interestPeriodEnum;
     }
+
+    public double getValue(){
+        return 42.0;
+
+    }
 }
+

@@ -7,8 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TabPageController">
    <children>
       <MenuBar layoutX="149.0" layoutY="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -154,10 +153,22 @@
                                     </GridPane>
                                     <GridPane layoutX="378.0" layoutY="18.0" prefHeight="122.0" prefWidth="116.0">
                                        <children>
-                                          <Button fx:id="overviewCreateAccount" alignment="CENTER" mnemonicParsing="false" text="Create Account" GridPane.rowIndex="1" />
-                                          <Button fx:id="overviewEditAccount" alignment="CENTER" mnemonicParsing="false" text="Edit Account" GridPane.rowIndex="2" />
-                                          <Button fx:id="overviewDeleteAccount" alignment="CENTER" mnemonicParsing="false" text="Delete Account" GridPane.rowIndex="3" />
-                                          <Button fx:id="overviewRecordAccounts" mnemonicParsing="false" text="Record" />
+                                          <Button fx:id="overviewCreateAccount" alignment="CENTER" mnemonicParsing="false" onAction="#CreateAccount" text="Create Account" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="Arial" size="13.0" />
+                                             </font></Button>
+                                          <Button fx:id="overviewEditAccount" alignment="CENTER" mnemonicParsing="false" onAction="#EditAccount" text="Edit Account" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="Arial" size="13.0" />
+                                             </font></Button>
+                                          <Button fx:id="overviewDeleteAccount" alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAccount" text="Delete Account" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="Arial" size="13.0" />
+                                             </font></Button>
+                                          <Button fx:id="overviewRecordAccounts" mnemonicParsing="false" onAction="#RecordAccounts" text="Record">
+                                             <font>
+                                                <Font name="Arial" size="13.0" />
+                                             </font></Button>
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -175,8 +186,14 @@
                                              <children>
                                                 <GridPane fx:id="overviewAccountsChart" layoutX="13.0" layoutY="27.0" prefHeight="83.0" prefWidth="342.0" AnchorPane.bottomAnchor="324.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assets" />
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Debts" GridPane.columnIndex="1" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assets">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Debts" GridPane.columnIndex="1">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Text>
                                                       <TextField GridPane.rowIndex="1" />
                                                       <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                    </children>
@@ -243,10 +260,22 @@
                                        <center>
                                           <AnchorPane prefHeight="251.0" prefWidth="114.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button fx:id="incomeNewCatagory" layoutX="22.0" layoutY="16.0" mnemonicParsing="false" text="New Catagory" AnchorPane.leftAnchor="10.0" />
-                                                <Button fx:id="incomeDeleteCatagory" layoutX="39.0" layoutY="49.0" mnemonicParsing="false" text="Delete Catagory" AnchorPane.leftAnchor="10.0" />
-                                                <Button fx:id="incomeRecordValues" layoutX="10.0" layoutY="114.0" mnemonicParsing="false" text="Record Values" AnchorPane.leftAnchor="10.0" />
-                                                <Button fx:id="incomeNewDate" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" text="New Date" AnchorPane.leftAnchor="10.0" />
+                                                <Button fx:id="incomeNewCatagory" layoutX="22.0" layoutY="16.0" mnemonicParsing="false" onAction="#NewIncomeCatagory" text="New Catagory" AnchorPane.leftAnchor="10.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
+                                                <Button fx:id="incomeDeleteCatagory" layoutX="39.0" layoutY="49.0" mnemonicParsing="false" onAction="#DeleteIncomeCatagory" text="Delete Catagory" AnchorPane.leftAnchor="10.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
+                                                <Button fx:id="incomeRecordValues" layoutX="10.0" layoutY="114.0" mnemonicParsing="false" onAction="#RecordIncomeValues" text="Record Values" AnchorPane.leftAnchor="10.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
+                                                <Button fx:id="incomeNewDate" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#NewIncomeDate" text="New Date" AnchorPane.leftAnchor="10.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
                                              </children>
                                           </AnchorPane>
                                        </center>
@@ -288,9 +317,18 @@
                                        <center>
                                           <AnchorPane prefHeight="168.0" prefWidth="215.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button fx:id="incomeNewRecurring" layoutX="18.0" layoutY="16.0" mnemonicParsing="false" text="New Recurring Income" AnchorPane.leftAnchor="15.0" />
-                                                <Button fx:id="incomeDeleteRecurring" layoutX="19.0" layoutY="95.0" mnemonicParsing="false" text="Delete Recurring Income" AnchorPane.leftAnchor="15.0" />
-                                                <Button fx:id="incomeEditRecurring" layoutX="16.0" layoutY="55.0" mnemonicParsing="false" text="Edit Recurring Income" AnchorPane.leftAnchor="15.0" />
+                                                <Button fx:id="incomeNewRecurring" layoutX="18.0" layoutY="16.0" mnemonicParsing="false" onAction="#IncomeNewReccuring" text="New Recurring Income" AnchorPane.leftAnchor="15.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
+                                                <Button fx:id="incomeDeleteRecurring" layoutX="19.0" layoutY="95.0" mnemonicParsing="false" onAction="#IncomeDeleteRecurring" text="Delete Recurring Income" AnchorPane.leftAnchor="15.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
+                                                <Button fx:id="incomeEditRecurring" layoutX="16.0" layoutY="55.0" mnemonicParsing="false" onAction="#IncomeEditReccuring" text="Edit Recurring Income" AnchorPane.leftAnchor="15.0">
+                                                   <font>
+                                                      <Font name="Arial" size="13.0" />
+                                                   </font></Button>
                                              </children>
                                           </AnchorPane>
                                        </center>
@@ -327,10 +365,22 @@
                                              <center>
                                                 <AnchorPane prefHeight="251.0" prefWidth="114.0" BorderPane.alignment="CENTER">
                                                    <children>
-                                                      <Button fx:id="expensesNewCatagory" layoutX="22.0" layoutY="16.0" mnemonicParsing="false" text="New Catagory" AnchorPane.leftAnchor="10.0" />
-                                                      <Button fx:id="expensesDeleteCatagory" layoutX="39.0" layoutY="49.0" mnemonicParsing="false" text="Delete Catagory" AnchorPane.leftAnchor="10.0" />
-                                                      <Button fx:id="expensesRecordValues" layoutX="10.0" layoutY="114.0" mnemonicParsing="false" text="Record Values" AnchorPane.leftAnchor="10.0" />
-                                                      <Button fx:id="expensesNewDate" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" text="New Date" AnchorPane.leftAnchor="10.0" />
+                                                      <Button fx:id="expensesNewCatagory" layoutX="22.0" layoutY="16.0" mnemonicParsing="false" onAction="#NewExpensesCatagory" text="New Catagory" AnchorPane.leftAnchor="10.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
+                                                      <Button fx:id="expensesDeleteCatagory" layoutX="39.0" layoutY="49.0" mnemonicParsing="false" onAction="#DeleteExpensesCatagory" text="Delete Catagory" AnchorPane.leftAnchor="10.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
+                                                      <Button fx:id="expensesRecordValues" layoutX="10.0" layoutY="114.0" mnemonicParsing="false" onAction="#RecordExpensesValues" text="Record Values" AnchorPane.leftAnchor="10.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
+                                                      <Button fx:id="expensesNewDate" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#NewExpensesDate" text="New Date" AnchorPane.leftAnchor="10.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
                                                    </children>
                                                 </AnchorPane>
                                              </center>
@@ -372,9 +422,18 @@
                                              <center>
                                                 <AnchorPane prefHeight="168.0" prefWidth="215.0" BorderPane.alignment="CENTER">
                                                    <children>
-                                                      <Button fx:id="expensesNewRecurring" layoutX="18.0" layoutY="16.0" mnemonicParsing="false" text="New Recurring Expenses" AnchorPane.leftAnchor="15.0" />
-                                                      <Button fx:id="expensesDeleteRecurring" layoutX="19.0" layoutY="95.0" mnemonicParsing="false" text="Delete Recurring Expenses" AnchorPane.leftAnchor="15.0" />
-                                                      <Button fx:id="expensesEditRecurring" layoutX="16.0" layoutY="55.0" mnemonicParsing="false" text="Edit Recurring Expenses" AnchorPane.leftAnchor="15.0" />
+                                                      <Button fx:id="expensesNewRecurring" layoutX="18.0" layoutY="16.0" mnemonicParsing="false" onAction="#ExpensesNewRecurring" text="New Recurring Expenses" AnchorPane.leftAnchor="15.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
+                                                      <Button fx:id="expensesDeleteRecurring" layoutX="19.0" layoutY="95.0" mnemonicParsing="false" onAction="#EpensesDeleteRecurring" text="Delete Recurring Expenses" AnchorPane.leftAnchor="15.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
+                                                      <Button fx:id="expensesEditRecurring" layoutX="16.0" layoutY="55.0" mnemonicParsing="false" onAction="#ExpensesEditRecurring" text="Edit Recurring Expenses" AnchorPane.leftAnchor="15.0">
+                                                         <font>
+                                                            <Font name="Arial" size="13.0" />
+                                                         </font></Button>
                                                    </children>
                                                 </AnchorPane>
                                              </center>

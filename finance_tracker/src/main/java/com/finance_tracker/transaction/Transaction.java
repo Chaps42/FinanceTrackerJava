@@ -1,8 +1,7 @@
 package com.finance_tracker.transaction;
 
 import java.util.ArrayList;
-
-import com.finance_tracker.Date;
+import java.util.Date;
 import com.finance_tracker.account.Account;
 
 public class Transaction {
@@ -44,7 +43,7 @@ public class Transaction {
         return transactionDate;
     }
 
-    public Date getTransactionAccount() {
+    public Account getTransactionAccount() {
         return transactionAccount;
     }
 

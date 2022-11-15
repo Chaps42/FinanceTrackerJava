@@ -7,10 +7,10 @@ import java.io.IOException;
 import com.opencsv.CSVWriter;
 
 public class Mapper {
-    get() {}
-    search() {}
-    add() {}
-    remove() {}
+    //get() {}
+    //search() {}
+    //add() {}
+    //remove() {}
 
 
     // Sample method for writing to a CSV file
