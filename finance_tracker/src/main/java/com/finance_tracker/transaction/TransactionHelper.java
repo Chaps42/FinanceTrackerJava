@@ -6,6 +6,7 @@ enum TransactionEnum {
 }
 
 
+// A "nice to have" will be letting the user add unique category names
 enum CategoryEnum {
     VACATION,
     GIFT,
