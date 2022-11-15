@@ -7,8 +7,6 @@ public class UIFacade extends Subject {
     public UIFacade(Mediator CRef){
         registerObserver(CRef);
         CentralRef = CRef;
-
-
     }
     
 
