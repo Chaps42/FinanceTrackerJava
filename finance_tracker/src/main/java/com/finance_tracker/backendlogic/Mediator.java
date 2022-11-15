@@ -1,6 +1,5 @@
 package com.finance_tracker.backendlogic;
 
-import javafx.scene.chart.PieChart.Data;
 
 public class Mediator extends Observer{
     private DataFacade DataInterface;

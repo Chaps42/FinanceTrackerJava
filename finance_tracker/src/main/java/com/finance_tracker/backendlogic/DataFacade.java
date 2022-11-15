@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.finance_tracker.account.*;
+import com.finance_tracker.categories.Category;
+import com.finance_tracker.categories.CategoryBuilder;
+import com.finance_tracker.categories.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionBuilder;
 
@@ -16,6 +19,7 @@ import com.finance_tracker.transaction.*;;
 class DataFacade extends Subject{
     private HashMap<String,Account> AccountMap = new HashMap<String,Account>();
     private HashMap<String,Transaction> TransactionMap = new HashMap<String,Transaction>();
+    private HashMap<String,Category> CatagoryMap = new HashMap<String,Category>();
     private Mediator CentralRef;
 
     public DataFacade(Mediator CRef){
@@ -40,6 +44,40 @@ class DataFacade extends Subject{
         builder.setTransactionFrequency(0);
         TransactionMap.put(Name,builder.buildTransaction());
         notifyObserver("Transaction Created: "+Name);
+    }
+
+    public void createCategory(String Name,CategoryEnum Enum){
+        CategoryBuilder builder = new CategoryBuilder(Name);
+        builder.setEnum(Enum);
+        CatagoryMap.put(Name,builder.buildCategory());
+
+    }
+
+
+    public void addValue(String Name,DataTypeEnum Type,Date D, Double Value){
+        switch(Type){
+        case ACCOUNT:
+            AccountRecord record = new AccountRecord();
+            record.setAmount(Value);
+            record.setDate(D);
+            AccountMap.get(Name).addRecord(record);
+        case CATEGORY:
+            CatagoryMap.get(Name).recordValue(D, Value);}
+    
+    }
+
+    public void delteValue(String Name,DataTypeEnum Type,Date D){
+        switch(Type){
+            case ACCOUNT:
+                AccountRecord record = AccountMap.get(Name).getRecord(D);
+                AccountMap.get(Name).removeRecord(record);
+            case CATEGORY:
+                CatagoryMap.get(Name).deleteValue(D);
+        
+    }
+
+
+
     }
 
     public HashMap<String,Account> getAllAccounts(){

@@ -2,7 +2,7 @@ package com.finance_tracker.account;
 
 import java.util.ArrayList;
 
-import com.finance_tracker.Date;
+import java.util.Date;
 
 public class Account {
 
@@ -28,7 +28,7 @@ public class Account {
      * @param record AccountRecord
      * For adding a new record.
      */
-    void addRecord(AccountRecord record) {
+    public void addRecord(AccountRecord record) {
         accountRecords.add(record);
     }
 
@@ -52,7 +52,7 @@ public class Account {
      *
      * For deleting an account
      */
-    void removeRecord(AccountRecord record) {
+    public void removeRecord(AccountRecord record) {
         accountRecords.remove(record);
     }
 
@@ -80,6 +80,15 @@ public class Account {
 
     public InterestPeriodEnum getInterestPeriodEnum() {
         return interestPeriodEnum;
+    }
+
+    public AccountRecord getRecord(Date D){
+        for(AccountRecord R:accountRecords){
+            if(R.getDate()==D){
+                return R;
+            }
+        }
+        return accountRecords.get(0);
     }
 
     public double getValue(){
