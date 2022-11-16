@@ -9,6 +9,14 @@ public class UIFacade extends Subject {
         CentralRef = CRef;
     }
     
+    public void updateUI(){
+        CentralRef.getData().getAllAccounts();
+        CentralRef.getData().getAllOneTimeTransactions();
+        CentralRef.getData().getAllCategories();
+
+
+        notifyObserver("UI Updated");
+    }
 
 
 

@@ -27,6 +27,8 @@ class DataFacade extends Subject{
         CentralRef = CRef;
     }
 
+
+
     public void createAccount(String Name, AccountEnum Enum){
         ArrayList<AccountRecord> emptyList = new ArrayList<AccountRecord>();
         AccountBuilder builder = new AccountBuilder(Name,emptyList);
@@ -36,6 +38,7 @@ class DataFacade extends Subject{
         builder.setInterestPeriodEnum(null);
         AccountMap.put(Name,builder.buildAccount());
         notifyObserver("Account Created: "+Name);
+        CentralRef.getUI().updateUI();
     }
 
     public void createTransaction(String Name, TransactionEnum Enum,Double value,Date date,Account wAccount){
@@ -44,13 +47,15 @@ class DataFacade extends Subject{
         builder.setTransactionFrequency(0);
         TransactionMap.put(Name,builder.buildTransaction());
         notifyObserver("Transaction Created: "+Name);
+        CentralRef.getUI().updateUI();
     }
 
     public void createCategory(String Name,CategoryEnum Enum){
         CategoryBuilder builder = new CategoryBuilder(Name);
         builder.setEnum(Enum);
         CatagoryMap.put(Name,builder.buildCategory());
-
+        notifyObserver("Category " + Name + " Created");
+        CentralRef.getUI().updateUI();
     }
 
 
@@ -63,6 +68,8 @@ class DataFacade extends Subject{
             AccountMap.get(Name).addRecord(record);
         case CATEGORY:
             CatagoryMap.get(Name).recordValue(D, Value);}
+        notifyObserver("Value Added to " + Name);
+        CentralRef.getUI().updateUI();
     
     }
 
@@ -73,6 +80,9 @@ class DataFacade extends Subject{
                 AccountMap.get(Name).removeRecord(record);
             case CATEGORY:
                 CatagoryMap.get(Name).deleteValue(D);
+
+        notifyObserver("Value Deleted");
+        CentralRef.getUI().updateUI();
         
     }
 
@@ -82,6 +92,7 @@ class DataFacade extends Subject{
 
     public HashMap<String,Account> getAllAccounts(){
         notifyObserver("All Accounts Returned");
+        CentralRef.getUI().updateUI();
         return AccountMap;
     }
 
@@ -93,8 +104,10 @@ class DataFacade extends Subject{
             }
         }
         notifyObserver("All Accounts Type: "+Enum +" Returned");
+        CentralRef.getUI().updateUI();
         return List;
     }
+    
 
     public ArrayList<Transaction> getAllRecurringTransactions(){
         ArrayList<Transaction> List = new ArrayList<Transaction>();
@@ -104,6 +117,7 @@ class DataFacade extends Subject{
             }
         }
         notifyObserver("All Reccuring Transactions Returned");
+        CentralRef.getUI().updateUI();
         return List;
 
 
@@ -117,6 +131,19 @@ class DataFacade extends Subject{
             }
         }
         notifyObserver("All One Time Transactions Returned");
+        CentralRef.getUI().updateUI();
+        return List;
+
+    }
+
+    public ArrayList<Category> getAllCategories(){
+        ArrayList<Category> List = new ArrayList<Category>();
+        for(Map.Entry<String, Category> set :CatagoryMap.entrySet()){
+            List.add(set.getValue());
+            
+        }
+        notifyObserver("All Categories Returned");
+        CentralRef.getUI().updateUI();
         return List;
 
     }
