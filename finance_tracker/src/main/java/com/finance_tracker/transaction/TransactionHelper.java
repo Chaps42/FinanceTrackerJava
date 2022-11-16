@@ -6,6 +6,13 @@ enum TransactionEnum {
 }
 
 
+enum TransactionFrequencyEnum {
+    WEEKLY,
+    MONTHLY,
+    ANNUALLY
+}
+
+
 // A "nice to have" will be letting the user add unique category names
 enum CategoryEnum {
     VACATION,
@@ -15,4 +22,5 @@ enum CategoryEnum {
     ENTERTAINMENT,
     CLOTHES,
     MISC_SPENDING,
+    FITNESS
 }
