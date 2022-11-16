@@ -1,5 +1,6 @@
 package com.finance_tracker.account;
 
+
 enum InterestEnum {
     SIMPLE,
     COMPOUND,
@@ -14,13 +15,4 @@ enum InterestPeriodEnum {
 }
 
 
-enum AccountEnum {
-    SAVINGS,
-    CHECKING,
-    PERSONAL_LOAN,
-    AUTO_LOAN,
-    STUDENT_LOAN,
-    RETIREMENT,
-    CREDIT_CARD,
-    MORTGAGE;
-}
+

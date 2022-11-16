@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AccountRecord {
     private Date date;
-    private double amount;
+    private Double amount;
 
 
     public AccountRecord(Date date, double amount) {
@@ -32,7 +32,7 @@ public class AccountRecord {
     /**
      * @return float
      */
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -40,7 +40,7 @@ public class AccountRecord {
     /**
      * @param amount float
      */
-    public void setAmount(float amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }

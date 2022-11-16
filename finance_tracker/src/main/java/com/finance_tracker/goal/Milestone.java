@@ -62,4 +62,8 @@ public class Milestone {
     public void setMilestoneStatus(Boolean milestoneStatus) {
         this.milestoneStatus = milestoneStatus;
     }
+
+    public int getPercent(){
+        return this.goalPercent;
+    }
 }
