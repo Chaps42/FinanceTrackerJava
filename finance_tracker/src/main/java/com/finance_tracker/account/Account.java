@@ -57,7 +57,9 @@ public class Account {
     }
 
     public double getValue() {
-        accountRecords = getLast ... 
+        Integer endIndex = accountRecords.size();
+        AccountRecord lastRecord = accountRecords.get(endIndex);
+        return lastRecord.getAmount();
     }
 
 

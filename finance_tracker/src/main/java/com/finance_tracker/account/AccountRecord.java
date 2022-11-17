@@ -7,6 +7,12 @@ public class AccountRecord {
     private Double amount;
 
 
+    public AccountRecord(Date date, double amount) {
+        this.date = date;
+        this.amount = amount;
+    }
+
+
     /**
      * @return Date
      */
