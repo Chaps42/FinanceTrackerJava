@@ -2,7 +2,7 @@ NAME, TYPE
 sample_account_name, SAVINGS
 
 Interest:
-PERCENT, FREQ, Type
+PERCENT, FREQ, TYPE
 0.03, ANNUAL, SIMPLE
 
 Account Records:

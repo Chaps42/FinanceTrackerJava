@@ -4,7 +4,9 @@ import java.lang.Math;
 
 import java.util.Date;
 import com.finance_tracker.account.Account;
-import com.finance_tracker.account.AccountHelper;
+
+import com.finance_tracker.account.InterestEnum;
+import com.finance_tracker.account.InterestPeriodEnum;
 
 public class MathUtil {
     
@@ -13,22 +15,22 @@ public class MathUtil {
         double ammountPrincipal = account.getValue();
         double interestRate = account.getInterestRate();
 
-        InerestPeriodEnum interestPeriodEnum = account.getInterestPeriodEnum();
+        InterestPeriodEnum interestPeriodEnum = account.getInterestPeriodEnum();
         if (interestPeriodEnum == DAILY) {
             // handle interest rate and calculation differently for different periods
             // break time past into increments of days
-        } else if (interstPeriodEnum == MONTHLY) {
+        } else if (interestPeriodEnum == MONTHLY) {
 
         } else if (interestPeriodEnum == ANNUAL) {
 
         }
 
 
-        InerestEnum interestEnum = account.getInterestEnum();
+        InterestEnum interestEnum = account.getInterestEnum();
         double interest;
         if (interestEnum == SIMPLE) {
             interest = calculateSimpleInterest(amountPrincipal, interestRate, time);
-        } else if (interstEnum == COMPOUND) {
+        } else if (interestEnum == COMPOUND) {
             interest = calculateCompoundInterest();
         } else if (interestEnum == CONTINUOUS) {
             interest = calculateContinuousInterest();

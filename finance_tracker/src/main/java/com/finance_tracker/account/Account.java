@@ -98,10 +98,4 @@ public class Account {
         }
         return accountRecords.get(0);
     }
-
-    public double getValue(){
-        return 42.0;
-
-    }
 }
-

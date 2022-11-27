@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.finance_tracker.account.*;
-import com.finance_tracker.categories.Category;
-import com.finance_tracker.categories.CategoryBuilder;
-import com.finance_tracker.categories.CategoryEnum;
+import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionBuilder;
 
@@ -19,7 +17,7 @@ import com.finance_tracker.transaction.*;;
 class DataFacade extends Subject{
     private HashMap<String,Account> AccountMap = new HashMap<String,Account>();
     private HashMap<String,Transaction> TransactionMap = new HashMap<String,Transaction>();
-    private HashMap<String,Category> CatagoryMap = new HashMap<String,Category>();
+    private HashMap<String,CategoryEnum> CatagoryMap = new HashMap<String,CategoryEnum>();
     private Mediator CentralRef;
 
     public DataFacade(Mediator CRef){
