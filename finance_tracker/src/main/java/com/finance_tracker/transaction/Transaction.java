@@ -1,7 +1,6 @@
 package com.finance_tracker.transaction;
 
 import java.util.Date;
-import java.util.ArrayList;
 
 import com.finance_tracker.account.Account;
 

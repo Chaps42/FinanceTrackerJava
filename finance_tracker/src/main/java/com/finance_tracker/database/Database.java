@@ -20,7 +20,7 @@ public class Database {
      * Making constructor private so that this class cannot be
      * instantiated.
      */
-    private Database() { }
+    private Database() {}
 
 
     /**
@@ -29,7 +29,7 @@ public class Database {
      * Gets the only Database.
      * Lazy Singleton.
      */
-    public static Database getInstance() {
+    public Database getInstance() {
         if (instance == null) {
             instance = new Database();
         }
@@ -40,25 +40,30 @@ public class Database {
     /**
      * Initializes the Database
      *
-     * Necessary for Singleton Pattern becasue Logger cannot have parameters,
+     * Necessary for Singleton Pattern becasue Database cannot have parameters,
      * but we want to pass certain information into it.
      */
-    public static void initializeDatabase(HashMap<String, Account> accounts, HashMap<String, Transaction> transactions) {
+    public void initializeDatabase(HashMap<String, Account> accounts, HashMap<String, Transaction> transactions) {
         setAccounts(accounts);
         setTransactions(transactions);
     }
 
 
-    static void setAccounts(HashMap<String, Account> accounts) {
+    void setAccounts(HashMap<String, Account> accounts) {
         Database.accounts = accounts;
     }
 
-    static void setTransactions(HashMap<String, Transaction> transactions) {
+    void setTransactions(HashMap<String, Transaction> transactions) {
         Database.transactions = transactions;
     }
 
 
-    public static Account findAccount(String name) {
-        return accounts.get(name);
+    public HashMap<String, Account> getAccounts() {
+        return accounts;
+    }
+
+
+    public HashMap<String, Transaction> getTransactions() {
+        return transactions;
     }
 }
