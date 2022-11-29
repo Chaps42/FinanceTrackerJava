@@ -30,6 +30,7 @@ import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
 public class FileManager {
+    static SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
 
 
     // reads 1 account
@@ -55,12 +56,14 @@ public class FileManager {
             String interestType = accountData.get(5)[2];
             InterestEnum interestTypeEnum = InterestEnum.valueOf(interestType);
 
+            String lastInterestDateStr = accountData.get(5)[3];
+            Date lastInterestDate = format.parse(lastInterestDateStr);
+
             // Read account reccords
             int endIndex = accountData.size();
             ArrayList<AccountRecord> accountRecords = new ArrayList<AccountRecord>();
             for(int i = 9; i < endIndex; i++) {
                 String dateStr = accountData.get(i)[0];
-                SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
                 Date date = format.parse(dateStr);
 
                 String valueStr = accountData.get(i)[1];
@@ -75,7 +78,8 @@ public class FileManager {
                 .setAccountEnum(accountEnum)
                 .setInterestRate(interestRate)
                 .setInterestPeriodEnum(interestPeriodEnum)
-                .setInterestEnum(interestTypeEnum);
+                .setInterestEnum(interestTypeEnum)
+                .setLastInterestDate(lastInterestDate);
 
             Account account = accountBuilder.buildAccount();
             return account;
@@ -110,7 +114,6 @@ public class FileManager {
             int endIndex = transactionData.size();
             for (int i = 1; i < endIndex; i++) {
                 String dateStr = transactionData.get(i)[0];
-                SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
                 Date date = format.parse(dateStr);
 
                 String name = transactionData.get(i)[1];
@@ -145,24 +148,8 @@ public class FileManager {
         }
     }
 
-    // Sample method for writing to a CSV file
+
     // Using this resource: https://www.baeldung.com/opencsv
-    public static void writeDataLineByLine(String filePath) {
-        File file = new File(filePath);
-        try {
-            FileWriter outputfile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputfile);
-    
-            String[] data1 = { "a", "b", "c" };
-            writer.writeNext(data1);
-    
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error
@@ -183,11 +170,12 @@ public class FileManager {
 
             String[] line4 = {"Interest:"};
             writer.writeNext(line4);
-            String[] line5 = {"PERCENT", "FREQ", "TYPE"};
+            String[] line5 = {"PERCENT", "FREQ", "TYPE", "LAST_INTEREST_DATE"};
             writer.writeNext(line5);
             String[] line6 = {String.valueOf(account.getInterestRate()), 
                 account.getInterestPeriodEnum().toString(),
-                account.getInterestEnum().toString()};
+                account.getInterestEnum().toString(),
+                format.format(account.getLastInterestDate())};
             writer.writeNext(line6);
             writer.writeNext(blankLine);
 
@@ -197,7 +185,7 @@ public class FileManager {
             writer.writeNext(line9);
             ArrayList<AccountRecord> accountRecords = account.getAccountRecords();
             for (AccountRecord r: accountRecords) {
-                String[] line = {r.getDate().toString(), String.valueOf(r.getAmount())};
+                String[] line = {format.format(r.getDate()), String.valueOf(r.getAmount())};
                 writer.writeNext(line);
             }
             writer.close();
@@ -221,7 +209,7 @@ public class FileManager {
             Mapper databaseMapper = Mapper.getInstance();
             HashMap<String, Transaction> transactions = databaseMapper.getTransactions(); // from mapper instead, mapper only class to interact with database
             for (Transaction t: transactions.values()) {
-                String[] line = {t.getDate().toString(),
+                String[] line = {format.format(t.getDate()),
                     t.getName(),
                     String.valueOf(t.getValue()),
                     t.getTransactionAccount().toString(),

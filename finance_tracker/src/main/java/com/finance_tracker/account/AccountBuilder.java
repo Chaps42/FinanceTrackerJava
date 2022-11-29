@@ -1,6 +1,7 @@
 package com.finance_tracker.account;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AccountBuilder {
 
@@ -12,6 +13,7 @@ public class AccountBuilder {
     private double interestRate;
     private InterestEnum interestEnum;
     private InterestPeriodEnum interestPeriodEnum;
+    private Date lastInterestDate;
 
     //Mark to Market at specific times (daily when to withdrwaw things) -- comment from Dwight
 
@@ -57,6 +59,10 @@ public class AccountBuilder {
         return this;
     }
 
+    public AccountBuilder setLastInterestDate(Date lastInterestDate) {
+        this.lastInterestDate = lastInterestDate;
+        return this;
+    }
 
     /**
      * Using the Builder pattern to create Accounts.
@@ -89,5 +95,9 @@ public class AccountBuilder {
 
     public InterestPeriodEnum getInterestPeriodEnum() {
         return interestPeriodEnum;
+    }
+
+    public Date getLastInterestDate() {
+        return lastInterestDate;
     }
 }
