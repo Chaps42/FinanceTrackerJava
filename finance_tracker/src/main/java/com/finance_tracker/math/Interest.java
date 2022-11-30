@@ -1,4 +1,4 @@
-package com.finance_tracker;
+package com.finance_tracker.math;
 
 import java.lang.Math;
 import java.util.Date;
@@ -9,7 +9,7 @@ import com.finance_tracker.account.Account;
 import com.finance_tracker.account.InterestEnum;
 import com.finance_tracker.account.InterestPeriodEnum;
 
-public class MathUtil {
+public class Interest {
 
 
     // https://www.javatpoint.com/java-get-current-date
