@@ -1,36 +1,12 @@
 package com.finance_tracker.math;
 
-import java.lang.Math;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import com.finance_tracker.account.Account;
-
 import com.finance_tracker.account.InterestEnum;
 import com.finance_tracker.account.InterestPeriodEnum;
 
 public class Interest {
-
-
-    // https://www.javatpoint.com/java-get-current-date
-    private Date getCurrentDate() {
-        Date date = new Date();
-        return date;
-    }
-
-
-    // https://stackabuse.com/how-to-get-the-number-of-days-between-dates-in-java/
-    private int getDayDiff(Date dateBefore, Date dateAfter) {
-        long dateBeforeInMs = dateBefore.getTime();
-        long dateAfterInMs = dateAfter.getTime();
-
-        long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
-        long daysDiffLong = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-        // Doesn't have a TimeUnit for months or years?
-        // Four our purposes we can just divide days by 30 or ?
-        int daysDiff = (int) daysDiffLong;
-        return daysDiff;
-    }
 
 
     double calculateSimpleInterest(double amountPrincipal, double interestRate, int time) {
@@ -56,16 +32,18 @@ public class Interest {
         InterestPeriodEnum interestPeriodEnum = account.getInterestPeriodEnum(); // DAILY, MONTHLY, ANNUAL
         InterestEnum interestEnum = account.getInterestEnum(); // SIMPLE, COMPOUND, CONTINUOUS
 
-        Date today = getCurrentDate();
+        DateMath datemath = new DateMath();
+        Date today = datemath.getCurrentDate();
         Date lastInterestDate = account.getLastInterestDate();
         Date principalInterestDate = account.getAccountRecords().get(0).getDate();
         double amountPrincipal = account.getAccountRecords().get(0).getAmount();
 
+        
         double newInterest = 0; // need to initialize variable
         if (interestPeriodEnum.equals(InterestPeriodEnum.DAILY)) {
             // Daily Interest
-            int totalDaysDiff = getDayDiff(principalInterestDate, today);
-            int lastDaysDiff = getDayDiff(lastInterestDate, today);
+            int totalDaysDiff = datemath.getDayDiff(principalInterestDate, today);
+            int lastDaysDiff = datemath.getDayDiff(lastInterestDate, today);
             if (interestEnum.equals(InterestEnum.SIMPLE)) {
                 // Daily Simple
                 double totalInterest = calculateSimpleInterest(amountPrincipal, interestRate, totalDaysDiff);
@@ -84,8 +62,8 @@ public class Interest {
             }
         } else if (interestPeriodEnum.equals(InterestPeriodEnum.MONTHLY)) {
             // Monthly Interest
-            int totalMonthsDiff = getDayDiff(principalInterestDate, today) / 30; // Approximate
-            int lastMonthsDiff = getDayDiff(lastInterestDate, today) / 30; // Approximate
+            int totalMonthsDiff = datemath.getDayDiff(principalInterestDate, today) / 30; // Approximate
+            int lastMonthsDiff = datemath.getDayDiff(lastInterestDate, today) / 30; // Approximate
             if (interestEnum.equals(InterestEnum.SIMPLE)) {
                 // Monthly Simple
                 double totalInterest = calculateSimpleInterest(amountPrincipal, interestRate, totalMonthsDiff);
@@ -104,8 +82,8 @@ public class Interest {
             }
         } else if (interestPeriodEnum.equals(InterestPeriodEnum.ANNUAL)) {
             // Annual Interest
-            int totalYearsDiff = getDayDiff(principalInterestDate, today) / 365; // Approximate
-            int lastYearsDiff = getDayDiff(lastInterestDate, today) / 365; // Approximate
+            int totalYearsDiff = datemath.getDayDiff(principalInterestDate, today) / 365; // Approximate
+            int lastYearsDiff = datemath.getDayDiff(lastInterestDate, today) / 365; // Approximate
             if (interestEnum.equals(InterestEnum.SIMPLE)) {
                 // Annual Simple
                 double totalInterest = calculateSimpleInterest(amountPrincipal, interestRate, totalYearsDiff);

@@ -1,0 +1,18 @@
+NAME, TYPE
+sample_no_interest_account_name, CHECKING
+
+Interest:
+PERCENT, FREQ, TYPE, LAST_INTEREST_DATE
+null, null, null, null
+
+Account Records:
+DATE, AMOUNT
+20220101, $0
+20220114, $100
+20220201, $200
+20220214, $300
+20220301, $400
+20220314, $500
+20220401, $600
+20220414, $700
+20220514, $800
