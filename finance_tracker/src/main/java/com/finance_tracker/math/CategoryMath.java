@@ -3,7 +3,6 @@ package com.finance_tracker.math;
 import java.util.Collection;
 import java.util.EnumMap;
 
-import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
