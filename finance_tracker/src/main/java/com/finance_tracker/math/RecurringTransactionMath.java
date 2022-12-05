@@ -14,7 +14,7 @@ import com.finance_tracker.transaction.TransactionBuilder;
 import com.finance_tracker.transaction.TransactionEnum;
 import com.finance_tracker.transaction.TransactionFrequencyEnum;
 
-public class RecurringTransaction {
+public class RecurringTransactionMath {
 
 
     private Date calculateNextTransactionDate(Transaction transaction) {

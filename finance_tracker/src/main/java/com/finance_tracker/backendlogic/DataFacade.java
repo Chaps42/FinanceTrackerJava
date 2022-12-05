@@ -27,44 +27,43 @@ class DataFacade extends Subject{
 
     public void createAccount(String Name, AccountEnum Enum){
         ArrayList<AccountRecord> emptyList = new ArrayList<AccountRecord>();
-        AccountBuilder builder = new AccountBuilder(Name,emptyList);
-        builder.setAccountEnum(Enum);
-        builder.setInterestEnum(null);
-        builder.setInterestRate(0);
-        builder.setInterestPeriodEnum(null);
+        AccountBuilder builder = new AccountBuilder(Name, emptyList)
+            .setAccountEnum(Enum)
+            .setInterestEnum(null)
+            .setInterestRate(0)
+            .setInterestPeriodEnum(null)
+            .setLastInterestDate(null);
         AccountMap.put(Name,builder.buildAccount());
         notifyObserver("Account Created: "+Name);
     }
 
-    public void createTransaction(String Name, TransactionEnum Enum,Double value,Date date,Account wAccount){
-        TransactionBuilder builder = new TransactionBuilder(Name,Enum,value,date,wAccount);
-        builder.setTransactionDates(null);
-        builder.setTransactionFrequency(0);
-        TransactionMap.put(Name,builder.buildTransaction());
-        notifyObserver("Transaction Created: "+Name);
-    }
-
-    public void createCategory(String Name,CategoryEnum Enum){
-        CategoryBuilder builder = new CategoryBuilder(Name);
-        builder.setEnum(Enum);
-        CatagoryMap.put(Name,builder.buildCategory());
-
+    public void createTransaction(String name, TransactionEnum transactionEnum, Double value, Date date, Account wAccount, TransactionFrequencyEnum frequencyEnum, CategoryEnum category){
+        TransactionBuilder transactionBuilder = new TransactionBuilder(
+                    name,
+                    transactionEnum,
+                    value,
+                    date,
+                    wAccount)
+                .setFrequency(frequencyEnum)
+                .setCategory(category);
+        
+            Transaction transaction = transactionBuilder.buildTransaction();
+        TransactionMap.put(name, transaction); // This seems potentially redundant with the Mapper class!
+        notifyObserver("Transaction Created: " + name);
     }
 
 
     public void addValue(String Name,DataTypeEnum Type,Date D, Double Value){
         switch(Type){
         case ACCOUNT:
-            AccountRecord record = new AccountRecord();
-            record.setAmount(Value);
-            record.setDate(D);
+            AccountRecord record = new AccountRecord(D, Value);
             AccountMap.get(Name).addRecord(record);
-        case CATEGORY:
+        case CATEGORY: // is this still relevant with the simplified version of categories?
             CatagoryMap.get(Name).recordValue(D, Value);}
     
     }
 
-    public void delteValue(String Name,DataTypeEnum Type,Date D){
+    public void deleteValue(String Name,DataTypeEnum Type,Date D){
         switch(Type){
             case ACCOUNT:
                 AccountRecord record = AccountMap.get(Name).getRecord(D);
