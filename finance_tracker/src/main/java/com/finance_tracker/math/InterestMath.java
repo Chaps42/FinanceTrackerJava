@@ -6,7 +6,7 @@ import com.finance_tracker.account.Account;
 import com.finance_tracker.account.InterestEnum;
 import com.finance_tracker.account.InterestPeriodEnum;
 
-public class Interest {
+public class InterestMath {
 
 
     double calculateSimpleInterest(double amountPrincipal, double interestRate, int time) {
