@@ -64,6 +64,11 @@ public class Account {
         return lastRecord.getAmount();
     }
 
+    public Date getDate() {
+        Integer endIndex = accountRecords.size();
+        AccountRecord lastRecord = accountRecords.get(endIndex);
+        return lastRecord.getDate();
+    }
 
 
     // All getters and no setters in Builder pattern

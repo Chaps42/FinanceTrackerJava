@@ -9,6 +9,7 @@ import com.finance_tracker.transaction.Transaction;
 
 public class Category {
 
+
     private EnumMap<CategoryEnum, Double> getCategoryAmounts(Collection<Transaction> transactions) {
         // Generate an Enum map
         EnumMap<CategoryEnum, Double> categoryMap = new EnumMap<>(CategoryEnum.class);
@@ -59,3 +60,7 @@ public class Category {
         // pass info to a Plotter
     }
 }
+
+// need to make a category object that has categoryEnum, amount, and Percentage attributes
+//with getters for the Pie plotter to grab (plotter should be agnostic - not depend on categories but work when something else passes the categories into it)
+// change this to calculate "last month only" option?
