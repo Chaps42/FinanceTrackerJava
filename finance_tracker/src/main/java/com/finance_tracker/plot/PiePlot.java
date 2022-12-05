@@ -8,51 +8,41 @@ import com.finance_tracker.math.CategoryMath;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.chart.*;
-import javafx.scene.Group;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class PiePlot {
 
 
-        // https://docs.oracle.com/javafx/2/charts/pie-chart.htm
-    public void plotTransactions(Stage stage) {
+    // https://www.tutorialspoint.com/jfreechart/jfreechart_pie_chart.htm
+    public JFreeChart plotTransactions() {
 
         Mapper databaseMapper = Mapper.getInstance();
         HashMap<String, Transaction> transactions = databaseMapper.getTransactions();
         EnumMap<CategoryEnum, Double> categoryMap = CategoryMath.getCategoryAmounts(transactions.values());
         //EnumMap<CategoryEnum, Double> categoryPercentMap = CategoryMath.getCategoryPercents(transactions.values());
 
-        
-        // investigating javaFX because that is what the GUI is using?
-        //OR should I focus on a terminal only method?
-        Scene scene = new Scene(new Group());
-        stage.setTitle("Transaction Categories");
-        stage.setWidth(500);
-        stage.setHeight(500);
-         
-        ObservableList<PieChart.Data> pieChartData =
-            FXCollections.observableArrayList();
+        DefaultPieDataset dataset = new DefaultPieDataset();
         
         // Add data from category HashMap
-        PieChart.Data data[] = new PieChart.Data[categoryMap.size()];
-        int n = 0;
         for (CategoryEnum c: categoryMap.keySet()) {
             String name = String.valueOf(c);
             Double amount = categoryMap.get(c);
 
-            data[n] = new PieChart.Data(name, amount);
-            n += 1;
+            dataset.setValue(name, amount);
         }
-
-        final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Transaction Categories");
         
-        stage.setScene(scene);
-        stage.show();
+        // Example of using a factory pattern
+        // But a builder would be better here
+        // Because it isn't clear what each argument maps to
+        JFreeChart chart = ChartFactory.createPieChart(
+            "Transaction Categories",
+            dataset,
+            true,
+            true,
+            false);
+
+        return chart;
     }
 }
