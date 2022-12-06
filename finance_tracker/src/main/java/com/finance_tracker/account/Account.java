@@ -110,4 +110,9 @@ public class Account {
         }
         return accountRecords.get(0);
     }
+
+    // Setter for last interst date so it can be over-written
+    public void setLastInterestDate(Date date) {
+        lastInterestDate = date;
+    }
 }
