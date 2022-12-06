@@ -1,35 +1,35 @@
 package com.finance_tracker.math;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 
+import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
 public class CategoryMath {
+    Mapper databaseMapper = Mapper.getInstance();
 
 
-    public static EnumMap<CategoryEnum, Double> getCategoryAmounts(Collection<Transaction> transactions) {
+    public EnumMap<CategoryEnum, Double> getCategoryAmounts(Collection<Transaction> transactions) {
         // Generate an Enum map
         EnumMap<CategoryEnum, Double> categoryMap = new EnumMap<>(CategoryEnum.class);
         CategoryEnum[] categories = CategoryEnum.class.getEnumConstants();
         for (CategoryEnum c: categories) {
-            categoryMap.put(c, 0.0);
-        }
-        
-        // Fill the Enum map with additive values every transaction
-        for (Transaction t: transactions) {
-            double transactionValue = t.getValue();
-
-            CategoryEnum category = t.getCategory();
-            double categoryValue = categoryMap.get(category) + transactionValue;
-            categoryMap.replace(category, categoryValue);
+            ArrayList<Transaction> transactionsOfCategory = databaseMapper.getAllTransactionsOfCategory(c);
+            Double categoryTotal = 0.0;
+            for (Transaction t: transactionsOfCategory) {
+                Double value = t.getValue();
+                categoryTotal += value;
+            }
+            categoryMap.put(c, categoryTotal);
         }
         return categoryMap;
     }
 
 
-    private static double getTransactionTotalAmount(Collection<Transaction> transactions) {
+    private double getTransactionTotalAmount(Collection<Transaction> transactions) {
         double totalTransactionAmount = 0;
         for (Transaction t: transactions) {
             double transactionValue = t.getValue();
@@ -38,7 +38,9 @@ public class CategoryMath {
         return totalTransactionAmount;
     }
 
-    public static EnumMap<CategoryEnum, Double> getCategoryPercents(Collection<Transaction> transactions) {  
+    // Unused, pie plot does this on its own
+    // Could be useful for printing percent values
+    public EnumMap<CategoryEnum, Double> getCategoryPercents(Collection<Transaction> transactions) {  
             double totalTransactionAmount = getTransactionTotalAmount(transactions); 
             EnumMap<CategoryEnum, Double> categoryMap = getCategoryAmounts(transactions);
 
@@ -50,4 +52,3 @@ public class CategoryMath {
             return categoryPercentMap;
         }
 }
-// change this to calculate "last month only" option?

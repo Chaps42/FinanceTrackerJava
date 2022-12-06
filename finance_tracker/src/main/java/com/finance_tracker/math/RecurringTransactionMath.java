@@ -4,14 +4,11 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionBuilder;
-import com.finance_tracker.transaction.TransactionEnum;
 import com.finance_tracker.transaction.TransactionFrequencyEnum;
 
 public class RecurringTransactionMath {
@@ -38,24 +35,6 @@ public class RecurringTransactionMath {
             .atZone(ZoneId.systemDefault())
             .toInstant());
         return nextTransactionDate;
-    }
-
-
-    private ArrayList<Transaction> findRecurringTransactions() {
-        Mapper databaseMapper = Mapper.getInstance();
-        HashMap<String, Transaction>  transactions = databaseMapper.getTransactions();
-        Collection<String> transactionKeys = transactions.keySet();
-
-        ArrayList<Transaction> recurringTransactions = new ArrayList<Transaction>();
-        for (String s: transactionKeys) {
-            Transaction transaction = transactions.get(s);
-            TransactionEnum transactionEnum = transaction.getTransactionEnum();
-
-            if (transactionEnum.equals(TransactionEnum.RECURRING)) {
-                recurringTransactions.add(transaction);
-            }
-        }
-        return recurringTransactions;
     }
 
 
@@ -88,7 +67,8 @@ public class RecurringTransactionMath {
 
 
     public void recurTransactions() {
-        ArrayList<Transaction> recurringTransactions = findRecurringTransactions();
+        Mapper databaseMapper = Mapper.getInstance();
+        ArrayList<Transaction> recurringTransactions = databaseMapper.getRecurringTransactions();
         for (Transaction t: recurringTransactions) {
             applyRecurrance(t);
         }

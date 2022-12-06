@@ -20,7 +20,8 @@ public class PiePlot {
 
         Mapper databaseMapper = Mapper.getInstance();
         HashMap<String, Transaction> transactions = databaseMapper.getTransactions();
-        EnumMap<CategoryEnum, Double> categoryMap = CategoryMath.getCategoryAmounts(transactions.values());
+        CategoryMath categoryMath = new CategoryMath();
+        EnumMap<CategoryEnum, Double> categoryMap = categoryMath.getCategoryAmounts(transactions.values());
         //EnumMap<CategoryEnum, Double> categoryPercentMap = CategoryMath.getCategoryPercents(transactions.values());
 
         DefaultPieDataset dataset = new DefaultPieDataset();

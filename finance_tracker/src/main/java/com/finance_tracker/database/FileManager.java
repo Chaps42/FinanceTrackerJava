@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +35,7 @@ public class FileManager {
 
 
     // reads 1 account
-    public static Account readAccount(Path accountPath) throws IOException, ParseException {
+    private static Account readAccount(Path accountPath) throws IOException, ParseException {
         try (BufferedReader reader = Files.newBufferedReader(accountPath);) {
             CSVReader csvReader = new CSVReader(reader);
             List<String[]> accountData = csvReader.readAll();
@@ -150,7 +151,7 @@ public class FileManager {
 
 
     // Using this resource: https://www.baeldung.com/opencsv
-    public static void writeAccount(Account account) {
+    private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error
         String rootPath = "/user_data/accounts/";
@@ -238,5 +239,19 @@ public class FileManager {
         // On Start up
         readAllAccounts();
         readTransactions();
+    }
+
+    
+    private void writeAllAccounts() {
+        Mapper databaseMapper = Mapper.getInstance();
+        Collection<Account> accounts = databaseMapper.getAccounts().values();
+        for (Account a: accounts) {
+            writeAccount(a);
+        }
+    }
+
+    public void writeAll() {
+        writeAllAccounts();
+        writeTransactions();
     }
 }
