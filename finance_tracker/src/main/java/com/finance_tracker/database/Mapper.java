@@ -45,9 +45,7 @@ public class Mapper {
      * Necessary for Singleton Pattern becasue Mapper cannot have parameters,
      * but we want to pass certain information into it.
      */
-    public void initializeMapper(Database database) {
-        this.database = database.getInstance();
-    }
+    public void initializeMapper() {}
 
 
     public HashMap<String, Account> getAccounts() {
