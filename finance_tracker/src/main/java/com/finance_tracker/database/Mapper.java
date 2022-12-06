@@ -23,7 +23,7 @@ import com.finance_tracker.transaction.TransactionEnum;
 // Accounts, and allows the users to search Accounts by name, type, and .
 // Transactions can be searched by one-time vs recurring, category, and .
 public class Mapper {
-    Database database;
+    Database database = Database.getInstance();
     FileManager fileManager = FileManager.getInstance();
 
     // Create a single object for lazy Singleton pattern
