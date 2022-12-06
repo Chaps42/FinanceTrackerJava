@@ -87,7 +87,7 @@ public class Account {
      */
     public double getValue() {
         Integer endIndex = accountRecords.size();
-        AccountRecord lastRecord = accountRecords.get(endIndex);
+        AccountRecord lastRecord = accountRecords.get(endIndex-1);
         return lastRecord.getAmount();
     }
 
@@ -99,7 +99,7 @@ public class Account {
      */
     public Date getDate() {
         Integer endIndex = accountRecords.size();
-        AccountRecord lastRecord = accountRecords.get(endIndex);
+        AccountRecord lastRecord = accountRecords.get(endIndex-1);
         return lastRecord.getDate();
     }
 

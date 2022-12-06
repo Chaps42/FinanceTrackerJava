@@ -26,6 +26,7 @@ public class EnterAccountValue extends Command{
         String AccName = this.UserInput.nextLine();
         System.out.println("Enter Amount: ");
         double Accvalue = this.UserInput.nextDouble();
+        this.UserInput.nextLine();
 
         //Code found here https://www.baeldung.com/java-string-to-date
         boolean ValidDate = true;

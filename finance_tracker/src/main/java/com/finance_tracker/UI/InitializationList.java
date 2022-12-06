@@ -19,7 +19,7 @@ public class InitializationList extends GeneralList {
         CommandList.add(new LoadFile(this.FacRef.getMediator()));
     }
     protected void BuildString(){
-        String Substring = "Welcome! ";
+        String Substring = "Welcome! \n Enter a number to begin ";
         this.DisplayString += Substring+"\n";
 
         for(Command Item: CommandList){
@@ -34,7 +34,7 @@ public class InitializationList extends GeneralList {
         boolean validChoice = true;
 
         while(validChoice){
-            System.out.println("Enter your chioce: ");
+            System.out.println("Enter your choice: ");
             Integer Choice = UserCommand.nextInt();
             
             switch(Choice){

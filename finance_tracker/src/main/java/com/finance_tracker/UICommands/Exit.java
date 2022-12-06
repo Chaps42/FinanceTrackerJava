@@ -13,5 +13,6 @@ public class Exit extends Command{
     @Override
     public void execute() {
         this.CentralRef.endProgram();
+        System.out.println("\n Goodbye!");
     }
 }

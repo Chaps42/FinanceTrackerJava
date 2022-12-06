@@ -14,8 +14,8 @@ import com.finance_tracker.transaction.Transaction;
 // We used Lazy Singleton because it is thread safe, which is not as big
 // of a problem at this scale, but seems like better practice and a good habit.
 public class Database {
-    static HashMap<String, Account> accounts;
-    static HashMap<String, Transaction> transactions;
+    static HashMap<String, Account> accounts = new HashMap<String, Account>();
+    static HashMap<String, Transaction> transactions = new HashMap<String, Transaction>();
 
     // Create a single object for lazy Singleton pattern
     private static Database instance;

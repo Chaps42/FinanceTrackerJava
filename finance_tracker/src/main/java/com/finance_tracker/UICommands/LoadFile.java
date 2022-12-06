@@ -11,6 +11,7 @@ public class LoadFile extends Command{
 
     }
     public void execute(){
-        System.out.println("File Loaded");
+        System.out.println("File Loaded\n");
+
     }
 }

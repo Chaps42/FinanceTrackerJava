@@ -33,9 +33,7 @@ public class UIFacade extends Subject {
     //Update all values in the UI
     public void updateUI(){
         for(GeneralList Item:this.UIElements ){
-            System.out.println(Item);
             Item.DisplayString();
-            System.out.println("Im Displaying that string");
         }
         
         notifyObserver("UI Updated");
