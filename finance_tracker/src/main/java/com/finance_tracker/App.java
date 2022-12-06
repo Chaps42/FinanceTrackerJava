@@ -1,8 +1,5 @@
 package com.finance_tracker;
 
-import java.io.IOException;
-
-import com.finance_tracker.UI.UIController;
 import com.finance_tracker.backendlogic.Mediator;
 
 /**

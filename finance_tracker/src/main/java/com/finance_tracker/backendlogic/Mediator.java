@@ -30,4 +30,8 @@ public class Mediator extends Observer{
         }
     }
 
+    public void endProgram(){
+        this.Running = false;
+    }
+
 }

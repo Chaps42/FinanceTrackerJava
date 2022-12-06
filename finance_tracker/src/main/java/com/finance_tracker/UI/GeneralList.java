@@ -6,7 +6,7 @@ import com.finance_tracker.backendlogic.DataFacade;
 
 public abstract class GeneralList {
     protected String DisplayString = new String();
-    private UIFacade FacRef;
+    protected UIFacade FacRef;
     protected DataFacade DataRef;
 
     public GeneralList(UIFacade FacRef){
