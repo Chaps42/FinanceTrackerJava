@@ -10,4 +10,9 @@ public class CreateAccount extends Command{
         this.Name = "Create Account";
     }
 
+    public void execute(){
+        this.UserInput.nextInt();
+
+    }b
+
 }

@@ -4,9 +4,9 @@ import com.finance_tracker.backendlogic.Mediator;
 
 public class LoadFile extends Command{
     
-    LoadFile(Mediator CentralRef){
+    public  LoadFile(Mediator CentralRef){
         super(CentralRef);
-        this.CodeNum = 1;
+        this.CodeNum = 2;
         this.Name = "Load File";
 
     }

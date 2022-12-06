@@ -1,10 +1,12 @@
 package com.finance_tracker.UICommands;
 
+import java.util.Scanner;
+
 import com.finance_tracker.backendlogic.DataFacade;
 import com.finance_tracker.backendlogic.Mediator;
 
 public abstract class Command {
-    
+    protected Scanner UserInput = new Scanner(System.in);
     protected Mediator CentralRef;
     protected DataFacade DataRef;
     protected String Name;

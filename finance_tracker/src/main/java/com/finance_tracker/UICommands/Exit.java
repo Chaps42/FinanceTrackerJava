@@ -4,11 +4,10 @@ import com.finance_tracker.backendlogic.Mediator;
 
 public class Exit extends Command{
     
-    Exit(Mediator CentralRef){
+    public Exit(Mediator CentralRef){
         super(CentralRef);
         this.CodeNum = 7;
         this.Name = "Exit";
-
     }
 
     @Override

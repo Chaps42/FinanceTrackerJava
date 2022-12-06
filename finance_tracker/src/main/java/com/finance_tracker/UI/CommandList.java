@@ -42,33 +42,53 @@ public class CommandList extends GeneralList{
             Substring = "";
         }
 
-        Substring = String.format("Enter your chioce: ");
-        this.DisplayString += Substring + '\n';
-        Substring = "";
-
     }
     public void AwaitCommand(){
-        Integer I = UserCommand.nextInt();
-        switch(I){
-            case 1:
-                System.out.println("Option 1");
-            case 2:
-                System.out.println("Option 2");
-            case 3:
-                System.out.println("Option 3");
-            case 4:
-                System.out.println("Option 4");
-            case 5:
-                System.out.println("Option 5");
-            case 6:
-                System.out.println("Option 6");
-            case 7: 
-                System.out.println("Option 7");
-        }
+        boolean validChoice = true;
 
+        while(validChoice){
+            System.out.println("Enter your chioce: ");
+            Integer Choice = UserCommand.nextInt();
+            
+            switch(Choice){
+                case 1:
+                    CommandList.get(1).execute();
+                    validChoice = false;
+                    break;
+                case 2:
+                    CommandList.get(2).execute();
+                    validChoice = false;
+                    break;
+                case 3:
+                    CommandList.get(3).execute();
+                    validChoice = false;
+                    break;
+                case 4:
+                    CommandList.get(4).execute();
+                    validChoice = false;
+                    break;
+                case 5:
+                    CommandList.get(5).execute();
+                    validChoice = false;
+                    break;
+                case 6:
+                    CommandList.get(6).execute();
+                    validChoice = false;
+                    break;
+                case 7:
+                    CommandList.get(7).execute();
+                    validChoice = false;
+                    break;                
+                default:
+                    System.out.println("Try again");
+
+
+        }}
     }
+
+}
 
     
 
-}
+
 

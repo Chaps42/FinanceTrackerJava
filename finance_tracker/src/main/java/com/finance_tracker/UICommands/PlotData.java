@@ -4,7 +4,7 @@ import com.finance_tracker.backendlogic.Mediator;
 
 public class PlotData extends Command{
     
-    PlotData(Mediator CentralRef){
+    public PlotData(Mediator CentralRef){
         super(CentralRef);
         this.CodeNum = 6;
         this.Name = "Show Plot";
