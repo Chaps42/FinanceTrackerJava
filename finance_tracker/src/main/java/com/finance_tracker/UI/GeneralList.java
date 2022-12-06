@@ -24,10 +24,8 @@ public abstract class GeneralList {
     abstract protected void RequestData();
 
     public void DisplayString(){
-        System.out.println("Displayng String");
         this.BuildString();
         System.out.println(this.DisplayString);
-        System.out.println();
         this.AwaitCommand();
     }
 

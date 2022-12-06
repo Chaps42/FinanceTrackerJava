@@ -19,7 +19,9 @@ public class TransactionList extends GeneralList{
 
     public void BuildString(){
         this.DisplayString = "";
-        String Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Value", "Type","Account","Frequency","Category" );
+        String Substring = "Transactions: ";
+        this.DisplayString += Substring + '\n';
+        Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Value", "Type","Account","Frequency","Category" );
         this.DisplayString += Substring + '\n';
         Substring = "";
         this.RequestData();

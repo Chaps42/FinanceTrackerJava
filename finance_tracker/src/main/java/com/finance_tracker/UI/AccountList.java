@@ -18,7 +18,9 @@ public class AccountList extends GeneralList{
 
     public void BuildString(){
         this.DisplayString = "";
-        String Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Current Value", "Type","Interest Rate","Frequency","Interest Period" );
+        String Substring = "Accounts: ";
+        this.DisplayString += Substring + '\n';
+        Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Current Value", "Type","Interest Rate","Frequency","Interest Period" );
         this.DisplayString += Substring + '\n';
         Substring = "";
         this.RequestData();

@@ -19,7 +19,7 @@ public class InitializationList extends GeneralList {
         CommandList.add(new LoadFile(this.FacRef.getMediator()));
     }
     protected void BuildString(){
-        String Substring = "Welcome! ";
+        String Substring = "Welcome! \n Enter a number to begin ";
         this.DisplayString += Substring+"\n";
 
         for(Command Item: CommandList){

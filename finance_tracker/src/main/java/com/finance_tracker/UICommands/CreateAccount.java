@@ -22,8 +22,10 @@ public class CreateAccount extends Command{
 
     public void execute(){
         ArrayList<AccountRecord> EmptyList = new ArrayList<AccountRecord>();
-        System.out.println("Enter Name: ");
+        System.out.print("Enter Name: ");
         Name = this.UserInput.nextLine();
+        System.out.print("\n");
+
         AccountBuilder Builder = new AccountBuilder(Name,EmptyList);
 
         System.out.println("Enter Account Enum (int): ");
@@ -70,7 +72,7 @@ public class CreateAccount extends Command{
 
         System.out.println("Enter Account Interest Enum: ");
         int j =1;
-        for(AccountEnum E: AccountEnum.values()){
+        for(InterestEnum E: InterestEnum.values()){
             System.out.print(String.valueOf(j)+": ");
             System.out.println(E);
             j++;
@@ -94,7 +96,7 @@ public class CreateAccount extends Command{
 
         System.out.println("Enter Interest Period: ");
         int k=1;
-        for(AccountEnum E: AccountEnum.values()){
+        for(InterestPeriodEnum E: InterestPeriodEnum.values()){
             System.out.print(String.valueOf(k)+": ");
             System.out.println(E);
             k++;
@@ -122,7 +124,7 @@ public class CreateAccount extends Command{
         AccountA.addRecord(Today);
 
         CentralRef.getData().addAccount(AccountA);
-
+        System.out.println("Account created, have a nice day");
     }
 
 }

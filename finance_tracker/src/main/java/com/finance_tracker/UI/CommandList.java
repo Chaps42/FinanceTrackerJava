@@ -32,7 +32,9 @@ public class CommandList extends GeneralList{
 
     public void BuildString(){
         this.DisplayString = "";
-        String Substring = String.format("|%10s: %20s|" , "Number","Option");
+        String Substring = "Controls: ";
+        this.DisplayString += Substring + '\n';
+        Substring = String.format("|%10s: %13s|" , "Number","Option");
         this.DisplayString += Substring + '\n';
         Substring = "";
 
@@ -52,31 +54,31 @@ public class CommandList extends GeneralList{
             
             switch(Choice){
                 case 1:
-                    CommandList.get(1).execute();
+                    CommandList.get(0).execute();
                     validChoice = false;
                     break;
                 case 2:
-                    CommandList.get(2).execute();
+                    CommandList.get(1).execute();
                     validChoice = false;
                     break;
                 case 3:
-                    CommandList.get(3).execute();
+                    CommandList.get(2).execute();
                     validChoice = false;
                     break;
                 case 4:
-                    CommandList.get(4).execute();
+                    CommandList.get(3).execute();
                     validChoice = false;
                     break;
                 case 5:
-                    CommandList.get(5).execute();
+                    CommandList.get(4).execute();
                     validChoice = false;
                     break;
                 case 6:
-                    CommandList.get(6).execute();
+                    CommandList.get(5).execute();
                     validChoice = false;
                     break;
                 case 7:
-                    CommandList.get(7).execute();
+                    CommandList.get(6).execute();
                     validChoice = false;
                     break;                
                 default:
