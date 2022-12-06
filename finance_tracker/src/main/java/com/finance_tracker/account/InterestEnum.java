@@ -1,7 +1,8 @@
 package com.finance_tracker.account;
 
-// I know having lots of small files is not ideal, but in order for the enums to be public they need their own file.
-// I wanted to find another way, but the simplest is best.
+// Unfortunately, in order for the Enums to be public they need their own file.
+// If there is another way, we did not find it.
+// Apologies for the many small files.
 public enum InterestEnum {
     SIMPLE,
     COMPOUND,

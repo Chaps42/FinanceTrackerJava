@@ -1,5 +1,6 @@
 package com.finance_tracker.account;
 
+
 public enum AccountEnum {
     SAVINGS,
     CHECKING,
