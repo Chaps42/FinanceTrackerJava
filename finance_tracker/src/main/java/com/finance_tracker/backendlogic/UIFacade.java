@@ -26,7 +26,7 @@ public class UIFacade extends Subject {
         this.UIElements.add(new AccountList(this));
         this.UIElements.add(new TransactionList(this));
         this.UIElements.add(new CommandList(this));
-        //this.InitializationElements.add(new InitializationList(this));
+        this.InitializationElements.add(new InitializationList(this));
         notifyObserver("UIFacade Created");
     }
     
