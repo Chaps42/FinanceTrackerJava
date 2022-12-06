@@ -14,14 +14,14 @@ import com.finance_tracker.transaction.TransactionBuilder;
 import com.finance_tracker.transaction.*;;
 
 
-class DataFacade extends Subject {
-    private Mediator centralRef; // This reference is unused?
+public class DataFacade extends Subject {
+    private Mediator CentralRef; // This reference is unused?
     Mapper databaseMapper = Mapper.getInstance();
 
 
     public DataFacade(Mediator centralRef) {
         this.registerObserver(centralRef);
-        this.centralRef = centralRef;
+        this.CentralRef = centralRef;
     }
 
 

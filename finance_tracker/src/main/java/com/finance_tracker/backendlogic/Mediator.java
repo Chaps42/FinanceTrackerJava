@@ -4,7 +4,7 @@ package com.finance_tracker.backendlogic;
 public class Mediator extends Observer{
     private DataFacade DataInterface;
     private UIFacade UIInterface;
-    private Boolean Running = true;
+    private boolean Running = true;
 
     
     public Mediator(){
@@ -24,15 +24,10 @@ public class Mediator extends Observer{
     }
 
     public void run(){
-        do{
-            UIInterface.showInitialization();
-        }
+        UIInterface.showInitialization();
         while (this.Running==true){
             UIInterface.updateUI();
-            this.Running = UIInterface.AwaitCommand();
         }
-
-
     }
 
 }
