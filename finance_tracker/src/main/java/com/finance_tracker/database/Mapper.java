@@ -13,7 +13,7 @@ import com.finance_tracker.transaction.TransactionEnum;
 // Singleton Mapper
 public class Mapper {
     Database database;
-    FileManager fileManager;
+    FileManager fileManager = FileManager.getInstance();
 
     // Create a single object for lazy Singleton pattern
     private static Mapper instance;
@@ -45,7 +45,7 @@ public class Mapper {
      * Necessary for Singleton Pattern becasue Mapper cannot have parameters,
      * but we want to pass certain information into it.
      */
-    public void initializeMapper(Database database, FileManager filemanager) {
+    public void initializeMapper(Database database) {
         this.database = database.getInstance();
     }
 

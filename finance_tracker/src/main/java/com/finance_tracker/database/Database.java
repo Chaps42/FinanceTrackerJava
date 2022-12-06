@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.finance_tracker.account.Account;
 import com.finance_tracker.transaction.Transaction;
 
-// We still need an object that holds all accounts so that we can find them by name.
+
 // Singleton Database
 public class Database {
     static HashMap<String, Account> accounts;

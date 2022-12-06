@@ -30,8 +30,43 @@ import com.finance_tracker.transaction.TransactionFrequencyEnum;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
+// Singleton File Manager
 public class FileManager {
     static SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
+
+    // Create a single object for lazy Singleton pattern
+    private static FileManager instance;
+
+    /**
+     * Constructor for the FileManager.
+     *
+     * Making constructor private so that this class cannot be
+     * instantiated.
+     */
+    private FileManager() {}
+
+
+    /**
+     * @return FileManager
+     *
+     * Gets the only FileManager.
+     * Lazy Singleton.
+     */
+    public static FileManager getInstance() {
+        if (instance == null) {
+            instance = new FileManager();
+        }
+        return instance;
+    }
+
+
+    /**
+     * Initializes the FileManager
+     *
+     * Necessary for Singleton Pattern becasue FileManager cannot have parameters,
+     * but we want to pass certain information into it.
+     */
+    public void initializeFileManager() {}
 
 
     // reads 1 account
@@ -89,7 +124,7 @@ public class FileManager {
 
 
     // Method that looks through all account files in the path and builds each and adds to database
-    public static void readAllAccounts() throws IOException, ParseException {
+    private static void readAllAccounts() throws IOException, ParseException {
         File accountFolder = new File("/user_data/accounts");
         File[] accountFiles = accountFolder.listFiles();
 
@@ -104,7 +139,7 @@ public class FileManager {
     }
 
 
-    public static void readTransactions() throws IOException, ParseException {
+    private static void readTransactions() throws IOException, ParseException {
         Path transactionPath = Paths.get("/user_data/transactions.csv");
         try (BufferedReader reader = Files.newBufferedReader(transactionPath)) {
             CSVReader csvReader = new CSVReader(reader);
@@ -147,6 +182,13 @@ public class FileManager {
             Mapper databaseMapper = Mapper.getInstance();
             databaseMapper.setTransactions(transactions);
         }
+    }
+
+
+    public void readAll() throws IOException, ParseException {
+        // Call on Start up
+        readAllAccounts();
+        readTransactions();
     }
 
 
@@ -195,6 +237,14 @@ public class FileManager {
         }
     }
 
+    private void writeAllAccounts() {
+        Mapper databaseMapper = Mapper.getInstance();
+        Collection<Account> accounts = databaseMapper.getAccounts().values();
+        for (Account a: accounts) {
+            writeAccount(a);
+        }
+    }
+
     public static void writeTransactions() {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error
@@ -227,31 +277,17 @@ public class FileManager {
     }
 
 
+    public void writeAll() {
+        // Call before exiting
+        writeAllAccounts();
+        writeTransactions();
+    }
+
+
     public void delAccountFile(String name) {
         String rootPath = "/user_data/accounts/";
         String filePath = rootPath + name;
         File f = new File(filePath);  
         f.delete();
-    }
-
-
-    public void readAll() throws IOException, ParseException {
-        // On Start up
-        readAllAccounts();
-        readTransactions();
-    }
-
-    
-    private void writeAllAccounts() {
-        Mapper databaseMapper = Mapper.getInstance();
-        Collection<Account> accounts = databaseMapper.getAccounts().values();
-        for (Account a: accounts) {
-            writeAccount(a);
-        }
-    }
-
-    public void writeAll() {
-        writeAllAccounts();
-        writeTransactions();
     }
 }
