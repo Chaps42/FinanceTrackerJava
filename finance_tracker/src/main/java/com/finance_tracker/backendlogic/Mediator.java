@@ -1,18 +1,18 @@
 package com.finance_tracker.backendlogic;
 
+import java.util.Scanner;
 
 public class Mediator extends Observer{
+    protected Scanner UserInput = new Scanner(System.in);
     private DataFacade DataInterface;
     private UIFacade UIInterface;
-    private Boolean Running = true;
+    private boolean Running = true;
 
     
     public Mediator(){
         this.recordMessage("Initializing Mediator");
         DataInterface = new DataFacade(this);
         UIInterface = new UIFacade(this);
-
-        this.run();
     }
 
     public UIFacade getUI(){
@@ -24,15 +24,18 @@ public class Mediator extends Observer{
     }
 
     public void run(){
-        do{
-            UIInterface.showInitialization();
-        }
+        UIInterface.showInitialization();
         while (this.Running==true){
             UIInterface.updateUI();
-            this.Running = UIInterface.AwaitCommand();
         }
+    }
 
+    public Scanner getScanner(){
+        return this.UserInput;
+    }
 
+    public void endProgram(){
+        this.Running = false;
     }
 
 }
