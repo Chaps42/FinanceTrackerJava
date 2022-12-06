@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class CommandList extends GeneralList{
-    private Scanner UserCommand = new Scanner(System.in);
+    private Scanner UserCommand = this.FacRef.getMediator().getScanner();
     private ArrayList<Command> CommandList = new ArrayList<Command>();
 
     public CommandList(UIFacade FacRef){

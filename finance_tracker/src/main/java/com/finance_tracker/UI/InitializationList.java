@@ -9,7 +9,7 @@ import com.finance_tracker.UICommands.Command;
 import com.finance_tracker.UICommands.CreateFile;
 
 public class InitializationList extends GeneralList {
-    private Scanner UserCommand = new Scanner(System.in);
+    private Scanner UserCommand = this.FacRef.getMediator().getScanner();
     private ArrayList<Command> CommandList = new ArrayList<Command>();
     
     public InitializationList(UIFacade FacRef){
@@ -39,9 +39,11 @@ public class InitializationList extends GeneralList {
             
             switch(Choice){
                 case 1:
+                    CommandList.get(1).execute();
                     validChoice = false;
                     break;
                 case 2:
+                    CommandList.get(2).execute();
                     validChoice = false;
                     break;
                 default:

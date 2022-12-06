@@ -1,7 +1,9 @@
 package com.finance_tracker.backendlogic;
 
+import java.util.Scanner;
 
 public class Mediator extends Observer{
+    protected Scanner UserInput = new Scanner(System.in);
     private DataFacade DataInterface;
     private UIFacade UIInterface;
     private boolean Running = true;
@@ -28,6 +30,10 @@ public class Mediator extends Observer{
         while (this.Running==true){
             UIInterface.updateUI();
         }
+    }
+
+    public Scanner getScanner(){
+        return this.UserInput;
     }
 
     public void endProgram(){
