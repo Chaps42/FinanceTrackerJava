@@ -1,25 +1,36 @@
 package com.finance_tracker.UI;
 
 import com.finance_tracker.backendlogic.UIFacade;
+import com.finance_tracker.backendlogic.DataFacade;
+import com.finance_tracker.backendlogic.Mediator;
 
 
 public abstract class GeneralList {
-    private String DisplayString = new String();
-    private UIFacade FacRef;
+    protected String DisplayString = new String();
+    protected UIFacade FacRef;
+    protected DataFacade DataRef;
+    protected Mediator CentralRef;
 
     public GeneralList(UIFacade FacRef){
         this.FacRef = FacRef;
+        this.DataRef = this.FacRef.getMediator().getData();
+        this.CentralRef = this.FacRef.getMediator();
     }
 
-    abstract public void BuildString();
+    abstract protected void BuildString();
 
-    abstract public void AwaitCommand();
+    abstract protected void AwaitCommand();
 
-    abstract public void RequestData();
+    abstract protected void RequestData();
 
     public void DisplayString(){
+        System.out.println("Displayng String");
+        this.BuildString();
         System.out.println(this.DisplayString);
+        System.out.println();
+        this.AwaitCommand();
     }
+
 
 
 }

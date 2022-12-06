@@ -1,44 +1,58 @@
 package com.finance_tracker.backendlogic;
 
+import java.util.ArrayList;
 import com.finance_tracker.UI.CommandList;
 import com.finance_tracker.UI.TransactionList;
-import com.finance_tracker.UI.PlotData;
 import com.finance_tracker.UI.AccountList;
 import com.finance_tracker.UI.GeneralList;
+import com.finance_tracker.UI.InitializationList;
 
 public class UIFacade extends Subject {
-    Mediator CentralRef;
+    private Mediator CentralRef;
+    private ArrayList<GeneralList> UIElements= new ArrayList<GeneralList>();
+    private ArrayList<GeneralList> InitializationElements= new ArrayList<GeneralList>();
+
      
-    GeneralList AccountList = new AccountList(this);
-    GeneralList TransactionList = new TransactionList(this);
-    GeneralList CommandList = new CommandList(this);
+    //GeneralList AccountList = new AccountList(this);
+    //GeneralList TransactionList = new TransactionList(this);
+    //GeneralList CommandList = new CommandList(this);
+    //GeneralList InitializationList = new InitializationList(this);
 
 
     //Constructor
     public UIFacade(Mediator CRef){
         registerObserver(CRef);
         CentralRef = CRef;
+        this.UIElements.add(new AccountList(this));
+        this.UIElements.add(new TransactionList(this));
+        this.UIElements.add(new CommandList(this));
+        //this.InitializationElements.add(new InitializationList(this));
+        notifyObserver("UIFacade Created");
     }
     
     //Update all values in the UI
     public void updateUI(){
-        CentralRef.getData().getAllAccounts();
-        CentralRef.getData().getAllOneTimeTransactions();
-        CentralRef.getData().getAllCategories();
+        for(GeneralList Item:this.UIElements ){
+            System.out.println(Item);
+            Item.DisplayString();
+            System.out.println("Im Displaying that string");
+        }
+        
         notifyObserver("UI Updated");
     }
 
 
-    private void showInitialization(){}
-    private void displayAccounts(){}
-    private void displayTransactions(){}
-    private void displayCommands(){}
-    private Boolean AwaitCommand(){
-
-
-        return 
+    public void showInitialization(){
+        //this.InitializationList.
+        for(GeneralList Item:this.InitializationElements ){
+            Item.DisplayString();
+        }
+        notifyObserver("Initializer Initialized");
     }
 
 
 
+    public Mediator getMediator(){
+        return this.CentralRef;
+    }
 }

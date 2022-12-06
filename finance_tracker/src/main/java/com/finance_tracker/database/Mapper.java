@@ -264,6 +264,12 @@ public class Mapper {
     }
 
 
+    public FileManager getFileManager(){
+        return this.fileManager;
+    }
+
+    // Add a get all transactions from last month only? so we can compare montlhy spending
+
     /**
      * @param name String
      *
@@ -284,4 +290,5 @@ public class Mapper {
     public void removeTransaction(Transaction transaction) {
         removeTransactionByName(transaction.getName());
     }
+
 }
