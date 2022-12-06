@@ -1,6 +1,5 @@
 package com.finance_tracker.transaction;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import com.finance_tracker.account.Account;
@@ -8,37 +7,40 @@ import com.finance_tracker.account.Account;
 public class TransactionBuilder{
 
     // Mandatory attributes
-    private String transactionName;
+    private String name;
     private TransactionEnum transactionEnum;
-    private double transactionValue;
-    private Date transactionDate;
+    private double value;
+    private Date date;
     private Account transactionAccount;
     // Optional attributes
-    private int transactionFrequency;
-    private ArrayList<Date> transactionDates;
+    private TransactionFrequencyEnum frequency;
+    private CategoryEnum category;
 
 
-    public TransactionBuilder(String transactionName,
+    // Constructor
+    public TransactionBuilder(String name,
         TransactionEnum transactionEnum,
-        double transactionValue,
-        Date transactionDate,
+        double value,
+        Date date,
         Account transactionAccount) {
-            this.transactionName = transactionName;
+            this.name = name;
             this.transactionEnum = transactionEnum;
-            this.transactionValue = transactionValue;
-            this.transactionDate = transactionDate;
+            this.value = value;
+            this.date = date;
             this.transactionAccount = transactionAccount;
         }
 
-    public TransactionBuilder setTransactionFrequency(int transactionFrequency) {
-        this.transactionFrequency = transactionFrequency;
+    public TransactionBuilder setFrequency(TransactionFrequencyEnum frequency) {
+        this.frequency = frequency;
         return this;
     }
 
-    public TransactionBuilder setTransactionDates(ArrayList<Date> transactionDates) {
-        this.transactionDates = transactionDates;
+
+    public TransactionBuilder setCategory(CategoryEnum category) {
+        this.category = category;
         return this;
     }
+
 
     /**
      * Using the Builder pattern to create Transactions.
@@ -49,31 +51,31 @@ public class TransactionBuilder{
 
 
     // All getters
-    public String getTransactionName() {
-        return transactionName;
+    public String getName() {
+        return name;
     }
 
     public TransactionEnum getTransactionEnum() {
         return transactionEnum;
     }
 
-    public double getTransactionValue() {
-        return transactionValue;
+    public double getValue() {
+        return value;
     }
 
-    public Date getTransactionDate() {
-        return transactionDate;
+    public Date getDate() {
+        return date;
     }
 
     public Account getTransactionAccount() {
         return transactionAccount;
     }
 
-    public int getTransactionFrequency() {
-        return transactionFrequency;
+    public TransactionFrequencyEnum getFrequency() {
+        return frequency;
     }
 
-    public ArrayList<Date> getTransactionDates() {
-        return transactionDates;
+    public CategoryEnum getCategory() {
+        return category;
     }
 }

@@ -13,7 +13,9 @@ public class Account {
     private double interestRate;
     private InterestEnum interestEnum;
     private InterestPeriodEnum interestPeriodEnum;
+    private Date lastInterestDate;
 
+    // Constructor
     public Account(AccountBuilder builder) {
         this.name = builder.getName();
         this.accountRecords = builder.getAccountRecords();
@@ -21,6 +23,7 @@ public class Account {
         this.interestRate = builder.getInterestRate();
         this.interestEnum = builder.getInterestEnum();
         this.interestPeriodEnum = builder.getInterestPeriodEnum();
+        this.lastInterestDate = builder.getLastInterestDate();
     }
 
 
@@ -57,9 +60,16 @@ public class Account {
     }
 
     public double getValue() {
-        accountRecords = getLast ... 
+        Integer endIndex = accountRecords.size();
+        AccountRecord lastRecord = accountRecords.get(endIndex);
+        return lastRecord.getAmount();
     }
 
+    public Date getDate() {
+        Integer endIndex = accountRecords.size();
+        AccountRecord lastRecord = accountRecords.get(endIndex);
+        return lastRecord.getDate();
+    }
 
 
     // All getters and no setters in Builder pattern
@@ -88,6 +98,10 @@ public class Account {
         return interestPeriodEnum;
     }
 
+    public Date getLastInterestDate() {
+        return lastInterestDate;
+    }
+
     public AccountRecord getRecord(Date D){
         for(AccountRecord R:accountRecords){
             if(R.getDate()==D){
@@ -97,9 +111,8 @@ public class Account {
         return accountRecords.get(0);
     }
 
-    public double getValue(){
-        return 42.0;
-
+    // Setter for last interst date so it can be over-written
+    public void setLastInterestDate(Date date) {
+        lastInterestDate = date;
     }
 }
-

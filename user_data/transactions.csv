@@ -1,4 +1,4 @@
-DATE, NAME, VALUE, ACCOUNT, ENUM (ONETIME or REPEATING), FREQ
-20220101, "Gym Membership", -$40, Checking, REPEATING, MONTHLY
-20220207, "Brunch", -$56.20, "Checking", ONETIME, null
-20220408, "Birthday Money from Grandma", +$100, "Savings", ONETIME, null
+DATE, NAME, VALUE, ACCOUNT, CATEGORY, ENUM (ONETIME or REPEATING), FREQ
+20220101, "Gym Membership", -$40, Checking, FITNESS, REPEATING, MONTHLY
+20220207, "Brunch", -$56.20, "Checking", FOOD, ONETIME, null
+20220408, "Birthday Money from Grandma", +$100, "Savings", GIFT, ONETIME, null

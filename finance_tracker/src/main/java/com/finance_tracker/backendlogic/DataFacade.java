@@ -3,12 +3,10 @@ package com.finance_tracker.backendlogic;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 import com.finance_tracker.account.*;
-import com.finance_tracker.categories.Category;
-import com.finance_tracker.categories.CategoryBuilder;
-import com.finance_tracker.categories.CategoryEnum;
+import com.finance_tracker.database.Mapper;
+import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionBuilder;
 
@@ -16,140 +14,99 @@ import com.finance_tracker.transaction.TransactionBuilder;
 import com.finance_tracker.transaction.*;;
 
 
-class DataFacade extends Subject{
-    private HashMap<String,Account> AccountMap = new HashMap<String,Account>();
-    private HashMap<String,Transaction> TransactionMap = new HashMap<String,Transaction>();
-    private HashMap<String,Category> CatagoryMap = new HashMap<String,Category>();
-    private Mediator CentralRef;
+class DataFacade extends Subject {
+    private Mediator centralRef; // This reference is unused?
+    Mapper databaseMapper = Mapper.getInstance();
 
-    public DataFacade(Mediator CRef){
-        this.registerObserver(CRef);
-        CentralRef = CRef;
+
+    public DataFacade(Mediator centralRef) {
+        this.registerObserver(centralRef);
+        this.centralRef = centralRef;
     }
 
 
-
+    // Does this defeat the purpose of the Builer pattern?
     public void createAccount(String Name, AccountEnum Enum){
         ArrayList<AccountRecord> emptyList = new ArrayList<AccountRecord>();
-        AccountBuilder builder = new AccountBuilder(Name,emptyList);
-        builder.setAccountEnum(Enum);
-        builder.setInterestEnum(null);
-        builder.setInterestRate(0);
-        builder.setInterestPeriodEnum(null);
-        AccountMap.put(Name,builder.buildAccount());
+        AccountBuilder builder = new AccountBuilder(Name, emptyList)
+            .setAccountEnum(Enum)
+            .setInterestEnum(null)
+            .setInterestRate(0)
+            .setInterestPeriodEnum(null)
+            .setLastInterestDate(null);
+        databaseMapper.addAccount(builder.buildAccount());
         notifyObserver("Account Created: "+Name);
         CentralRef.getUI().updateUI();
     }
 
-    public void createTransaction(String Name, TransactionEnum Enum,Double value,Date date,Account wAccount){
-        TransactionBuilder builder = new TransactionBuilder(Name,Enum,value,date,wAccount);
-        builder.setTransactionDates(null);
-        builder.setTransactionFrequency(0);
-        TransactionMap.put(Name,builder.buildTransaction());
-        notifyObserver("Transaction Created: "+Name);
-        CentralRef.getUI().updateUI();
-    }
 
-    public void createCategory(String Name,CategoryEnum Enum){
-        CategoryBuilder builder = new CategoryBuilder(Name);
-        builder.setEnum(Enum);
-        CatagoryMap.put(Name,builder.buildCategory());
-        notifyObserver("Category " + Name + " Created");
-        CentralRef.getUI().updateUI();
-    }
-
-
-    public void addValue(String Name,DataTypeEnum Type,Date D, Double Value){
-        switch(Type){
-        case ACCOUNT:
-            AccountRecord record = new AccountRecord();
-            record.setAmount(Value);
-            record.setDate(D);
-            AccountMap.get(Name).addRecord(record);
-        case CATEGORY:
-            CatagoryMap.get(Name).recordValue(D, Value);}
-        notifyObserver("Value Added to " + Name);
-        CentralRef.getUI().updateUI();
-    
-    }
-
-    public void delteValue(String Name,DataTypeEnum Type,Date D){
-        switch(Type){
-            case ACCOUNT:
-                AccountRecord record = AccountMap.get(Name).getRecord(D);
-                AccountMap.get(Name).removeRecord(record);
-            case CATEGORY:
-                CatagoryMap.get(Name).deleteValue(D);
-
-        notifyObserver("Value Deleted");
-        CentralRef.getUI().updateUI();
+    // Does this defeat the purpose of the Builer pattern?
+    public void createTransaction(String name, TransactionEnum transactionEnum, Double value, Date date, Account wAccount, TransactionFrequencyEnum frequencyEnum, CategoryEnum category){
+        TransactionBuilder transactionBuilder = new TransactionBuilder(
+                    name,
+                    transactionEnum,
+                    value,
+                    date,
+                    wAccount)
+                .setFrequency(frequencyEnum)
+                .setCategory(category);
         
+            Transaction transaction = transactionBuilder.buildTransaction();
+        databaseMapper.addTransaction(transaction);
+        notifyObserver("Transaction Created: " + name);
     }
 
 
-
+    public void addAccount(Account account) {
+        databaseMapper.addAccount(account);
+        notifyObserver("Account " + account.getName() + "Added");
     }
 
-    public HashMap<String,Account> getAllAccounts(){
+    public void addTransaction(Transaction transaction) {
+        databaseMapper.addTransaction(transaction);
+        notifyObserver("Transaction " + transaction.getName() + "Added");
+    }
+
+    public void deleteAccount(Account account) {
+        databaseMapper.removeAccount(account);
+        notifyObserver("Account " + account.getName() + "Removed");
+    }
+
+    public void deleteTransaction(Transaction transaction) {
+        databaseMapper.removeTransaction(transaction);
+        notifyObserver("Transaction " + transaction.getName() + "Removed");
+    }
+
+    public HashMap<String, Account> getAllAccounts() {
         notifyObserver("All Accounts Returned");
-        CentralRef.getUI().updateUI();
-        return AccountMap;
+        return databaseMapper.getAccounts();
     }
 
-    public ArrayList<Account> getAllAccountType(AccountEnum Enum){
-        ArrayList<Account> List = new ArrayList<Account>();
-        for(Map.Entry<String, Account> set :AccountMap.entrySet()){
-            if(set.getValue().getAccountEnum() == Enum){
-                List.add(set.getValue());
-            }
-        }
-        notifyObserver("All Accounts Type: "+Enum +" Returned");
-        CentralRef.getUI().updateUI();
-        return List;
+    public HashMap<String, Transaction> getAllTransactions() {
+        notifyObserver("All Transactions Returned");
+        return databaseMapper.getTransactions();
     }
     
 
-    public ArrayList<Transaction> getAllRecurringTransactions(){
-        ArrayList<Transaction> List = new ArrayList<Transaction>();
-        for(Map.Entry<String, Transaction> set :TransactionMap.entrySet()){
-            if(set.getValue().getTransactionEnum() == TransactionEnum.RECURRING){
-                List.add(set.getValue());
-            }
-        }
-        notifyObserver("All Reccuring Transactions Returned");
-        CentralRef.getUI().updateUI();
-        return List;
 
-
+    public ArrayList<Account> getAllAccountsOfType(AccountEnum accountEnum) {
+        notifyObserver("All Accounts Type: " + accountEnum + " Returned");
+        return databaseMapper.getAllAccountsOfType(accountEnum);
     }
 
-    public ArrayList<Transaction> getAllOneTimeTransactions(){
-        ArrayList<Transaction> List = new ArrayList<Transaction>();
-        for(Map.Entry<String, Transaction> set :TransactionMap.entrySet()){
-            if(set.getValue().getTransactionEnum() == TransactionEnum.ONE_TIME){
-                List.add(set.getValue());
-            }
-        }
+    public ArrayList<Transaction> getAllTransactionsOfCategory(CategoryEnum categoryEnum) {
+        notifyObserver("All Transactions Category: " + categoryEnum + " Returned");
+        return databaseMapper.getAllTransactionsOfCategory(categoryEnum);
+    }
+
+
+    public ArrayList<Transaction> getAllOneTimeTransactions() {
         notifyObserver("All One Time Transactions Returned");
-        CentralRef.getUI().updateUI();
-        return List;
-
+        return databaseMapper.getOneTimeTransactions();
     }
 
-    public ArrayList<Category> getAllCategories(){
-        ArrayList<Category> List = new ArrayList<Category>();
-        for(Map.Entry<String, Category> set :CatagoryMap.entrySet()){
-            List.add(set.getValue());
-            
-        }
-        notifyObserver("All Categories Returned");
-        CentralRef.getUI().updateUI();
-        return List;
-
+    public ArrayList<Transaction> getAllRecurringTransactions() {
+        notifyObserver("All Recurring Transactions Returned");
+        return databaseMapper.getRecurringTransactions();
     }
-
-
-
-
-
 }

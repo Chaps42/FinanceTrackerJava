@@ -7,6 +7,13 @@ public class AccountRecord {
     private Double amount;
 
 
+    // Constructor
+    public AccountRecord(Date date, double amount) {
+        this.date = date;
+        this.amount = amount;
+    }
+
+
     /**
      * @return Date
      */
@@ -24,7 +31,7 @@ public class AccountRecord {
 
 
     /**
-     * @return float
+     * @return Double
      */
     public Double getAmount() {
         return amount;
@@ -32,7 +39,7 @@ public class AccountRecord {
 
 
     /**
-     * @param amount float
+     * @param amount Double
      */
     public void setAmount(Double amount) {
         this.amount = amount;

@@ -1,57 +1,59 @@
 package com.finance_tracker.transaction;
 
-import java.util.ArrayList;
 import java.util.Date;
+
 import com.finance_tracker.account.Account;
 
 public class Transaction {
 
     // Mandatory attributes
-    private String transactionName;
+    private String name;
     private TransactionEnum transactionEnum;
-    private double transactionValue;
-    private Date transactionDate;
+    private double value;
+    private Date date;
     private Account transactionAccount;
     // Optional attributes
-    private int transactionFrequency;
-    private ArrayList<Date> transactionDates;
+    private TransactionFrequencyEnum frequency;
+    private CategoryEnum category;
 
+    
+    // Constructor
     public Transaction(TransactionBuilder builder) {
-        this.transactionName = builder.getTransactionName();
+        this.name = builder.getName();
         this.transactionEnum = builder.getTransactionEnum();
-        this.transactionValue = builder.getTransactionValue();
-        this.transactionDate = builder.getTransactionDate();
+        this.value = builder.getValue();
+        this.date = builder.getDate();
         this.transactionAccount = builder.getTransactionAccount();
-        this.transactionFrequency = builder.getTransactionFrequency();
-        this.transactionDates = builder.getTransactionDates();
+        this.frequency = builder.getFrequency();
+        this.category = builder.getCategory();
     }
 
     // All getters
-    public String getTransactionName() {
-        return transactionName;
+    public String getName() {
+        return name;
     }
 
     public TransactionEnum getTransactionEnum() {
         return transactionEnum;
     }
 
-    public double getTransactionValue() {
-        return transactionValue;
+    public double getValue() {
+        return value;
     }
 
-    public Date getTransactionDate() {
-        return transactionDate;
+    public Date getDate() {
+        return date;
     }
 
     public Account getTransactionAccount() {
         return transactionAccount;
     }
 
-    public int getTransactionFrequency() {
-        return transactionFrequency;
+    public TransactionFrequencyEnum getFrequency() {
+        return frequency;
     }
 
-    public ArrayList<Date> getTransactionDates() {
-        return transactionDates;
+    public CategoryEnum getCategory() {
+        return category;
     }
 }
