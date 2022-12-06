@@ -39,11 +39,11 @@ public class InitializationList extends GeneralList {
             
             switch(Choice){
                 case 1:
-                    CommandList.get(1).execute();
+                    CommandList.get(0).execute();
                     validChoice = false;
                     break;
                 case 2:
-                    CommandList.get(2).execute();
+                    CommandList.get(1).execute();
                     validChoice = false;
                     break;
                 default:
