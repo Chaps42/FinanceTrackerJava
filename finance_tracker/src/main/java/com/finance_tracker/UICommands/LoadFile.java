@@ -10,4 +10,7 @@ public class LoadFile extends Command{
         this.Name = "Load File";
 
     }
+    public void execute(){
+        System.out.println("File Loaded");
+    }
 }

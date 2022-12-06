@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import com.finance_tracker.account.*;
+import com.finance_tracker.database.FileManager;
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
@@ -17,6 +18,7 @@ import com.finance_tracker.transaction.*;;
 public class DataFacade extends Subject {
     private Mediator CentralRef; // This reference is unused?
     Mapper databaseMapper = Mapper.getInstance();
+    FileManager FileHandle = databaseMapper.getFileManager();
 
 
     public DataFacade(Mediator centralRef) {
@@ -108,5 +110,9 @@ public class DataFacade extends Subject {
     public ArrayList<Transaction> getAllRecurringTransactions() {
         notifyObserver("All Recurring Transactions Returned");
         return databaseMapper.getRecurringTransactions();
+    }
+
+    public FileManager getFileManager(){
+        return this.FileHandle;
     }
 }

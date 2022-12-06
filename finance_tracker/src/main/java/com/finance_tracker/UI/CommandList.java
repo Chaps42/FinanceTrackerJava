@@ -18,13 +18,13 @@ public class CommandList extends GeneralList{
 
     public CommandList(UIFacade FacRef){
         super(FacRef);
-        CommandList.add(new CreateAccount(this.FacRef.getMediator()));
-        CommandList.add(new EnterAccountValue(this.FacRef.getMediator()));
-        CommandList.add(new DeleteAccount(this.FacRef.getMediator()));
-        CommandList.add(new CreateTransaction(this.FacRef.getMediator()));
-        CommandList.add(new DeleteTransaction(this.FacRef.getMediator()));
-        CommandList.add(new PlotData(this.FacRef.getMediator()));
-        CommandList.add(new Exit(this.FacRef.getMediator()));
+        CommandList.add(new CreateAccount(this.CentralRef));
+        CommandList.add(new EnterAccountValue(this.CentralRef));
+        CommandList.add(new DeleteAccount(this.CentralRef));
+        CommandList.add(new CreateTransaction(this.CentralRef));
+        CommandList.add(new DeleteTransaction(this.CentralRef));
+        CommandList.add(new PlotData(this.CentralRef));
+        CommandList.add(new Exit(this.CentralRef));
 
     }
 

@@ -26,15 +26,18 @@ public class UIFacade extends Subject {
         this.UIElements.add(new AccountList(this));
         this.UIElements.add(new TransactionList(this));
         this.UIElements.add(new CommandList(this));
-        this.InitializationElements.add(new InitializationList(this));
+        //this.InitializationElements.add(new InitializationList(this));
         notifyObserver("UIFacade Created");
     }
     
     //Update all values in the UI
     public void updateUI(){
-        for(GeneralList Item:this.InitializationElements ){
+        for(GeneralList Item:this.UIElements ){
+            System.out.println(Item);
             Item.DisplayString();
+            System.out.println("Im Displaying that string");
         }
+        
         notifyObserver("UI Updated");
     }
 

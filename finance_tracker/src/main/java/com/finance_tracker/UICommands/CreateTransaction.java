@@ -1,5 +1,7 @@
 package com.finance_tracker.UICommands;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -104,7 +106,20 @@ public class CreateTransaction extends Command{
         }
 
 
+        //Code found here https://www.baeldung.com/java-string-to-date
+        boolean ValidDate = true;
         Date Now = new Date();
+        while(ValidDate){
+            System.out.println("Enter the date (dd-MMM-yyyy):");
+            String EnteredDate = this.UserInput.nextLine();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            try{Now = formatter.parse(EnteredDate);
+                ValidDate = false;}
+            catch(ParseException A){
+                Now = new Date();}}
+    
+
+
         TransactionBuilder Builder = new TransactionBuilder(Name,Type,Value,Now,Account);
         Builder.setFrequency(FreqEnum);
 

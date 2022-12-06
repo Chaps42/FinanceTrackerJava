@@ -10,4 +10,14 @@ public class CreateFile extends Command{
         this.Name = "Create File";
 
     }
+
+    public void execute(){
+        System.out.println("Enter Name: ");
+        String Name = this.UserInput.nextLine();
+        System.out.println("Enter File Destination: ");
+        String Location = this.UserInput.nextLine();
+
+
+
+    }
 }

@@ -172,5 +172,9 @@ public class Mapper {
         return filteredTransactions;
     }
 
+    public FileManager getFileManager(){
+        return this.fileManager;
+    }
+
     // Add a get all transactions from last month only? so we can compare montlhy spending
 }

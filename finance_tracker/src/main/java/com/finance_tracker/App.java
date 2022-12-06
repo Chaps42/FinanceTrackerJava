@@ -12,6 +12,7 @@ public class App
     {
         System.out.println( "Hello World!" );
         Mediator mainMediator = new Mediator();
+        mainMediator.run();
 
 
     }

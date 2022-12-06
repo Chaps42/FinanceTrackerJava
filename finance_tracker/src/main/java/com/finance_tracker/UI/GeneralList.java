@@ -2,16 +2,19 @@ package com.finance_tracker.UI;
 
 import com.finance_tracker.backendlogic.UIFacade;
 import com.finance_tracker.backendlogic.DataFacade;
+import com.finance_tracker.backendlogic.Mediator;
 
 
 public abstract class GeneralList {
     protected String DisplayString = new String();
     protected UIFacade FacRef;
     protected DataFacade DataRef;
+    protected Mediator CentralRef;
 
     public GeneralList(UIFacade FacRef){
         this.FacRef = FacRef;
         this.DataRef = this.FacRef.getMediator().getData();
+        this.CentralRef = this.FacRef.getMediator();
     }
 
     abstract protected void BuildString();
@@ -21,6 +24,7 @@ public abstract class GeneralList {
     abstract protected void RequestData();
 
     public void DisplayString(){
+        System.out.println("Displayng String");
         this.BuildString();
         System.out.println(this.DisplayString);
         System.out.println();

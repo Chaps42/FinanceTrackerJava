@@ -13,8 +13,6 @@ public class Mediator extends Observer{
         this.recordMessage("Initializing Mediator");
         DataInterface = new DataFacade(this);
         UIInterface = new UIFacade(this);
-
-        this.run();
     }
 
     public UIFacade getUI(){
