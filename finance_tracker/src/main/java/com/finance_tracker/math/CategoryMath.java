@@ -16,7 +16,7 @@ public class CategoryMath {
     public CategoryMath() {}
 
 
-    public EnumMap<CategoryEnum, Double> getCategoryAmounts(Collection<Transaction> transactions) {
+    public EnumMap<CategoryEnum, Double> calculateCategoryAmounts(Collection<Transaction> transactions) {
         // Generate an Enum map
         EnumMap<CategoryEnum, Double> categoryMap = new EnumMap<>(CategoryEnum.class);
         CategoryEnum[] categories = CategoryEnum.class.getEnumConstants();
@@ -33,7 +33,7 @@ public class CategoryMath {
     }
 
 
-    private double getTransactionTotalAmount(Collection<Transaction> transactions) {
+    private double calculateTransactionTotalAmount(Collection<Transaction> transactions) {
         double totalTransactionAmount = 0;
         for (Transaction t: transactions) {
             double transactionValue = t.getValue();
@@ -44,9 +44,9 @@ public class CategoryMath {
 
     // Unused, pie plot does this on its own
     // Could be useful for printing percent values
-    public EnumMap<CategoryEnum, Double> getCategoryPercents(Collection<Transaction> transactions) {  
-            double totalTransactionAmount = getTransactionTotalAmount(transactions); 
-            EnumMap<CategoryEnum, Double> categoryMap = getCategoryAmounts(transactions);
+    public EnumMap<CategoryEnum, Double> calculateCategoryPercents(Collection<Transaction> transactions) {  
+            double totalTransactionAmount = calculateTransactionTotalAmount(transactions); 
+            EnumMap<CategoryEnum, Double> categoryMap = calculateCategoryAmounts(transactions);
 
             EnumMap<CategoryEnum, Double> categoryPercentMap = new EnumMap<>(CategoryEnum.class);
             for (CategoryEnum c: categoryMap.keySet()) {

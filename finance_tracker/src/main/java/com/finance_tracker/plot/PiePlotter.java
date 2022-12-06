@@ -12,10 +12,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-public class PiePlot {
+public class PiePlotter {
 
     // Constructor
-    public PiePlot() {}
+    public PiePlotter() {}
 
 
     // https://www.tutorialspoint.com/jfreechart/jfreechart_pie_chart.htm
@@ -24,8 +24,7 @@ public class PiePlot {
         Mapper databaseMapper = Mapper.getInstance();
         HashMap<String, Transaction> transactions = databaseMapper.getTransactions();
         CategoryMath categoryMath = new CategoryMath();
-        EnumMap<CategoryEnum, Double> categoryMap = categoryMath.getCategoryAmounts(transactions.values());
-        //EnumMap<CategoryEnum, Double> categoryPercentMap = CategoryMath.getCategoryPercents(transactions.values());
+        EnumMap<CategoryEnum, Double> categoryMap = categoryMath.calculateCategoryAmounts(transactions.values());
 
         DefaultPieDataset dataset = new DefaultPieDataset();
         

@@ -12,11 +12,11 @@ import com.finance_tracker.database.Mapper;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
-public class LinePlot {
+public class LinePlotter {
 
 
     // Constructor
-    public LinePlot() {}
+    public LinePlotter() {}
 
 
     public XYChart plotAccountFiles() {

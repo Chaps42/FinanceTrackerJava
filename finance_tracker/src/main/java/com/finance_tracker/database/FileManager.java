@@ -80,7 +80,7 @@ public class FileManager {
             String name = accountData.get(1)[0];
 
             String accountType = accountData.get(1)[0];
-            AccountEnum accountEnum = AccountEnum.valueOf(accountType); // not sure why this enum can't be found
+            AccountEnum accountEnum = AccountEnum.valueOf(accountType);
 
             // Read account interest info
             String interestRateStr = accountData.get(5)[0];

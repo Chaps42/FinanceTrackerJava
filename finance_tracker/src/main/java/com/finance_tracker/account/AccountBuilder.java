@@ -15,8 +15,6 @@ public class AccountBuilder {
     private InterestPeriodEnum interestPeriodEnum;
     private Date lastInterestDate;
 
-    //Mark to Market at specific times (daily when to withdrwaw things) -- comment from Dwight
-
 
     /**
      * @param name String
