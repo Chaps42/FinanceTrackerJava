@@ -36,6 +36,7 @@ class DataFacade extends Subject {
             .setLastInterestDate(null);
         databaseMapper.addAccount(builder.buildAccount());
         notifyObserver("Account Created: "+Name);
+        CentralRef.getUI().updateUI();
     }
 
 
@@ -85,6 +86,7 @@ class DataFacade extends Subject {
         notifyObserver("All Transactions Returned");
         return databaseMapper.getTransactions();
     }
+    
 
 
     public ArrayList<Account> getAllAccountsOfType(AccountEnum accountEnum) {
