@@ -15,6 +15,7 @@ public class Account {
     private InterestPeriodEnum interestPeriodEnum;
     private Date lastInterestDate;
 
+    // Constructor
     public Account(AccountBuilder builder) {
         this.name = builder.getName();
         this.accountRecords = builder.getAccountRecords();

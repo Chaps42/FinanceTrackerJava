@@ -17,6 +17,7 @@ public class TransactionBuilder{
     private CategoryEnum category;
 
 
+    // Constructor
     public TransactionBuilder(String name,
         TransactionEnum transactionEnum,
         double value,

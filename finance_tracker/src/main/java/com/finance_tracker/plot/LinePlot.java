@@ -13,7 +13,12 @@ import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
 public class LinePlot {
-    
+
+
+    // Constructor
+    public LinePlot() {}
+
+
     public XYChart plotAccountFiles() {
         // Create Chart
         XYChart accountChart = new XYChartBuilder()

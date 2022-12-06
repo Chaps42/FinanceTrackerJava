@@ -12,6 +12,10 @@ public class CategoryMath {
     Mapper databaseMapper = Mapper.getInstance();
 
 
+    // Constructor
+    public CategoryMath() {}
+
+
     public EnumMap<CategoryEnum, Double> getCategoryAmounts(Collection<Transaction> transactions) {
         // Generate an Enum map
         EnumMap<CategoryEnum, Double> categoryMap = new EnumMap<>(CategoryEnum.class);

@@ -14,6 +14,10 @@ import com.finance_tracker.transaction.TransactionFrequencyEnum;
 public class RecurringTransactionMath {
 
 
+    // Constructor
+    public RecurringTransactionMath() {}
+
+
     private Date calculateNextTransactionDate(Transaction transaction) {
         TransactionFrequencyEnum frequency = transaction.getFrequency();
 

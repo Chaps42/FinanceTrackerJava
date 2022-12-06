@@ -14,6 +14,9 @@ import org.jfree.data.general.DefaultPieDataset;
 
 public class PiePlot {
 
+    // Constructor
+    public PiePlot() {}
+
 
     // https://www.tutorialspoint.com/jfreechart/jfreechart_pie_chart.htm
     public JFreeChart plotTransactions() {
