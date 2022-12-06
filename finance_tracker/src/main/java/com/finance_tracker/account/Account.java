@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 import java.util.Date;
 
+
+// This Class holds information for different Accounts.
 public class Account {
 
-    // All attributes final in builder pattern
     private String name;
     private ArrayList<AccountRecord> accountRecords;
     private AccountEnum accountEnum;
@@ -15,7 +16,14 @@ public class Account {
     private InterestPeriodEnum interestPeriodEnum;
     private Date lastInterestDate;
 
-    // Constructor
+
+    /**
+     * @param builder AccountBuilder
+     *
+     * Constructor for Accounts.
+     * Relies on Builder Pattern.
+     * See class: AccountBuilder.
+     */
     public Account(AccountBuilder builder) {
         this.name = builder.getName();
         this.accountRecords = builder.getAccountRecords();
@@ -28,8 +36,20 @@ public class Account {
 
 
     /**
+     * @param date Date
+     *
+     * Resets the date interest was last calculated.
+     */
+    public void setLastInterestDate(Date date) {
+        lastInterestDate = date;
+    }
+
+
+    /**
      * @param record AccountRecord
-     * For adding a new record.
+     *
+     * Adds a new AccountRecord to the Account.
+     * See class: AccountRecord.
      */
     public void addRecord(AccountRecord record) {
         accountRecords.add(record);
@@ -39,7 +59,7 @@ public class Account {
     /**
      * @return ArrayList<Date>
      *
-     * For getting all dates that there was a change to the account?
+     * Returns all dates that there was a change to the account.
      */
     ArrayList<Date> getUniqueDates() {
         ArrayList<Date> dates = new ArrayList<Date>();
@@ -53,18 +73,30 @@ public class Account {
     /**
      * @param record AccountRecord
      *
-     * For deleting an account
+     * Deletes an AccountRecord from the Account.
      */
     public void removeRecord(AccountRecord record) {
         accountRecords.remove(record);
     }
 
+
+    /**
+     * @return double
+     *
+     * Returns the most recent Account value.
+     */
     public double getValue() {
         Integer endIndex = accountRecords.size();
         AccountRecord lastRecord = accountRecords.get(endIndex);
         return lastRecord.getAmount();
     }
 
+
+    /**
+     * @return Date
+     *
+     * Returns the most recent Account date.
+     */
     public Date getDate() {
         Integer endIndex = accountRecords.size();
         AccountRecord lastRecord = accountRecords.get(endIndex);
@@ -72,47 +104,92 @@ public class Account {
     }
 
 
-    // All getters and no setters in Builder pattern
-    public String getName() {
-        return name;
-    }
-
-
-    public ArrayList<AccountRecord> getAccountRecords() {
-        return accountRecords;
-    }
-
-    public AccountEnum getAccountEnum() {
-        return accountEnum;
-    }
-
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-    public InterestEnum getInterestEnum() {
-        return interestEnum;
-    }
-
-    public InterestPeriodEnum getInterestPeriodEnum() {
-        return interestPeriodEnum;
-    }
-
-    public Date getLastInterestDate() {
-        return lastInterestDate;
-    }
-
-    public AccountRecord getRecord(Date D){
-        for(AccountRecord R:accountRecords){
-            if(R.getDate()==D){
-                return R;
+    /**
+     * @param date Date
+     * @return AccountRecord
+     *
+     * Returns the AccountRecord for a specified Date.
+     */
+    public AccountRecord getRecord(Date date) {
+        for (AccountRecord r: accountRecords) {
+            if (r.getDate() == date) {
+                return r;
             }
         }
         return accountRecords.get(0);
     }
 
-    // Setter for last interst date so it can be over-written
-    public void setLastInterestDate(Date date) {
-        lastInterestDate = date;
+
+    // All straightforward Getters:
+    /**
+     * @return String
+     *
+     * Returns the Account name.
+     */
+    public String getName() {
+        return name;
+    }
+
+
+    /**
+     * @return ArrayList<AccountRecord>
+     *
+     * Returns the Account's ArrayList of AccountRecords.
+     */
+    public ArrayList<AccountRecord> getAccountRecords() {
+        return accountRecords;
+    }
+
+
+    /**
+     * @return AccountEnum
+     *
+     * Returns the Account's AccountEnum (SAVINGS, CHECKING, etc).
+     * See class: AccountEnum.
+     */
+    public AccountEnum getAccountEnum() {
+        return accountEnum;
+    }
+
+
+    /**
+     * @return double
+     *
+     * Retuns the Account's interest rate.
+     */
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+
+    /**
+     * @return InterstEnum
+     *
+     * Returns the Account's InterestEnum (Simple, Compound, etc).
+     * See class: InterestEnum.
+     */
+    public InterestEnum getInterestEnum() {
+        return interestEnum;
+    }
+
+
+    /**
+     * @return InterestPeriodEnum
+     *
+     * Returns the Account's InterestPeriodEnum (DAILY, MONTHLY, ANNUALLY).
+     * See class: InterestPeriodEnum.
+     */
+    public InterestPeriodEnum getInterestPeriodEnum() {
+        return interestPeriodEnum;
+    }
+
+
+    /**
+     * @return Date
+     *
+     * Returns the Date interst was last calculated for the Account.
+     */
+    public Date getLastInterestDate() {
+        return lastInterestDate;
     }
 }
