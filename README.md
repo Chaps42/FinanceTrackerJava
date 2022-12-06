@@ -40,9 +40,9 @@ This pattern ensures that there is only one instance of these classes which ensu
 This was particularly important for the `Database` (which stores all of the `Account` and `Transaction` data), and a convenience for the `Mapper` and `FileManager` (for which there is no need to have more than once since they store no attribute information).
 
 **Builder Pattern** is used for `Accounts` and `Transactions`.
-The Buidler Pattern is a good alternative to passing in lots of arguments to an objects constructor.
+The Builder Pattern is a good alternative to passing in lots of arguments to an object's constructor.
 Instead, we are able to sequentially call methods such as `addTransactionCategory()` in a way that passes in all of the same information to the final object, but makes it much more clear what each argument expects as input.
-This was very appropriate for the `Account` class which has attributes: name, value, refords, interest rate information (rate, frequency, type, date last calculated). Similarly the `Transaction` class has a lot of Enums refering to if it recurs, if so, how often, and what category it is (as well as the typical name, date, amount, and account it comes out of or into).
+This was very appropriate for the `Account` class which has attributes: name, value, refords, interest rate information (rate, frequency, type, date last calculated). Similarly the `Transaction` class has a lot of Enums referring to if it recurs, if so, how often, and what category it is (as well as the typical name, date, amount, and account it comes out of or into).
 
 **Data Mapper Pattern** is used for interacting with the `Database`.
 Typical Data Mappers have functions for getting, searching, adding, and removing information from the Database.
@@ -50,15 +50,33 @@ Our `Mapper` class has methods that map to these purposes for Transactions and f
 There is search capability for Accounts or Transactions by name, by category, by type, and by one-time/recurring.
 No other object interacts with the `Database` object, not even the `FileManger` (which too goes through the `Mapper`).
 
-**Facade Pattern** 
+**Observer Pattern** is implemented by the mediator in order to keep a log of the
+requests given to the Data handler facade and requests given to the UI. This way we have a
+method of troubleshooting. Furthermore, if there is ever an update in the data, the observer will
+notice a change and tell the UI to update the current displayed values. Both the data facade and
+the UI facade will act as subjects for the observer, and the mediator/observer will record events
+from both objects.
 
-**Observer Pattern**
+**Facade Pattern** is used to simplify connections to the UI and the Database. The
+`DataFacade` is responsible for connecting with and returning various datatypes associated with
+accounts and financial information. For instance, the facade will take a request to return us all
+accounts that are considered assets, or debts. This allows us to access all the data without
+going into our data structure to look for these objects ourselves. We will also have methods for
+getting unique dates for display, and getting unique categories for use in the UI. The UI Facade has methods that will allow the UI to update the information that is
+displayed. The data facade is largely a way for the UI to have a reference to the database,
+because most commands will come from the UI itself.
 
-**Mediator Pattern**
+**Mediator Pattern** acts as a bridge between the two facades. The mediator
+is responsible for recording all of the messages passed between the two sides of the
+application, and proves both facades with references to the other facade so they can send
+messages across objects. There aren't many explicit methods in the mediator, as adding a
+method for every single message would get complicated. By having the references to the two
+facades allows us to connect any part of the application to the mediator so they can have
+access to the data or UI.
 
 ## Changes to UML Diagram
 
-There are many changes from our initial planning. During the planning our understanding of the Buidler Pattern was weak, so we had an abstract Builder class that our Transaction and Account Builders inherited from (though now it is clear that they share no methods or attributes, and only have their pattern in common).
+There are many changes from our initial planning. During the planning phase, our understanding of the Builder Pattern was weak, so we had an abstract Builder class that our Transaction and Account Builders inherited from (though now it is clear that they share no methods or attributes, and only have their pattern in common).
 
 We also simplified our objects a lot: there is no longer a Category class (this is handled by the Transaction's Enums), there are no longer separate OneTimeTransaction and RecurringTransaction classes (this is also handled by an Enum within Transaction), and there are no longer a Goal or Celebration classes (these were deemed a "nice to have" quality of the application that did not make it into our final project).
 
