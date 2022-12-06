@@ -3,6 +3,7 @@ package com.finance_tracker.math;
 import java.util.Date;
 
 import com.finance_tracker.account.Account;
+import com.finance_tracker.account.AccountRecord;
 import com.finance_tracker.account.InterestEnum;
 import com.finance_tracker.account.InterestPeriodEnum;
 
@@ -12,25 +13,25 @@ public class InterestMath {
     public InterestMath() {}
 
 
-    double calculateSimpleInterest(double amountPrincipal, double interestRate, int time) {
+    private double calculateSimpleInterest(double amountPrincipal, double interestRate, int time) {
         double interest = amountPrincipal * interestRate * time;
         return interest;
     }
 
-    double calculateCompoundInterest(double amountPrincipal, double interestRate, int time) {
+    private double calculateCompoundInterest(double amountPrincipal, double interestRate, int time) {
         // Simplifying by asserting one compound per time period.
         // A = P(1 + r/n)^nt becomes A = P(1 + r)^t
         double interest = amountPrincipal * Math.pow((1 + interestRate), (time)) - amountPrincipal;
         return interest;
     }
-    double calculateContinuousInterest(double amountPrincipal, double interestRate, double time) {
+    private double calculateContinuousInterest(double amountPrincipal, double interestRate, double time) {
         double interest = amountPrincipal * Math.exp(interestRate * time) - amountPrincipal;
         return interest;
     }
 
     // A lot of nested if statements for all combinations of interest frequencies and types
     // Should this be a decorator pattern instead?
-    double calculateNewInterest(Account account) {
+    private double calculateNewInterest(Account account) {
         double interestRate = account.getInterestRate(); // percent
         InterestPeriodEnum interestPeriodEnum = account.getInterestPeriodEnum(); // DAILY, MONTHLY, ANNUAL
         InterestEnum interestEnum = account.getInterestEnum(); // SIMPLE, COMPOUND, CONTINUOUS
@@ -107,9 +108,19 @@ public class InterestMath {
         return newInterest;
     }
 
-    double calculateAmountFinal(Account account) {
+    private double calculateAmountFinal(Account account) {
         double newInterest = calculateNewInterest(account);
         double amountFinal = account.getValue() + newInterest;
         return amountFinal;
+    }
+
+    public void applyInterest(Account account) {
+        double amountFinal = calculateAmountFinal(account);
+        DateMath dateMath = new DateMath();
+        Date currentDate = dateMath.getCurrentDate();
+
+        AccountRecord newRecord = new AccountRecord(currentDate, amountFinal);
+        account.addRecord(newRecord);
+        account.setLastInterestDate(currentDate);
     }
 }
