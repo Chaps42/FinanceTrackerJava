@@ -16,6 +16,8 @@ public class Transaction {
     private TransactionFrequencyEnum frequency;
     private CategoryEnum category;
 
+    
+    // Constructor
     public Transaction(TransactionBuilder builder) {
         this.name = builder.getName();
         this.transactionEnum = builder.getTransactionEnum();

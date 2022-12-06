@@ -8,6 +8,9 @@ import com.finance_tracker.account.InterestPeriodEnum;
 
 public class InterestMath {
 
+    // Constructor
+    public InterestMath() {}
+
 
     double calculateSimpleInterest(double amountPrincipal, double interestRate, int time) {
         double interest = amountPrincipal * interestRate * time;

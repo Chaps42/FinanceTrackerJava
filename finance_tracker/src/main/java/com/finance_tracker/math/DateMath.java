@@ -10,6 +10,8 @@ import com.finance_tracker.transaction.Transaction;
 
 public class DateMath {
 
+    // Constructor
+    public DateMath() {}
 
     // https://www.javatpoint.com/java-get-current-date
     protected Date getCurrentDate() {

@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,12 +30,47 @@ import com.finance_tracker.transaction.TransactionFrequencyEnum;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
+// Singleton File Manager
 public class FileManager {
     static SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
 
+    // Create a single object for lazy Singleton pattern
+    private static FileManager instance;
+
+    /**
+     * Constructor for the FileManager.
+     *
+     * Making constructor private so that this class cannot be
+     * instantiated.
+     */
+    private FileManager() {}
+
+
+    /**
+     * @return FileManager
+     *
+     * Gets the only FileManager.
+     * Lazy Singleton.
+     */
+    public static FileManager getInstance() {
+        if (instance == null) {
+            instance = new FileManager();
+        }
+        return instance;
+    }
+
+
+    /**
+     * Initializes the FileManager
+     *
+     * Necessary for Singleton Pattern becasue FileManager cannot have parameters,
+     * but we want to pass certain information into it.
+     */
+    public void initializeFileManager() {}
+
 
     // reads 1 account
-    public static Account readAccount(Path accountPath) throws IOException, ParseException {
+    private static Account readAccount(Path accountPath) throws IOException, ParseException {
         try (BufferedReader reader = Files.newBufferedReader(accountPath);) {
             CSVReader csvReader = new CSVReader(reader);
             List<String[]> accountData = csvReader.readAll();
@@ -88,7 +124,7 @@ public class FileManager {
 
 
     // Method that looks through all account files in the path and builds each and adds to database
-    public static void readAllAccounts() throws IOException, ParseException {
+    private static void readAllAccounts() throws IOException, ParseException {
         File accountFolder = new File("/user_data/accounts");
         File[] accountFiles = accountFolder.listFiles();
 
@@ -103,7 +139,7 @@ public class FileManager {
     }
 
 
-    public static void readTransactions() throws IOException, ParseException {
+    private static void readTransactions() throws IOException, ParseException {
         Path transactionPath = Paths.get("/user_data/transactions.csv");
         try (BufferedReader reader = Files.newBufferedReader(transactionPath)) {
             CSVReader csvReader = new CSVReader(reader);
@@ -149,8 +185,15 @@ public class FileManager {
     }
 
 
+    public void readAll() throws IOException, ParseException {
+        // Call on Start up
+        readAllAccounts();
+        readTransactions();
+    }
+
+
     // Using this resource: https://www.baeldung.com/opencsv
-    public static void writeAccount(Account account) {
+    private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error
         String rootPath = "/user_data/accounts/";
@@ -194,6 +237,14 @@ public class FileManager {
         }
     }
 
+    private void writeAllAccounts() {
+        Mapper databaseMapper = Mapper.getInstance();
+        Collection<Account> accounts = databaseMapper.getAccounts().values();
+        for (Account a: accounts) {
+            writeAccount(a);
+        }
+    }
+
     public static void writeTransactions() {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error
@@ -226,17 +277,17 @@ public class FileManager {
     }
 
 
+    public void writeAll() {
+        // Call before exiting
+        writeAllAccounts();
+        writeTransactions();
+    }
+
+
     public void delAccountFile(String name) {
         String rootPath = "/user_data/accounts/";
         String filePath = rootPath + name;
         File f = new File(filePath);  
         f.delete();
-    }
-
-
-    public void readAll() throws IOException, ParseException {
-        // On Start up
-        readAllAccounts();
-        readTransactions();
     }
 }
