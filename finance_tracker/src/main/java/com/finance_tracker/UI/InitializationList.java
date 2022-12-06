@@ -34,7 +34,7 @@ public class InitializationList extends GeneralList {
         boolean validChoice = true;
 
         while(validChoice){
-            System.out.println("Enter your chioce: ");
+            System.out.println("Enter your choice: ");
             Integer Choice = UserCommand.nextInt();
             
             switch(Choice){

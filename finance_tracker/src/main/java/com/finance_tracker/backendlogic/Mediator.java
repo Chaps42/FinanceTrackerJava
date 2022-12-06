@@ -26,6 +26,9 @@ public class Mediator extends Observer{
     public void run(){
         UIInterface.showInitialization();
         while (this.Running==true){
+            //https://stackoverflow.com/questions/2979383/how-to-clear-the-console
+            //System.out.print("\033[H\033[2J");  
+            //System.out.flush();  
             UIInterface.updateUI();
         }
     }

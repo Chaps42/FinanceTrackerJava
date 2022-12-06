@@ -21,7 +21,7 @@ public class TransactionList extends GeneralList{
         this.DisplayString = "";
         String Substring = "Transactions: ";
         this.DisplayString += Substring + '\n';
-        Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Value", "Type","Account","Frequency","Category" );
+        Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Value", "Type","Account","Frequency","Category" );
         this.DisplayString += Substring + '\n';
         Substring = "";
         this.RequestData();
@@ -34,7 +34,7 @@ public class TransactionList extends GeneralList{
             String E = Acc.getTransactionAccount().getName();
             String F = Acc.getFrequency().name();
             String G = Acc.getCategory().name();
-            Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , A,C,B, D,E,F,G );
+            Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , A,C,B, D,E,F,G );
             this.DisplayString += Substring + '\n';
             Substring = "";
         }

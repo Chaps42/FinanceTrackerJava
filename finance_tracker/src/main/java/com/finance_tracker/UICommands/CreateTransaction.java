@@ -11,6 +11,7 @@ import com.finance_tracker.account.AccountBuilder;
 import com.finance_tracker.account.AccountRecord;
 import com.finance_tracker.backendlogic.Mediator;
 import com.finance_tracker.transaction.TransactionBuilder;
+import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionEnum;
 import com.finance_tracker.transaction.TransactionFrequencyEnum;
@@ -29,11 +30,12 @@ public class CreateTransaction extends Command{
 
         boolean AccountFound = false;
         System.out.println("Enter Name: ");
-        Name = this.UserInput.nextLine();
+        String newTransaction = this.UserInput.nextLine();
         TransactionEnum Type;
 
         System.out.println("Enter Transaction Value: ");
         double Value = this.UserInput.nextDouble();
+        this.UserInput.nextLine();
         
         System.out.println("Enter Transaction Type (int): ");
         int i =1;
@@ -43,6 +45,7 @@ public class CreateTransaction extends Command{
             i++;
         }
         int EnumType = this.UserInput.nextInt();
+        this.UserInput.nextLine();
         switch(EnumType){
             case 1:
                 Type = ( TransactionEnum.ONE_TIME);
@@ -64,6 +67,7 @@ public class CreateTransaction extends Command{
         }
         TransactionFrequencyEnum FreqEnum;
         EnumType = this.UserInput.nextInt();
+        this.UserInput.nextLine();
         switch(EnumType){
             case 1:
                 FreqEnum = ( TransactionFrequencyEnum.WEEKLY);
@@ -117,11 +121,52 @@ public class CreateTransaction extends Command{
                 ValidDate = false;}
             catch(ParseException A){
                 Now = new Date();}}
-    
 
 
-        TransactionBuilder Builder = new TransactionBuilder(Name,Type,Value,Now,Account);
+
+        System.out.println("Enter Transaction Category (int): ");
+        j =1;
+        for(CategoryEnum E: CategoryEnum.values()){
+            System.out.print(String.valueOf(j)+": ");
+            System.out.println(E);
+            j++;
+        }
+        CategoryEnum CatEnum;
+        EnumType = this.UserInput.nextInt();
+        switch(EnumType){
+            case 1:
+                CatEnum = ( CategoryEnum.VACATION);
+                break;
+            case 2:
+                CatEnum = ( CategoryEnum.GIFT);
+                break;
+            case 3:
+                CatEnum = ( CategoryEnum.BILLS);
+                break;
+            case 4:
+                CatEnum = ( CategoryEnum.FOOD);
+                break;
+            case 5:
+                CatEnum = ( CategoryEnum.ENTERTAINMENT);
+                break;
+            case 6:
+                CatEnum = ( CategoryEnum.CLOTHES);
+                break;
+            case 7:
+                CatEnum = ( CategoryEnum.MISC_SPENDING);
+                break;
+            case 8:
+                CatEnum = ( CategoryEnum.FITNESS);
+                break;
+            default:
+                CatEnum = ( CategoryEnum.MISC_SPENDING);
+                break;
+        }
+
+
+        TransactionBuilder Builder = new TransactionBuilder(newTransaction,Type,Value,Now,Account);
         Builder.setFrequency(FreqEnum);
+        Builder.setCategory(CatEnum);
 
         Transaction NewT= Builder.buildTransaction();
         CentralRef.getData().addTransaction(NewT);

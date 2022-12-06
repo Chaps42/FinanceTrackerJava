@@ -20,7 +20,7 @@ public class AccountList extends GeneralList{
         this.DisplayString = "";
         String Substring = "Accounts: ";
         this.DisplayString += Substring + '\n';
-        Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Current Value", "Type","Interest Rate","Frequency","Interest Period" );
+        Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Current Value", "Type","Interest Rate","Frequency","Interest Period" );
         this.DisplayString += Substring + '\n';
         Substring = "";
         this.RequestData();
@@ -33,7 +33,7 @@ public class AccountList extends GeneralList{
             String E = String.valueOf(Acc.getInterestRate());
             String F = Acc.getInterestEnum().name();
             String G = Acc.getInterestPeriodEnum().name();
-            Substring = String.format("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|" , A,C,B, D,E,F,G );
+            Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , A,C,B, D,E,F,G );
             this.DisplayString += Substring + '\n';
             Substring = "";
         }

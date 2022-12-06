@@ -23,10 +23,10 @@ public class CreateAccount extends Command{
     public void execute(){
         ArrayList<AccountRecord> EmptyList = new ArrayList<AccountRecord>();
         System.out.print("Enter Name: ");
-        Name = this.UserInput.nextLine();
+        String AccountName = this.UserInput.nextLine();
         System.out.print("\n");
 
-        AccountBuilder Builder = new AccountBuilder(Name,EmptyList);
+        AccountBuilder Builder = new AccountBuilder(AccountName,EmptyList);
 
         System.out.println("Enter Account Enum (int): ");
         int i =1;
@@ -36,6 +36,7 @@ public class CreateAccount extends Command{
             i++;
         }
         int EnumType = this.UserInput.nextInt();
+        this.UserInput.nextLine();
         switch(EnumType){
             case 1:
                 Builder = Builder.setAccountEnum( AccountEnum.SAVINGS);
@@ -68,6 +69,7 @@ public class CreateAccount extends Command{
 
         System.out.println("Enter Account Interest Rate: ");
         double interestRate = this.UserInput.nextDouble();
+        this.UserInput.nextLine();
         Builder = Builder.setInterestRate( interestRate);
 
         System.out.println("Enter Account Interest Enum: ");
@@ -79,6 +81,7 @@ public class CreateAccount extends Command{
         }
 
         EnumType = this.UserInput.nextInt();
+        this.UserInput.nextLine();
         switch(EnumType){
             case 1:
                 Builder = Builder.setInterestEnum( InterestEnum.SIMPLE);
@@ -103,6 +106,7 @@ public class CreateAccount extends Command{
         }
 
         EnumType = this.UserInput.nextInt();
+        this.UserInput.nextLine();
         switch(EnumType){
             case 1:
                 Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.DAILY);

@@ -34,12 +34,12 @@ public class CommandList extends GeneralList{
         this.DisplayString = "";
         String Substring = "Controls: ";
         this.DisplayString += Substring + '\n';
-        Substring = String.format("|%10s: %13s|" , "Number","Option");
+        Substring = String.format("|%-10s: %-13s|" , "Number","Option");
         this.DisplayString += Substring + '\n';
         Substring = "";
 
         for(Command Item: CommandList){
-            Substring = String.format("|%3s: %20s|" ,String.valueOf(Item.getNumber()),Item.getName());
+            Substring = String.format("|%3s: %-20s|" ,String.valueOf(Item.getNumber()),Item.getName());
             this.DisplayString += Substring + '\n';
             Substring = "";
         }
@@ -51,6 +51,7 @@ public class CommandList extends GeneralList{
         while(validChoice){
             System.out.println("Enter your choice: ");
             Integer Choice = UserCommand.nextInt();
+            UserCommand.nextLine();
             
             switch(Choice){
                 case 1:
