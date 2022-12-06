@@ -7,13 +7,22 @@ import com.finance_tracker.account.AccountRecord;
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
 
+
 public class TransactionAccountMath {
     Mapper databaseMapper = Mapper.getInstance();
 
 
-    // Constructor
+    /**
+     * Constructor for the TransactionAccountMath utility class.
+     */
     public TransactionAccountMath() {}
 
+
+    /**
+     * @param transaction Transaction
+     *
+     * This method edits the target Account by the Transaction value.
+     */
     public void editAccountAccording2Transaction(Transaction transaction) {
         Date date = transaction.getDate();
         Double transactionValue = transaction.getValue();

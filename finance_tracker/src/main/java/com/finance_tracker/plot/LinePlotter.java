@@ -12,13 +12,21 @@ import com.finance_tracker.database.Mapper;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
+
 public class LinePlotter {
 
 
-    // Constructor
+    /**
+     * This method constructs the LinePlotter class.
+     */
     public LinePlotter() {}
 
 
+    /**
+     * @return XYChart
+     *
+     * This method creates a line chart of Accounts over time.
+     */
     public XYChart plotAccountFiles() {
         // Create Chart
         XYChart accountChart = new XYChartBuilder()
