@@ -82,7 +82,7 @@ We also simplified our objects a lot: there is no longer a Category class (this 
 
 Other classes were more complicated (or more classes) than anticipated. The `Math` class, for instance, is now a series of classes (`CategoryMath`, `DateMath`, InterestMath`, 'RecurringTransactionMath`) because each one was large enough that it was worth making the code more navigate-able by separating them into their respective applications. Similarly the `Plotter` class became `LinePlotter` and `PiePlotter` because both classes use different libraries and imports. Both plotters have only one method call at this project iteration, but could easily be extended for more functionality (say comparing Account interest vs principal balance on a pie plot, or plotting category spending over time on a line plot). In both cases, the relationships shown on the UML are fairly unchanged.
 
-The updated UML can be seen [here]("FinanceTrackerClassDiagram_P7.drawio.png").
+The updated UML can be seen [here](FinanceTrackerClassDiagram_P7.drawio.png).
 
 ## Assumptions Made
 

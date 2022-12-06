@@ -36,7 +36,7 @@ public class Database {
      * Gets the only Database.
      * Lazy Singleton.
      */
-    public Database getInstance() {
+    public static Database getInstance() {
         if (instance == null) {
             instance = new Database();
         }
