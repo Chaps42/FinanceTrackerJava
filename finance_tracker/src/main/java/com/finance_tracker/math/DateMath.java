@@ -2,9 +2,9 @@ package com.finance_tracker.math;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
-import com.finance_tracker.account.Account;
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
 
@@ -61,30 +61,20 @@ public class DateMath {
     /**
      * @return Date
      *
-     * Returns the date that the application was last updated.
+     * Returns the date of the last Transaction.
      */
-    protected Date getLastUpdateDate() {
+    protected Date getLastTransactionDate() {
         Mapper databaseMapper = Mapper.getInstance();
         HashMap<String, Transaction>  transactions = databaseMapper.getTransactions();
-        HashMap<String, Account>  accounts = databaseMapper.getAccounts();
 
-        Date lastUpdateDate = new Date();
+        // Use TreeMap to sort Transactions by Date
+        // Otherwise creating a blank Date to compare values to
+        // Was always today instead of the last Date.
+        TreeMap<Date, Transaction> sortedMap = new TreeMap<Date, Transaction>();
         for (Transaction t: transactions.values()) {
-            // first check all transactions
-            Date transactionDate = t.getDate();
-            if (transactionDate.after(lastUpdateDate)) {
-                // if transaction is more recent than last most-recent
-                // transaction, its becomes the new most recent transaction
-                lastUpdateDate = transactionDate;
-            }
+            Date date = t.getDate();
+            sortedMap.put(date, t);
         }
-        for (Account a: accounts.values()) {
-            // then check all accounts (order doesn't matter)
-            Date accountDate = a.getDate();
-            if (accountDate.after(lastUpdateDate)) {
-                lastUpdateDate = accountDate;
-            }
-        }
-        return lastUpdateDate;
+        return sortedMap.lastKey();
     }
 }

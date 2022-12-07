@@ -61,9 +61,10 @@ public class RecurringTransactionMath {
     private void applyRecurrance(Transaction transaction) {
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
-        Date lastUpdateDate = dateMath.getLastUpdateDate();
+        Date lastUpdateDate = dateMath.getLastTransactionDate();
 
         Date nextTransactionDate = calculateNextTransactionDate(transaction);
+    
         while (nextTransactionDate.after(lastUpdateDate)
             & !nextTransactionDate.after(currentDate)) {
                 // Use a while loop since it might have to recur multiple times
