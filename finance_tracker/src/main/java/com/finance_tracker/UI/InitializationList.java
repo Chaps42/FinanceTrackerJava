@@ -19,6 +19,8 @@ public class InitializationList extends GeneralList {
         CommandList.add(new CreateFile(this.FacRef.getMediator()));
         CommandList.add(new LoadFile(this.FacRef.getMediator()));
     }
+
+    //Builds display for initialization UI Element
     protected void BuildString(){
         String Substring = "Welcome! \n Enter a number to begin ";
         this.DisplayString += Substring+"\n";
@@ -30,7 +32,7 @@ public class InitializationList extends GeneralList {
 
     }
 
-
+    //Await command to take in the command of the user. Launches commands in the Command Pattern
     protected void AwaitCommand() throws IOException{
         boolean validChoice = true;
 
@@ -54,6 +56,8 @@ public class InitializationList extends GeneralList {
         }}
     }
 
+    //Empty request data because commands are manually assigned. Could use additional objects to
+    //Dynamically assign commands, like an invoker
     protected void RequestData(){};
 
     

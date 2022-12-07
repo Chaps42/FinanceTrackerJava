@@ -13,10 +13,12 @@ public class TransactionList extends GeneralList{
         super(FacRef);
     }
 
+    //Function to get the required data for the transactions UI
     public void RequestData(){
         this.Data =  this.DataRef.getAllTransactions();
     }
 
+    //Funciton to build the display string piece by piece
     public void BuildString(){
         this.DisplayString = "";
         String Substring = "Transactions: ";
@@ -39,6 +41,8 @@ public class TransactionList extends GeneralList{
             Substring = "";
         }
     }
+
+    //Empty Await command in case additional functionality is needed in the future
     public void AwaitCommand(){}
 
 }

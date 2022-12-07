@@ -18,6 +18,7 @@ public class PlotData extends Command{
 
     }
 
+    //Asks the user which plot to produce to view their financial information
     public void execute() throws IOException{
         System.out.println("Enter which plot to display: ");
         System.out.println("1: Accounts");

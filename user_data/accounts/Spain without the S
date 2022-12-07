@@ -1,5 +1,5 @@
 "NAME","TYPE"
-"Bruh","SAVINGS"
+"Spain without the S","SAVINGS"
 
 "Interest:"
 "PERCENT","FREQ","TYPE","LAST_INTEREST_DATE"
@@ -7,5 +7,4 @@
 
 "Account Records:"
 "DATE","AMOUNT"
-"20200004","10000.0"
-"20200004","1050.0"
+"20200004","100.0"

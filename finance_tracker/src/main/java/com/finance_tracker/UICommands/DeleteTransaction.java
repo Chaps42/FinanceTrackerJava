@@ -14,6 +14,7 @@ public class DeleteTransaction extends Command{
 
     }
 
+    //Allows the user to delete an unwanted transaction by name
     public void execute(){
         boolean TransactionFound = false;
         System.out.println("Enter Transaction name: ");

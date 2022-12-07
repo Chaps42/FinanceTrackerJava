@@ -14,6 +14,7 @@ public class DeleteAccount extends Command{
 
     }
 
+    //Allows the user to delete an unwanted account by name
     public void execute(){
         boolean AccountFound = false;
         System.out.println("Enter Account name: ");

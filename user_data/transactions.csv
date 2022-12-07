@@ -1,1 +1,2 @@
 "DATE","NAME","VALUE","ACCOUNT","CATEGORY","ENUM (ONETIME or REPEATING)","FREQ"
+"20200005","A cute cat","40.0","com.finance_tracker.account.Account@6ce253f1","ENTERTAINMENT","ONE_TIME","NONE"

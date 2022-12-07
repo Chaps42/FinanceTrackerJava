@@ -22,6 +22,9 @@ public class CreateAccount extends Command{
         this.Name = "Create Account";
     }
 
+    //Provides all the prompts necassary for the user to create an account.
+    //Some error proofing involved. 
+    //Allows user to specify all components of an account
     public void execute(){
         ArrayList<AccountRecord> EmptyList = new ArrayList<AccountRecord>();
         System.out.print("Enter Name: ");
