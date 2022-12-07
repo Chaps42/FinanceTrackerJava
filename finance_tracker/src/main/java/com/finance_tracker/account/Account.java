@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Date;
+import java.util.TreeMap;
 
 
 // This Class holds information for different Accounts.
@@ -82,15 +83,26 @@ public class Account {
     }
 
 
+    public TreeMap<Date, Double> sortAccountRecords() {
+        // Use a TreeMap to sort Records by Date
+        TreeMap<Date, Double> sortedMap = new TreeMap<Date, Double>();
+        for (AccountRecord r: accountRecords) {
+            Date date = r.getDate();
+            Double value = r.getAmount();
+            sortedMap.put(date, value);
+        }
+        return sortedMap;
+    }
+
+
     /**
      * @return double
      *
      * Returns the most recent Account value.
      */
     public double getValue() {
-        Integer endIndex = accountRecords.size();
-        AccountRecord lastRecord = accountRecords.get(endIndex-1);
-        return lastRecord.getAmount();
+        TreeMap<Date, Double> sortedMap = sortAccountRecords();
+        return sortedMap.lastEntry().getValue();
     }
 
 
@@ -100,9 +112,19 @@ public class Account {
      * Returns the most recent Account date.
      */
     public Date getDate() {
-        Integer endIndex = accountRecords.size();
-        AccountRecord lastRecord = accountRecords.get(endIndex-1);
-        return lastRecord.getDate();
+        TreeMap<Date, Double> sortedMap = sortAccountRecords();
+        return sortedMap.lastKey();
+    }
+
+
+    /**
+     * @return Date
+     *
+     * Gets the first Account Date
+     */
+    public Date getPrincipleDate() {
+        TreeMap<Date, Double> sortedMap = sortAccountRecords();
+        return sortedMap.firstKey();
     }
 
 
@@ -195,6 +217,13 @@ public class Account {
         return lastInterestDate;
     }
 
+
+    /**
+     * @param ThisDate Date
+     * @return Date
+     *
+     * Returns the Date of an AccountRecord most recently before an input Date.
+     */
     public Date getMostRecentDate(Date ThisDate){
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         ArrayList<Date> UniqueDates = this.getUniqueDates();

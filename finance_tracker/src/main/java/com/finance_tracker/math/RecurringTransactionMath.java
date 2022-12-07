@@ -5,8 +5,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
+import com.finance_tracker.account.Account;
+import com.finance_tracker.account.AccountRecord;
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionBuilder;
@@ -62,7 +63,7 @@ public class RecurringTransactionMath {
     private void applyRecurrance(Transaction transaction) {
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
-        Date lastUpdateDate = dateMath.getLastTransactionDate();
+        Date lastUpdateDate = dateMath.getLastRecurringTransactionDate();
 
         Date nextTransactionDate = calculateNextTransactionDate(transaction);
     
@@ -95,6 +96,17 @@ public class RecurringTransactionMath {
 
                 Mapper databaseMapper = Mapper.getInstance();
                 databaseMapper.addTransaction(newTransaction);
+
+                // Update accounts with recurring transaction
+                Account account = transaction.getTransactionAccount();
+                // Find most recent account value before transaction
+                Date dateBefore = account.getMostRecentDate(nextTransactionDate);
+                Double previousValue = account.getRecord(dateBefore).getAmount();
+
+                // Create new Record with new value
+                AccountRecord record = new AccountRecord(nextTransactionDate,
+                    previousValue + transaction.getValue());
+                account.addRecord(record);
 
                 // check if we have to create multiple new transactions
                 // due to long time between log in

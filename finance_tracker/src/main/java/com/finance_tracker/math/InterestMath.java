@@ -101,7 +101,7 @@ public class InterestMath {
         Date today = datemath.getCurrentDate();
         Date lastInterestDate = account.getLastInterestDate();
         Date principalInterestDate =
-            account.getAccountRecords().get(0).getDate();
+            account.getPrincipleDate();
         double amountPrincipal =
             account.getAccountRecords().get(0).getAmount();
 
@@ -110,7 +110,7 @@ public class InterestMath {
             // Daily Interest
             int totalDaysDiff =
                 datemath.getDayDiff(principalInterestDate, today);
-            int lastDaysDiff = datemath.getDayDiff(lastInterestDate, today);
+            int lastDaysDiff = datemath.getDayDiff(principalInterestDate,lastInterestDate);
             if (interestEnum.equals(InterestEnum.SIMPLE)) {
                 // Daily Simple
                 double totalInterest = calculateSimpleInterest(amountPrincipal,
@@ -139,7 +139,7 @@ public class InterestMath {
             int totalMonthsDiff =
                 datemath.getDayDiff(principalInterestDate, today) / 30;
             int lastMonthsDiff =
-                datemath.getDayDiff(lastInterestDate, today) / 30;
+                datemath.getDayDiff(principalInterestDate,lastInterestDate) / 30;
             if (interestEnum.equals(InterestEnum.SIMPLE)) {
                 // Monthly Simple
                 double totalInterest = calculateSimpleInterest(amountPrincipal,
@@ -168,7 +168,7 @@ public class InterestMath {
             int totalYearsDiff =
                 datemath.getDayDiff(principalInterestDate, today) / 365;
             int lastYearsDiff =
-                datemath.getDayDiff(lastInterestDate, today) / 365;
+                datemath.getDayDiff(principalInterestDate,lastInterestDate) / 365;
             if (interestEnum.equals(InterestEnum.SIMPLE)) {
                 // Annual Simple
                 double totalInterest = calculateSimpleInterest(amountPrincipal,
@@ -204,7 +204,6 @@ public class InterestMath {
      */
     private double calculateAmountFinal(Account account) {
         double newInterest = calculateNewInterest(account);
-        System.out.println(newInterest);
         double amountFinal = account.getValue() + newInterest;
         return amountFinal;
     }
@@ -218,7 +217,6 @@ public class InterestMath {
      */
     private void applyInterest(Account account) {
         double amountFinal = calculateAmountFinal(account);
-        System.out.println(amountFinal);
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
 
@@ -236,11 +234,8 @@ public class InterestMath {
         Mapper databaseMapper = Mapper.getInstance();
         HashMap<String, Account> accounts = databaseMapper.getAccounts();
         for (Account a: accounts.values()) {
-            if (a.getInterestEnum() != null) {
-                System.out.println("WORKING" + a.getName());
+            if (a.getInterestEnum() != InterestEnum.NONE) {
                 applyInterest(a);
-            } else {
-                System.out.println("SKIPPING" + a.getName());
             }
         }
     } 

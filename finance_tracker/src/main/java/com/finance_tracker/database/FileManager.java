@@ -306,14 +306,8 @@ public class FileManager {
             String[] line9 = {"DATE", "AMOUNT"};
             writer.writeNext(line9);
             // Sort accounts by Date
-            ArrayList<AccountRecord> accountRecords = account.getAccountRecords();
-            Map<Date, Double> sortedMap = new TreeMap<Date, Double>();
-            for (AccountRecord r: accountRecords) {
-                Date date = r.getDate();
-                Double value = r.getAmount();
-                // elements automatically sorted when added to TreeMap
-                sortedMap.put(date, value);
-            }
+            Map<Date, Double> sortedMap = account.sortAccountRecords();
+            
             for (Map.Entry<Date, Double> entry : sortedMap.entrySet()) {
                 String[] line = {format.format(entry.getKey()),
                     String.valueOf(entry.getValue())};

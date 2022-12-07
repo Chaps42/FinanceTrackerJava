@@ -1,7 +1,7 @@
 package com.finance_tracker.math;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
@@ -63,15 +63,15 @@ public class DateMath {
      *
      * Returns the date of the last Transaction.
      */
-    protected Date getLastTransactionDate() {
+    protected Date getLastRecurringTransactionDate() {
         Mapper databaseMapper = Mapper.getInstance();
-        HashMap<String, Transaction>  transactions = databaseMapper.getTransactions();
+        ArrayList<Transaction>  transactions = databaseMapper.getRecurringTransactions();
 
         // Use TreeMap to sort Transactions by Date
         // Otherwise creating a blank Date to compare values to
         // Was always today instead of the last Date.
         TreeMap<Date, Transaction> sortedMap = new TreeMap<Date, Transaction>();
-        for (Transaction t: transactions.values()) {
+        for (Transaction t: transactions) {
             Date date = t.getDate();
             sortedMap.put(date, t);
         }
