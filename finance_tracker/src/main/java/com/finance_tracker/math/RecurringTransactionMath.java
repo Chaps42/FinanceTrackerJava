@@ -61,14 +61,12 @@ public class RecurringTransactionMath {
     private void applyRecurrance(Transaction transaction) {
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
-        Date lastUpdateDate = dateMath.getLastUpdateDate();
+        Date lastUpdateDate = dateMath.getLastTransactionDate();
 
         Date nextTransactionDate = calculateNextTransactionDate(transaction);
-        // DEBUG
-        System.out.println(nextTransactionDate);
+    
         while (nextTransactionDate.after(lastUpdateDate)
             & !nextTransactionDate.after(currentDate)) {
-                System.out.println("while looping");
                 // Use a while loop since it might have to recur multiple times
                 // recurrs monthly and it has been 3 months since log-in, e.g.
                 //
@@ -94,7 +92,6 @@ public class RecurringTransactionMath {
                 // due to long time between log in
                 nextTransactionDate =
                     calculateNextTransactionDate(newTransaction);
-                System.out.println(nextTransactionDate);
         }
     }
 

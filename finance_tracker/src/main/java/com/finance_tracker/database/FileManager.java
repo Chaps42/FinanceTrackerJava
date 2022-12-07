@@ -354,7 +354,7 @@ public class FileManager {
                 CSVWriter.DEFAULT_LINE_END);
 
             String[] line1 = {"DATE", "NAME", "VALUE", "ACCOUNT", "CATEGORY",
-                "ENUM (ONETIME or REPEATING)", "FREQ"};
+                "ENUM", "FREQ"};
             writer.writeNext(line1);
 
             Mapper databaseMapper = Mapper.getInstance();
@@ -373,7 +373,7 @@ public class FileManager {
                 Account account = t.getTransactionAccount();
                 String accountStr = new String();
                 if (account != null) {
-                    accountStr = account.toString();
+                    accountStr = account.getName().toString();
                 } else {
                     accountStr = "";
                 }
@@ -381,9 +381,9 @@ public class FileManager {
                 String[] line = {format.format(t.getDate()),
                     t.getName(),
                     String.valueOf(t.getValue()),
-                    t.getTransactionAccount().toString(),
-                    t.getCategory().toString(),
                     accountStr,
+                    t.getCategory().toString(),
+                    t.getTransactionEnum().toString(),
                     t.getFrequency().toString()
                 };
                 writer.writeNext(line);
