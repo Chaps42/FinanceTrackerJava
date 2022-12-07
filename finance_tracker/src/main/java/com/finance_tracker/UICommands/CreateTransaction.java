@@ -178,7 +178,15 @@ public class CreateTransaction extends Command{
         Builder.setFrequency(FreqEnum);
         Builder.setCategory(CatEnum);
 
+        AccountRecord R = new AccountRecord(Now, Account.getRecord(Account.getMostRecentDate(Now)).getAmount()+Value);
+        Data.get(Account.getName()).addRecord(R);
+
         Transaction NewT= Builder.buildTransaction();
         CentralRef.getData().addTransaction(NewT);
+
+
+
+
+
     }
 }
