@@ -261,9 +261,12 @@ public class FileManager {
     private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error;
-        String CurrentDirectory = System.getProperty("user.dir");
+        String currentDirectory = System.getProperty("user.dir");
         String name = account.getName();
-        String filePath = CurrentDirectory+ "/user_data/accounts/"+ account.getName();;
+        String filePath = currentDirectory
+            + "/user_data/accounts/"
+            + account.getName()
+            + ".csv";
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
