@@ -118,6 +118,17 @@ public class Account {
 
 
     /**
+     * @return Date
+     *
+     * Gets the first Account Date
+     */
+    public Date getPrincipleDate() {
+        TreeMap<Date, Double> sortedMap = sortAccountRecords();
+        return sortedMap.firstKey();
+    }
+
+
+    /**
      * @param date Date
      * @return AccountRecord
      *
