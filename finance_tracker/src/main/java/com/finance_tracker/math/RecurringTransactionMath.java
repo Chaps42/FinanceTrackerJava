@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
@@ -62,7 +61,7 @@ public class RecurringTransactionMath {
     private void applyRecurrance(Transaction transaction) {
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
-        Date lastUpdateDate = dateMath.getLastTransactionDate();
+        Date lastUpdateDate = dateMath.getLastRecurringTransactionDate();
 
         Date nextTransactionDate = calculateNextTransactionDate(transaction);
     
