@@ -90,27 +90,27 @@ public class FileManager {
                     // Read account name and type
                     String name = accountData.get(1)[0];
 
-                    // DEBUG
-                    System.out.print(accountPath);
-                    System.out.print(accountData);
-                    //
                     String accountType = accountData.get(1)[1];
                     AccountEnum accountEnum = AccountEnum.valueOf(accountType);
 
                     // Read account interest info
                     String interestRateStr = accountData.get(5)[0];
-                    double interestRate = Double.parseDouble(interestRateStr);
-
                     String interestPeriod = accountData.get(5)[1];
-                    InterestPeriodEnum interestPeriodEnum =
-                        InterestPeriodEnum.valueOf(interestPeriod);
-
                     String interestType = accountData.get(5)[2];
-                    InterestEnum interestTypeEnum =
-                        InterestEnum.valueOf(interestType);
-
                     String lastInterestDateStr = accountData.get(5)[3];
-                    Date lastInterestDate = format.parse(lastInterestDateStr);
+
+                    double interestRate = 0.0;
+                    InterestPeriodEnum interestPeriodEnum = null;
+                    InterestEnum interestTypeEnum = null;
+                     Date lastInterestDate = null;
+                    if (!interestRateStr.equals("")) {
+                        interestRate = Double.parseDouble(interestRateStr);
+                        interestPeriodEnum =
+                            InterestPeriodEnum.valueOf(interestPeriod);
+                        interestTypeEnum =
+                            InterestEnum.valueOf(interestType);
+                        lastInterestDate = format.parse(lastInterestDateStr);
+                    }
 
                     // Read account reccords
                     int endIndex = accountData.size();
@@ -289,7 +289,7 @@ public class FileManager {
             } catch (Exception e) {
                 // Can't call format.format(null)
                 // If no interst data from one of these, there is no interest
-                String[] line6 = {null, null, null, null};
+                String[] line6 = {"0.0", null, null, null};
                     writer.writeNext(line6);
             }
             writer.writeNext(blankLine);
