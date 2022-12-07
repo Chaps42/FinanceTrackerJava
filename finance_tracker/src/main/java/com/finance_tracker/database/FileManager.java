@@ -148,6 +148,7 @@ public class FileManager {
      * builds and adds each Account to the Database.
      */
     private static void readAllAccounts() throws IOException, ParseException {
+        //https://mkyong.com/java/how-to-get-the-current-working-directory-in-java/#:~:text=In%20Java%2C%20we%20can%20use,where%20your%20program%20was%20launched.
         String CurrentDirectory = System.getProperty("user.dir");
         File accountFolder = new File(CurrentDirectory + "/user_data/accounts");
         File[] accountFiles = accountFolder.listFiles();
@@ -174,6 +175,7 @@ public class FileManager {
      * Accounts must be read and built first.
      */
     private static void readTransactions() throws IOException, ParseException {
+        //https://mkyong.com/java/how-to-get-the-current-working-directory-in-java/#:~:text=In%20Java%2C%20we%20can%20use,where%20your%20program%20was%20launched.
         String currentDirectory = System.getProperty("user.dir");
         Path transactionPath = Paths.get(currentDirectory
             + "/user_data/transactions.csv");
@@ -258,6 +260,7 @@ public class FileManager {
     private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
         // this is easiest way to update any attribute or line without error;
+        //https://mkyong.com/java/how-to-get-the-current-working-directory-in-java/#:~:text=In%20Java%2C%20we%20can%20use,where%20your%20program%20was%20launched.
         String currentDirectory = System.getProperty("user.dir");
         String name = account.getName();
         String filePath = currentDirectory
@@ -336,6 +339,7 @@ public class FileManager {
      * This method writs all Transactions to a CSV file.
      */
     public static void writeTransactions() {
+        //https://mkyong.com/java/how-to-get-the-current-working-directory-in-java/#:~:text=In%20Java%2C%20we%20can%20use,where%20your%20program%20was%20launched.
         String currentDirectory = System.getProperty("user.dir");
         String filePath = currentDirectory + "/user_data/transactions.csv";
         File file = new File(filePath);
@@ -406,6 +410,7 @@ public class FileManager {
      * This method is used to delete an Account file by its name.
      */
     public void delAccountFile(String name) {
+        //https://mkyong.com/java/how-to-get-the-current-working-directory-in-java/#:~:text=In%20Java%2C%20we%20can%20use,where%20your%20program%20was%20launched.
         String currentDirectory = System.getProperty("user.dir");
         String rootPath = currentDirectory+ "/user_data/accounts/";
         String filePath = rootPath + name;

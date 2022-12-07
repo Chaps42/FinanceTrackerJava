@@ -14,6 +14,9 @@ This project is a Java application for tracking, managing and displaying finance
 The user interacts with the application via a terminal to add/delete/update accounts or transactions.
 
 The applicatin allows users to:
+    - Record account balences overtime
+    - Record transactions as reoccuring or one time
+    - Save their records onto a file
     - Have interest rates applied to their accounts
     - Have transactionis automatically reoccur
     - View spending by category
@@ -25,6 +28,8 @@ The applicatin allows users to:
 To run the game, execute `Main.java` within the project. The terminal will then prompt you to ...
 
 If preferred, you may also create account or transaction information in a CSV file or spreadsheet which the application can read. Store files in the `user_data/` folder or the `user_data/accounts/` folder.
+
+When prompted with a date, please enter the form of "01-Aug-2020"
 
 
 ## Demonstration
@@ -74,6 +79,10 @@ method for every single message would get complicated. By having the references 
 facades allows us to connect any part of the application to the mediator so they can have
 access to the data or UI.
 
+**Command Pattern** acts as a way for the UI to interact with the database. The abstract command object acts as a template for all other commands, and each subclassed command contains the same execute function. The abstract command contains a reference to the Mediator, which in turn gives each subclassed command a reference to the data facade and the UI Facade, allowing for commands to control the program. The commands do not take the role of the mediator's job, and they frequently call getData() so the mediator can return the facade. 
+
+**Strategy Pattern** acts as a way to specify the algorithms used when displaying information for the user. The abstract object GeneralList allows the creation of subclasses which treat the abstract commands differently. Each subclass such as AccountList and Transaction List fill out their own buildString method which allows them to create their UI. Each buildString method is different, but each UIClass is accessed by the UI facade to be controlled. In the UI Facades “updateUI()” method, the UI elements are iterated over polymorphically, thus the algorithm is changed just like the strategy pattern. 
+
 ## Changes to UML Diagram
 
 There are many changes from our initial planning. During the planning phase, our understanding of the Builder Pattern was weak, so we had an abstract Builder class that our Transaction and Account Builders inherited from (though now it is clear that they share no methods or attributes, and only have their pattern in common).
@@ -81,6 +90,8 @@ There are many changes from our initial planning. During the planning phase, our
 We also simplified our objects a lot: there is no longer a Category class (this is handled by the Transaction's Enums), there are no longer separate OneTimeTransaction and RecurringTransaction classes (this is also handled by an Enum within Transaction), and there are no longer a Goal or Celebration classes (these were deemed a "nice to have" quality of the application that did not make it into our final project).
 
 Other classes were more complicated (or more classes) than anticipated. The `Math` class, for instance, is now a series of classes (`CategoryMath`, `DateMath`, InterestMath`, 'RecurringTransactionMath`) because each one was large enough that it was worth making the code more navigate-able by separating them into their respective applications. Similarly the `Plotter` class became `LinePlotter` and `PiePlotter` because both classes use different libraries and imports. Both plotters have only one method call at this project iteration, but could easily be extended for more functionality (say comparing Account interest vs principal balance on a pie plot, or plotting category spending over time on a line plot). In both cases, the relationships shown on the UML are fairly unchanged.
+
+For the UI, we instead did not complete a javaFX UI and decided to create our own text version. This resulted in us creating both a strategy pattern, and a Command patternt to help control the elements in the UI. This is different fromt the original JavaFX pattern because the Command and strategy pattern would have been encapsulated in the UI library. This way we were able to create our own framework for the UI and thus add more elements. 
 
 The updated UML can be seen [here](FinanceTrackerClassDiagram_P7.drawio.png).
 
@@ -108,3 +119,9 @@ Help with Writing to CSV files from [Baeldung "Open CSV"](https://www.baeldung.c
 Help with Dates from [Java T Point "Get Current Date and Time in Java"](https://www.javatpoint.com/java-get-current-date) and [StackAbuse "How to Get the Number of Days Between Dates in Java"](https://stackabuse.com/how-to-get-the-number-of-days-between-dates-in-java/).
 
 Help sorting Maps of Data from [Geeks for Geeks "How to Iterate Over a Treemap in Java"](https://www.geeksforgeeks.org/how-to-iterate-over-a-treemap-in-java/).
+
+Help finding Current Directory ["How to get the current working directory in Java"](https://mkyong.com/java/how-to-get-the-current-working-directory-in-java/#:~:text=In%20Java%2C%20we%20can%20use,where%20your%20program%20was%20launched.)
+
+Help creating a grid like formatter ["Class Formatter"](https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax)
+
+Help fixing a scanner when skipping a line ["Why is Scanner skipping nextLine() after use of other next functions?"](https://www.geeksforgeeks.org/why-is-scanner-skipping-nextline-after-use-of-other-next-functions/)
