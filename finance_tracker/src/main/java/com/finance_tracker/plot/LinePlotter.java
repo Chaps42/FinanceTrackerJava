@@ -1,5 +1,6 @@
 package com.finance_tracker.plot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import com.finance_tracker.database.Mapper;
 
 
 import org.knowm.xchart.*;
+import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
 
@@ -26,8 +28,9 @@ public class LinePlotter {
      * @return XYChart
      *
      * This method creates a line chart of Accounts over time.
+     * @throws IOException
      */
-    public XYChart plotAccountFiles() {
+    public XYChart plotAccountFiles() throws IOException {
         // Create Chart
         XYChart accountChart = new XYChartBuilder()
             .width(800)
@@ -58,6 +61,11 @@ public class LinePlotter {
             // Add data to chart
             accountChart.addSeries(accountName, dates, amounts);
         }
+        // Display chart
+        new SwingWrapper<XYChart>(accountChart).displayChart();
+
+        // Save chart
+        BitmapEncoder.saveBitmap(accountChart, "AccountsLineChart", BitmapFormat.PNG);
         return accountChart;
     }
 }
