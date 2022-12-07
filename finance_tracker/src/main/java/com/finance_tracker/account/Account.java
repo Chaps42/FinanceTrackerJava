@@ -83,7 +83,7 @@ public class Account {
     }
 
 
-    private TreeMap<Date, Double> sortAccountRecords() {
+    public TreeMap<Date, Double> sortAccountRecords() {
         // Use a TreeMap to sort Records by Date
         TreeMap<Date, Double> sortedMap = new TreeMap<Date, Double>();
         for (AccountRecord r: accountRecords) {
@@ -206,6 +206,13 @@ public class Account {
         return lastInterestDate;
     }
 
+
+    /**
+     * @param ThisDate Date
+     * @return Date
+     *
+     * Returns the Date of an AccountRecord most recently before an input Date.
+     */
     public Date getMostRecentDate(Date ThisDate){
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         ArrayList<Date> UniqueDates = this.getUniqueDates();

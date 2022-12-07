@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TreeMap;
 
 import com.finance_tracker.account.Account;
 import com.finance_tracker.account.AccountRecord;
@@ -99,8 +100,13 @@ public class RecurringTransactionMath {
 
                 // Update accounts with recurring transaction
                 Account account = transaction.getTransactionAccount();
+                // Find most recent account value before transaction
+                Date dateBefore = account.getMostRecentDate(nextTransactionDate);
+                Double previousValue = account.getRecord(dateBefore).getAmount();
+
+                // Create new Record with new value
                 AccountRecord record = new AccountRecord(nextTransactionDate,
-                    account.getValue() + transaction.getValue());
+                    previousValue + transaction.getValue());
                 account.addRecord(record);
 
                 // check if we have to create multiple new transactions
