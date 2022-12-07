@@ -1,11 +1,13 @@
 package com.finance_tracker.math;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import com.finance_tracker.account.Account;
 import com.finance_tracker.account.AccountRecord;
 import com.finance_tracker.account.InterestEnum;
 import com.finance_tracker.account.InterestPeriodEnum;
+import com.finance_tracker.database.Mapper;
 
 
 public class InterestMath {
@@ -202,6 +204,7 @@ public class InterestMath {
      */
     private double calculateAmountFinal(Account account) {
         double newInterest = calculateNewInterest(account);
+        System.out.println(newInterest);
         double amountFinal = account.getValue() + newInterest;
         return amountFinal;
     }
@@ -213,8 +216,9 @@ public class InterestMath {
      * This method adds a new AccountRecord to the Account with its interst
      * amount, and updates the attribute for lastInterestDate.
      */
-    public void applyInterest(Account account) {
+    private void applyInterest(Account account) {
         double amountFinal = calculateAmountFinal(account);
+        System.out.println(amountFinal);
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
 
@@ -222,4 +226,22 @@ public class InterestMath {
         account.addRecord(newRecord);
         account.setLastInterestDate(currentDate);
     }
+
+
+    /**
+     * This method applies interest to all accounts.
+     * It checks to see if each Account has interest values first.
+     */
+    public void applyAllInterest() {
+        Mapper databaseMapper = Mapper.getInstance();
+        HashMap<String, Account> accounts = databaseMapper.getAccounts();
+        for (Account a: accounts.values()) {
+            if (a.getInterestEnum() != null) {
+                System.out.println("WORKING" + a.getName());
+                applyInterest(a);
+            } else {
+                System.out.println("SKIPPING" + a.getName());
+            }
+        }
+    } 
 }
