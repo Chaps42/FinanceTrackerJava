@@ -14,10 +14,9 @@ public class UIFacade extends Subject {
     private ArrayList<GeneralList> InitializationElements= new ArrayList<GeneralList>();
 
      
-    //GeneralList AccountList = new AccountList(this);
-    //GeneralList TransactionList = new TransactionList(this);
-    //GeneralList CommandList = new CommandList(this);
-    //GeneralList InitializationList = new InitializationList(this);
+    //UI Facade for ease of access to UI Elements. Responsible for running the UI
+    //and providing a link to the central mediator for message passing. Implements 
+    //Facade Pattern
 
 
     //Constructor
@@ -31,7 +30,7 @@ public class UIFacade extends Subject {
         notifyObserver("UIFacade Created");
     }
     
-    //Update all values in the UI
+    //Update all values in the UI. 
     public void updateUI() throws IOException{
         for(GeneralList Item:this.UIElements ){
             Item.DisplayString();
@@ -41,9 +40,8 @@ public class UIFacade extends Subject {
         notifyObserver("UI Updated");
     }
 
-
+    //Shows all the initialization elements
     public void showInitialization() throws IOException{
-        //this.InitializationList.
         for(GeneralList Item:this.InitializationElements ){
             Item.DisplayString();
         }

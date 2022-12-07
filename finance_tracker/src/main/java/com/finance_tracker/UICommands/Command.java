@@ -15,6 +15,10 @@ public abstract class Command {
     protected String Name;
     protected Integer CodeNum;
 
+    //Command constructor to give it all the necassary object references. 
+    //Implements command pattern so that all commands can have the same basic structure and references. 
+    //Client (User interface objects) invoke a command that acts on the mediator to send a message to 
+    //the rest of the system, wherever the destination may be
     public Command(Mediator CentralRef){
         this.CentralRef = CentralRef;
         this.DataRef = this.CentralRef.getData();
@@ -23,8 +27,10 @@ public abstract class Command {
 
     }
 
+    //Abstract execute to command can be acted on like a remote
     public abstract void execute() throws IOException;
 
+    //Common Getter functions
     public String getName(){
         return this.Name;
     }

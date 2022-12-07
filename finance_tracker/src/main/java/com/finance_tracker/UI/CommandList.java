@@ -29,8 +29,11 @@ public class CommandList extends GeneralList{
 
     }
 
+    //Empty request data because commands are manually assigned. Could use additional objects to
+    //Dynamically assign commands, like an invoker
     public void RequestData(){}
 
+    //Builds String UI for Command List UI Element
     public void BuildString(){
         this.DisplayString = "";
         String Substring = "Controls: ";
@@ -46,6 +49,8 @@ public class CommandList extends GeneralList{
         }
 
     }
+
+    //Await command to take in the command of the user. Launches commands in the Command Pattern
     public void AwaitCommand() throws IOException{
         boolean validChoice = true;
 

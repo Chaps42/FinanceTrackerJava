@@ -1,5 +1,5 @@
 "NAME","TYPE"
-"Bruh","SAVINGS"
+"Where my paycheck go","CHECKING"
 
 "Interest:"
 "PERCENT","FREQ","TYPE","LAST_INTEREST_DATE"
@@ -7,5 +7,6 @@
 
 "Account Records:"
 "DATE","AMOUNT"
-"20200004","10000.0"
-"20200004","1050.0"
+"20200004","1000.0"
+"20200004","1500.0"
+"20200004","2000.0"

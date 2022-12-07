@@ -18,6 +18,8 @@ public class EnterAccountValue extends Command{
 
     }
 
+    //Allows user to enter values for accounts on specific days. Records are added to the end 
+    //of the array list on the file.
     @Override
     public void execute() {
         // 

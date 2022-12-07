@@ -15,6 +15,8 @@ import com.finance_tracker.transaction.TransactionBuilder;
 
 import com.finance_tracker.transaction.*;;
 
+//Data Facade Implements Facade Pattern. Allows access to the mapper function, which is responsible
+//for gathering data from the database. Allows easy access to the complicated data set
 
 public class DataFacade extends Subject {
     private Mediator CentralRef; // This reference is unused?

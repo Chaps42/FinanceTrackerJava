@@ -10,6 +10,8 @@ public class Exit extends Command{
         this.Name = "Exit";
     }
 
+    //Exit command to terminate program. 
+    //Autosaves after exiting
     @Override
     public void execute() {
         this.CentralRef.endProgram();
