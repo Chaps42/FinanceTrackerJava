@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
@@ -65,6 +66,8 @@ public class RecurringTransactionMath {
 
         Date nextTransactionDate = calculateNextTransactionDate(transaction);
     
+        String rootName = transaction.getName();
+        int n = 1;
         while (nextTransactionDate.after(lastUpdateDate)
             & !nextTransactionDate.after(currentDate)) {
                 // Use a while loop since it might have to recur multiple times
@@ -73,8 +76,13 @@ public class RecurringTransactionMath {
                 // Check to see if recurrance date is after last update
                 // (don't repeat recurrance of a transaction)
                 // and before the current date.
+
+                // Repeat names erase old Transaction Map elements,
+                // so we need to update the name each while loop.
+                String newName = rootName + "_" + n;
+
                 TransactionBuilder transactionBuilder = new TransactionBuilder(
-                        transaction.getName(),
+                        newName,
                         transaction.getTransactionEnum(),
                         transaction.getValue(),
                         nextTransactionDate,
@@ -92,6 +100,11 @@ public class RecurringTransactionMath {
                 // due to long time between log in
                 nextTransactionDate =
                     calculateNextTransactionDate(newTransaction);
+                
+                // Change value of n for next loop name
+                // The names will be ugly (potentially name_3_1_3)
+                // but as lont as they are unique
+                n += 1;
         }
     }
 
