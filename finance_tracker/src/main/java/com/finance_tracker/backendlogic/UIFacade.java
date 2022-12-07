@@ -1,5 +1,6 @@
 package com.finance_tracker.backendlogic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import com.finance_tracker.UI.CommandList;
 import com.finance_tracker.UI.TransactionList;
@@ -31,7 +32,7 @@ public class UIFacade extends Subject {
     }
     
     //Update all values in the UI
-    public void updateUI(){
+    public void updateUI() throws IOException{
         for(GeneralList Item:this.UIElements ){
             Item.DisplayString();
         }
@@ -40,7 +41,7 @@ public class UIFacade extends Subject {
     }
 
 
-    public void showInitialization(){
+    public void showInitialization() throws IOException{
         //this.InitializationList.
         for(GeneralList Item:this.InitializationElements ){
             Item.DisplayString();
