@@ -25,7 +25,7 @@ The applicatin allows users to:
 
 ## How to Run
 
-To run the game, execute `App.java` within the project. The terminal will then prompt you to load or create files. Follow the prompts to view and execute your command options.
+To run the game, execute `Main.java` within the project. The terminal will then prompt you to ...
 
 If preferred, you may also create account or transaction information in a CSV file or spreadsheet which the application can read. Store files in the `user_data/` folder or the `user_data/accounts/` folder.
 
@@ -34,7 +34,7 @@ When prompted with a date, please enter the form of "01-Aug-2020"
 
 ## Demonstration
 
-A demonstration of use and coding principles is saved in ...
+A demonstration of use and coding principles is saved in Here["Video Demonstration"](https://drive.google.com/file/d/18hG5BJmY6RLjHtQV4bEwTw_XCeYgscTp/view?usp=sharing)
 
 
 ## Identified OO Patterns
