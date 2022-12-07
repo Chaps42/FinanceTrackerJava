@@ -25,7 +25,7 @@ The applicatin allows users to:
 
 ## How to Run
 
-To run the game, execute `Main.java` within the project. The terminal will then prompt you to ...
+To run the game, execute `App.java` within the project. The terminal will then prompt you to load or create files. Follow the prompts to view and execute your command options.
 
 If preferred, you may also create account or transaction information in a CSV file or spreadsheet which the application can read. Store files in the `user_data/` folder or the `user_data/accounts/` folder.
 
