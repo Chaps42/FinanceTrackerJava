@@ -204,8 +204,8 @@ public class InterestMath {
      */
     private double calculateAmountFinal(Account account) {
         double newInterest = calculateNewInterest(account);
-        System.out.println(newInterest);
         double amountFinal = account.getValue() + newInterest;
+        System.out.println(amountFinal);
         return amountFinal;
     }
 
@@ -218,7 +218,6 @@ public class InterestMath {
      */
     private void applyInterest(Account account) {
         double amountFinal = calculateAmountFinal(account);
-        System.out.println(amountFinal);
         DateMath dateMath = new DateMath();
         Date currentDate = dateMath.getCurrentDate();
 
@@ -237,10 +236,7 @@ public class InterestMath {
         HashMap<String, Account> accounts = databaseMapper.getAccounts();
         for (Account a: accounts.values()) {
             if (a.getInterestEnum() != null) {
-                System.out.println("WORKING" + a.getName());
                 applyInterest(a);
-            } else {
-                System.out.println("SKIPPING" + a.getName());
             }
         }
     } 
