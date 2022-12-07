@@ -27,6 +27,8 @@ public class CreateTransaction extends Command{
 
     public void execute(){
         AccountBuilder defaultBuilder = new AccountBuilder("Default", new ArrayList<AccountRecord>());
+        TransactionFrequencyEnum FreqEnum = TransactionFrequencyEnum.NONE;
+        boolean SkipFrequency = false;
 
         boolean AccountFound = false;
         System.out.println("Enter Name: ");
@@ -38,11 +40,11 @@ public class CreateTransaction extends Command{
         this.UserInput.nextLine();
         
         System.out.println("Enter Transaction Type (int): ");
-        int i =1;
+        int j =1;
         for(TransactionEnum E: TransactionEnum.values()){
-            System.out.print(String.valueOf(i)+": ");
+            System.out.print(String.valueOf(j)+": ");
             System.out.println(E);
-            i++;
+            j++;
         }
         int EnumType = this.UserInput.nextInt();
         this.UserInput.nextLine();
@@ -55,17 +57,19 @@ public class CreateTransaction extends Command{
                 break;
             default:
                 Type = ( TransactionEnum.ONE_TIME);
+                FreqEnum = TransactionFrequencyEnum.NONE;
+                SkipFrequency = true;
                 break;
         }
 
+        if(!SkipFrequency){ 
         System.out.println("Enter Transaction Frequency (int): ");
-        int j =1;
+        j =1;
         for(TransactionFrequencyEnum E: TransactionFrequencyEnum.values()){
             System.out.print(String.valueOf(j)+": ");
             System.out.println(E);
             j++;
         }
-        TransactionFrequencyEnum FreqEnum;
         EnumType = this.UserInput.nextInt();
         this.UserInput.nextLine();
         switch(EnumType){
@@ -79,9 +83,9 @@ public class CreateTransaction extends Command{
                 FreqEnum = ( TransactionFrequencyEnum.ANNUALLY);
                 break;
             default:
-                FreqEnum = ( TransactionFrequencyEnum.ANNUALLY);
+                FreqEnum = ( TransactionFrequencyEnum.NONE);
                 break;
-        }
+        }}
 
 
         System.out.println("Enter Transaction Account Name: ");
