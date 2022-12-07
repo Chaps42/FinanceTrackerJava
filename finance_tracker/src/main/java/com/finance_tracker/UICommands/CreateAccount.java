@@ -2,6 +2,8 @@ package com.finance_tracker.UICommands;
 
 import com.finance_tracker.backendlogic.Mediator;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,6 +27,22 @@ public class CreateAccount extends Command{
         System.out.print("Enter Name: ");
         String AccountName = this.UserInput.nextLine();
         System.out.print("\n");
+
+        System.out.println("Enter Amount: ");
+        double Accvalue = this.UserInput.nextDouble();
+        this.UserInput.nextLine();
+
+        //Code found here https://www.baeldung.com/java-string-to-date
+        boolean ValidDate = true;
+        Date Now = new Date();
+        while(ValidDate){
+            System.out.println("Enter the date (dd-MMM-yyyy):");
+            String EnteredDate = this.UserInput.nextLine();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            try{Now = formatter.parse(EnteredDate);
+                ValidDate = false;}
+            catch(ParseException A){
+                Now = new Date();}}
 
         AccountBuilder Builder = new AccountBuilder(AccountName,EmptyList);
 
@@ -123,8 +141,7 @@ public class CreateAccount extends Command{
         }
 
         Account AccountA = Builder.buildAccount();
-        Date Now = new Date();
-        AccountRecord Today = new AccountRecord(Now, 0);
+        AccountRecord Today = new AccountRecord(Now, Accvalue);
         AccountA.addRecord(Today);
 
         CentralRef.getData().addAccount(AccountA);

@@ -14,5 +14,6 @@ public class Exit extends Command{
     public void execute() {
         this.CentralRef.endProgram();
         System.out.println("\n Goodbye!");
+        this.CentralRef.getData().getFileManager().writeAll();
     }
 }

@@ -35,7 +35,6 @@ import com.finance_tracker.transaction.Transaction;
 // utility object is needed.
 public class FileManager {
     static SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
-
     // Create a single object for lazy Singleton pattern
     private static FileManager instance;
 
@@ -147,7 +146,8 @@ public class FileManager {
      * builds and adds each Account to the Database.
      */
     private static void readAllAccounts() throws IOException, ParseException {
-        File accountFolder = new File("/user_data/accounts");
+        String CurrentDirectory = System.getProperty("user.dir");
+        File accountFolder = new File(CurrentDirectory + "/user_data/accounts");
         File[] accountFiles = accountFolder.listFiles();
 
         HashMap<String, Account> accounts = new HashMap<String, Account>();
@@ -172,7 +172,8 @@ public class FileManager {
      * Accounts must be read and built first.
      */
     private static void readTransactions() throws IOException, ParseException {
-        Path transactionPath = Paths.get("/user_data/transactions.csv");
+        String CurrentDirectory = System.getProperty("user.dir");
+        Path transactionPath = Paths.get(CurrentDirectory+"/user_data/transactions.csv");
         try (BufferedReader reader = Files.newBufferedReader(transactionPath)) {
             CSVReader csvReader = new CSVReader(reader);
             List<String[]> transactionData = csvReader.readAll();
@@ -250,10 +251,10 @@ public class FileManager {
      */
     private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
-        // this is easiest way to update any attribute or line without error
-        String rootPath = "/user_data/accounts/";
+        // this is easiest way to update any attribute or line without error;
+        String CurrentDirectory = System.getProperty("user.dir");
         String name = account.getName();
-        String filePath = rootPath + name;
+        String filePath = CurrentDirectory+ "/user_data/accounts/"+ account.getName();;
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
@@ -310,7 +311,8 @@ public class FileManager {
      * This method writs all Transactions to a CSV file.
      */
     public static void writeTransactions() {
-        String filePath = "/user_data/transactions.csv";
+        String CurrentDirectory = System.getProperty("user.dir");
+        String filePath = CurrentDirectory+ "/user_data/transactions.csv";
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
@@ -358,7 +360,8 @@ public class FileManager {
      * This method is used to delete an Account file by its name.
      */
     public void delAccountFile(String name) {
-        String rootPath = "/user_data/accounts/";
+        String CurrentDirectory = System.getProperty("user.dir");
+        String rootPath = CurrentDirectory+ "/user_data/accounts/";
         String filePath = rootPath + name;
         File f = new File(filePath);  
         f.delete();
