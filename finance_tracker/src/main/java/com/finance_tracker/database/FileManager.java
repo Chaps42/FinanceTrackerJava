@@ -270,11 +270,17 @@ public class FileManager {
             writer.writeNext(line4);
             String[] line5 = {"PERCENT", "FREQ", "TYPE", "LAST_INTEREST_DATE"};
             writer.writeNext(line5);
-            String[] line6 = {String.valueOf(account.getInterestRate()),
-                account.getInterestPeriodEnum().toString(),
-                account.getInterestEnum().toString(),
-                format.format(account.getLastInterestDate())};
-            writer.writeNext(line6);
+
+            try {
+                String[] line6 = {String.valueOf(account.getInterestRate()),
+                    account.getInterestPeriodEnum().toString(),
+                    account.getInterestEnum().toString(),
+                    format.format(account.getLastInterestDate())};
+                writer.writeNext(line6);
+            } catch (Exception e) {
+                String[] line6 = {null, null, null, null};
+                    writer.writeNext(line6);
+            }
             writer.writeNext(blankLine);
 
             String[] line8 = {"Account Records:"};
