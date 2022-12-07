@@ -254,6 +254,9 @@ public class FileManager {
      *
      * Got help writing to CSVs in Java from this resource:
      * https://www.baeldung.com/opencsv
+     *
+     * Got help sorting AccountRecords before save from:
+     * https://www.geeksforgeeks.org/how-to-iterate-over-a-treemap-in-java/
      */
     private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save

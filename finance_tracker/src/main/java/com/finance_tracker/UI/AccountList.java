@@ -31,8 +31,16 @@ public class AccountList extends GeneralList{
             String C = Acc.getDate().toString();
             String D = Acc.getAccountEnum().name();
             String E = String.valueOf(Acc.getInterestRate());
-            String F = Acc.getInterestEnum().name();
-            String G = Acc.getInterestPeriodEnum().name();
+            String F;
+            String G;
+            if (Acc.getInterestEnum() != null) {
+                // If Interest Values
+                F = Acc.getInterestEnum().name();
+                G = Acc.getInterestPeriodEnum().name();
+            } else{
+                F = new String();
+                G = new String();
+            }
             Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , A,C,B, D,E,F,G );
             this.DisplayString += Substring + '\n';
             Substring = "";
