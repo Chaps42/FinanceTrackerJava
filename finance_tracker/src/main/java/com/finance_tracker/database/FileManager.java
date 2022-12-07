@@ -178,8 +178,9 @@ public class FileManager {
      * Accounts must be read and built first.
      */
     private static void readTransactions() throws IOException, ParseException {
-        String CurrentDirectory = System.getProperty("user.dir");
-        Path transactionPath = Paths.get(CurrentDirectory+"/user_data/transactions.csv");
+        String currentDirectory = System.getProperty("user.dir");
+        Path transactionPath = Paths.get(currentDirectory
+            + "/user_data/transactions.csv");
         try (BufferedReader reader = Files.newBufferedReader(transactionPath)) {
             CSVReader csvReader = new CSVReader(reader);
             List<String[]> transactionData = csvReader.readAll();
@@ -345,8 +346,8 @@ public class FileManager {
      * This method writs all Transactions to a CSV file.
      */
     public static void writeTransactions() {
-        String CurrentDirectory = System.getProperty("user.dir");
-        String filePath = CurrentDirectory+ "/user_data/transactions.csv";
+        String currentDirectory = System.getProperty("user.dir");
+        String filePath = currentDirectory + "/user_data/transactions.csv";
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
@@ -406,8 +407,8 @@ public class FileManager {
      * This method is used to delete an Account file by its name.
      */
     public void delAccountFile(String name) {
-        String CurrentDirectory = System.getProperty("user.dir");
-        String rootPath = CurrentDirectory+ "/user_data/accounts/";
+        String currentDirectory = System.getProperty("user.dir");
+        String rootPath = currentDirectory+ "/user_data/accounts/";
         String filePath = rootPath + name;
         File f = new File(filePath);  
         f.delete();
