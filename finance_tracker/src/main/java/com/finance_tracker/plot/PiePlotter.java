@@ -9,7 +9,7 @@ import com.finance_tracker.database.Mapper;
 import com.finance_tracker.math.CategoryMath;
 import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
-import org.knowm.xchart.*;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
