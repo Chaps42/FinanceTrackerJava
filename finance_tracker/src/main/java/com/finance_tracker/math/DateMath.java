@@ -68,7 +68,7 @@ public class DateMath {
         HashMap<String, Transaction>  transactions = databaseMapper.getTransactions();
         HashMap<String, Account>  accounts = databaseMapper.getAccounts();
 
-        Date lastUpdateDate = null;
+        Date lastUpdateDate = new Date();
         for (Transaction t: transactions.values()) {
             // first check all transactions
             Date transactionDate = t.getDate();

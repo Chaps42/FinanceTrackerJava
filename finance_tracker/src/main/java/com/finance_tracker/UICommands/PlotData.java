@@ -13,7 +13,7 @@ public class PlotData extends Command{
 
     public PlotData(Mediator CentralRef){
         super(CentralRef);
-        this.CodeNum = 6;
+        this.CodeNum = 8;
         this.Name = "Show Plot";
 
     }

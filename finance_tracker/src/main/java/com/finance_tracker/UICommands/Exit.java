@@ -6,7 +6,7 @@ public class Exit extends Command{
     
     public Exit(Mediator CentralRef){
         super(CentralRef);
-        this.CodeNum = 7;
+        this.CodeNum = 9;
         this.Name = "Exit";
     }
 

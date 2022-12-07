@@ -52,7 +52,6 @@ public class CreateTransaction extends Command{
         switch(EnumType){
             case 1:
                 Type = ( TransactionEnum.ONE_TIME);
-                Type = ( TransactionEnum.ONE_TIME);
                 FreqEnum = TransactionFrequencyEnum.NONE;
                 SkipFrequency = true;
                 break;
@@ -78,12 +77,15 @@ public class CreateTransaction extends Command{
         this.UserInput.nextLine();
         switch(EnumType){
             case 1:
-                FreqEnum = ( TransactionFrequencyEnum.WEEKLY);
+                FreqEnum = ( TransactionFrequencyEnum.NONE);
                 break;
             case 2:
-                FreqEnum = ( TransactionFrequencyEnum.MONTHLY);
+                FreqEnum = ( TransactionFrequencyEnum.WEEKLY);
                 break;
             case 3:
+                FreqEnum = ( TransactionFrequencyEnum.MONTHLY);
+                break;
+            case 4:
                 FreqEnum = ( TransactionFrequencyEnum.ANNUALLY);
                 break;
             default:
@@ -178,10 +180,5 @@ public class CreateTransaction extends Command{
 
         Transaction NewT= Builder.buildTransaction();
         CentralRef.getData().addTransaction(NewT);
-
-
-
-
     }
-
 }

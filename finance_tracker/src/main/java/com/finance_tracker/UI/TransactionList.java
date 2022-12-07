@@ -33,7 +33,10 @@ public class TransactionList extends GeneralList{
             String B = String.valueOf(Acc.getValue());
             String C = Acc.getDate().toString();
             String D = Acc.getTransactionEnum().name();
-            String E = Acc.getTransactionAccount().getName();
+            String E = new String();
+            if (Acc.getTransactionAccount() != null) {
+                E = Acc.getTransactionAccount().getName();
+            }
             String F = Acc.getFrequency().name();
             String G = Acc.getCategory().name();
             Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , A,C,B, D,E,F,G );

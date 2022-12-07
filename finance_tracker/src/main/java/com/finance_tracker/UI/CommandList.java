@@ -1,6 +1,7 @@
 package com.finance_tracker.UI;
 
 import com.finance_tracker.backendlogic.UIFacade;
+import com.finance_tracker.UICommands.CalculateInterest;
 import com.finance_tracker.UICommands.Command;
 import com.finance_tracker.UICommands.CreateAccount;
 import com.finance_tracker.UICommands.EnterAccountValue;
@@ -8,6 +9,7 @@ import com.finance_tracker.UICommands.DeleteAccount;
 import com.finance_tracker.UICommands.CreateTransaction;
 import com.finance_tracker.UICommands.DeleteTransaction;
 import com.finance_tracker.UICommands.PlotData;
+import com.finance_tracker.UICommands.RecurTransactions;
 import com.finance_tracker.UICommands.Exit;
 import java.util.Scanner;
 import java.io.IOException;
@@ -24,6 +26,8 @@ public class CommandList extends GeneralList{
         CommandList.add(new DeleteAccount(this.CentralRef));
         CommandList.add(new CreateTransaction(this.CentralRef));
         CommandList.add(new DeleteTransaction(this.CentralRef));
+        CommandList.add(new RecurTransactions(this.CentralRef));
+        CommandList.add(new CalculateInterest(this.CentralRef));
         CommandList.add(new PlotData(this.CentralRef));
         CommandList.add(new Exit(this.CentralRef));
 
@@ -87,17 +91,17 @@ public class CommandList extends GeneralList{
                 case 7:
                     CommandList.get(6).execute();
                     validChoice = false;
-                    break;                
+                    break;     
+                case 8:
+                    CommandList.get(7).execute();
+                    validChoice = false;
+                    break;
+                case 9:
+                    CommandList.get(8).execute();
+                    validChoice = false;
+                    break;          
                 default:
                     System.out.println("Try again");
-
-
         }}
     }
-
 }
-
-    
-
-
-
