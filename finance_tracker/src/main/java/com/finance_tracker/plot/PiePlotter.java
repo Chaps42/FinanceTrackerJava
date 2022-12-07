@@ -64,7 +64,7 @@ public class PiePlotter {
             false);
 
         
-        File pieChart = new File( "PieChart.jpeg" ); 
+        File pieChart = new File( "TransactionsPieChart.jpeg" ); 
         ChartUtilities.saveChartAsJPEG( pieChart, chart, 640, 480);
         return chart;
     }
