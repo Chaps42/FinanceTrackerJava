@@ -1,5 +1,7 @@
 package com.finance_tracker.UICommands;
 
+import java.io.IOException;
+
 import com.finance_tracker.backendlogic.Mediator;
 import com.finance_tracker.plot.LinePlotter;
 import com.finance_tracker.plot.PiePlotter;
@@ -16,10 +18,10 @@ public class PlotData extends Command{
 
     }
 
-    public void execute(){
+    public void execute() throws IOException{
         System.out.println("Enter which plot to display: ");
-        System.out.println("1: Line Chart");
-        System.out.println("2: Pie Chart");
+        System.out.println("1: Accounts");
+        System.out.println("2: Transactions");
         Integer choice = this.UserInput.nextInt();
         switch(choice){
             case 1:

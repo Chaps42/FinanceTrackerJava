@@ -1,5 +1,7 @@
 package com.finance_tracker.plot;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -9,6 +11,7 @@ import com.finance_tracker.transaction.CategoryEnum;
 import com.finance_tracker.transaction.Transaction;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -29,8 +32,9 @@ public class PiePlotter {
      *
      * Help from:
      * https://www.tutorialspoint.com/jfreechart/jfreechart_pie_chart.htm
+     * @throws IOException
      */
-    public JFreeChart plotTransactions() {
+    public JFreeChart plotTransactions() throws IOException {
 
         Mapper databaseMapper = Mapper.getInstance();
         HashMap<String, Transaction> transactions =
@@ -59,6 +63,9 @@ public class PiePlotter {
             true,
             false);
 
+        
+        File pieChart = new File( "TransactionsPieChart.jpeg" ); 
+        ChartUtilities.saveChartAsJPEG( pieChart, chart, 640, 480);
         return chart;
     }
 }

@@ -1,5 +1,6 @@
 package com.finance_tracker.backendlogic;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Mediator extends Observer{
@@ -23,7 +24,7 @@ public class Mediator extends Observer{
         return DataInterface;
     }
 
-    public void run(){
+    public void run() throws IOException{
         UIInterface.showInitialization();
         while (this.Running==true){
             //https://stackoverflow.com/questions/2979383/how-to-clear-the-console

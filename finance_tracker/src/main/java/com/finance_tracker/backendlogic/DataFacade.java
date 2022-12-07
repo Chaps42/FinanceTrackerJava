@@ -1,5 +1,6 @@
 package com.finance_tracker.backendlogic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class DataFacade extends Subject {
 
 
     // Does this defeat the purpose of the Builer pattern?
-    public void createAccount(String Name, AccountEnum Enum){
+    public void createAccount(String Name, AccountEnum Enum) throws IOException{
         ArrayList<AccountRecord> emptyList = new ArrayList<AccountRecord>();
         AccountBuilder builder = new AccountBuilder(Name, emptyList)
             .setAccountEnum(Enum)

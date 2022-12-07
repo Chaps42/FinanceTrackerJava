@@ -10,6 +10,7 @@ import com.finance_tracker.UICommands.DeleteTransaction;
 import com.finance_tracker.UICommands.PlotData;
 import com.finance_tracker.UICommands.Exit;
 import java.util.Scanner;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CommandList extends GeneralList{
@@ -45,7 +46,7 @@ public class CommandList extends GeneralList{
         }
 
     }
-    public void AwaitCommand(){
+    public void AwaitCommand() throws IOException{
         boolean validChoice = true;
 
         while(validChoice){
