@@ -34,7 +34,7 @@ import com.finance_tracker.transaction.Transaction;
 // Singleton Pattern was used for the File Manager because only one of this
 // utility object is needed.
 public class FileManager {
-    static SimpleDateFormat format = new SimpleDateFormat("yyyymmdd");
+    static SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     // Create a single object for lazy Singleton pattern
     private static FileManager instance;
 
@@ -90,7 +90,11 @@ public class FileManager {
                     // Read account name and type
                     String name = accountData.get(1)[0];
 
-                    String accountType = accountData.get(1)[0];
+                    // DEBUG
+                    System.out.print(accountPath);
+                    System.out.print(accountData);
+                    //
+                    String accountType = accountData.get(1)[1];
                     AccountEnum accountEnum = AccountEnum.valueOf(accountType);
 
                     // Read account interest info
@@ -258,7 +262,11 @@ public class FileManager {
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputfile);
+            CSVWriter writer = new CSVWriter(outputfile,
+                CSVWriter.DEFAULT_SEPARATOR,
+                CSVWriter.NO_QUOTE_CHARACTER,
+                CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                CSVWriter.DEFAULT_LINE_END);
 
             String[] line1 = { "NAME", "TYPE"};
             writer.writeNext(line1);
@@ -324,7 +332,11 @@ public class FileManager {
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputfile);
+            CSVWriter writer = new CSVWriter(outputfile,
+                CSVWriter.DEFAULT_SEPARATOR,
+                CSVWriter.NO_QUOTE_CHARACTER,
+                CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                CSVWriter.DEFAULT_LINE_END);
 
             String[] line1 = {"DATE", "NAME", "VALUE", "ACCOUNT", "CATEGORY",
                 "ENUM (ONETIME or REPEATING)", "FREQ"};
