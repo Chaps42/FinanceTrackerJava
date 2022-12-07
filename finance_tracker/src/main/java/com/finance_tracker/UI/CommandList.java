@@ -42,6 +42,7 @@ public class CommandList extends GeneralList{
         this.DisplayString = "";
         String Substring = "Controls: ";
         this.DisplayString += Substring + '\n';
+        //Special Table Formatting https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax
         Substring = String.format("|%-10s: %-13s|" , "Number","Option");
         this.DisplayString += Substring + '\n';
         Substring = "";

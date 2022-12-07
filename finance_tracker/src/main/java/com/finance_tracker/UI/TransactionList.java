@@ -23,6 +23,7 @@ public class TransactionList extends GeneralList{
         this.DisplayString = "";
         String Substring = "Transactions: ";
         this.DisplayString += Substring + '\n';
+        //Special Table Formatting https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax
         Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Value", "Type","Account","Frequency","Category" );
         this.DisplayString += Substring + '\n';
         Substring = "";

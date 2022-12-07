@@ -24,6 +24,7 @@ public class AccountList extends GeneralList{
         this.DisplayString = "";
         String Substring = "Accounts: ";
         this.DisplayString += Substring + '\n';
+        //Special Table Formatting https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax
         Substring = String.format("|%20s|%30s|%15s|%15s|%15s|%15s|%15s|" , "Name", "Date","Current Value", "Type","Interest Rate","Frequency","Interest Period" );
         this.DisplayString += Substring + '\n';
         Substring = "";

@@ -26,6 +26,7 @@ public class InitializationList extends GeneralList {
         this.DisplayString += Substring+"\n";
 
         for(Command Item: CommandList){
+            //Special Table Formatting https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax
             Substring = String.format("|%3s: %20s|" ,String.valueOf(Item.getNumber()),Item.getName());
             this.DisplayString += Substring + '\n';
             Substring = "";}
