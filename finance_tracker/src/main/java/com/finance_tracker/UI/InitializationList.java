@@ -1,5 +1,6 @@
 package com.finance_tracker.UI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class InitializationList extends GeneralList {
     }
 
 
-    protected void AwaitCommand(){
+    protected void AwaitCommand() throws IOException{
         boolean validChoice = true;
 
         while(validChoice){

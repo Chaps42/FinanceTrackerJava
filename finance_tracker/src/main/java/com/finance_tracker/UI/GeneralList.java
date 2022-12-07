@@ -1,6 +1,9 @@
 package com.finance_tracker.UI;
 
 import com.finance_tracker.backendlogic.UIFacade;
+
+import java.io.IOException;
+
 import com.finance_tracker.backendlogic.DataFacade;
 import com.finance_tracker.backendlogic.Mediator;
 
@@ -19,11 +22,11 @@ public abstract class GeneralList {
 
     abstract protected void BuildString();
 
-    abstract protected void AwaitCommand();
+    abstract protected void AwaitCommand() throws IOException;
 
     abstract protected void RequestData();
 
-    public void DisplayString(){
+    public void DisplayString() throws IOException{
         this.BuildString();
         System.out.println(this.DisplayString);
         this.AwaitCommand();

@@ -1,5 +1,6 @@
 package com.finance_tracker.UICommands;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.finance_tracker.database.FileManager;
@@ -22,7 +23,7 @@ public abstract class Command {
 
     }
 
-    public abstract void execute();
+    public abstract void execute() throws IOException;
 
     public String getName(){
         return this.Name;
