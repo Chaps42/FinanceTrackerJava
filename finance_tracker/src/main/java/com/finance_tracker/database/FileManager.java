@@ -104,17 +104,11 @@ public class FileManager {
                     String interestType = accountData.get(5)[2];
                     String lastInterestDateStr = accountData.get(5)[3];
 
-                    double interestRate = 0.0;
-                    InterestPeriodEnum interestPeriodEnum = InterestPeriodEnum.NONE;
-                    InterestEnum interestTypeEnum = InterestEnum.NONE;
+                    double interestRate = Double.parseDouble(interestRateStr);
+                    InterestPeriodEnum interestPeriodEnum =
+                        InterestPeriodEnum.valueOf(interestPeriod);
+                    InterestEnum interestTypeEnum = InterestEnum.valueOf(interestType);
                     Date lastInterestDate = format.parse(lastInterestDateStr);
-                    if (!interestTypeEnum.equals(InterestEnum.NONE)) {
-                        interestRate = Double.parseDouble(interestRateStr);
-                        interestPeriodEnum =
-                            InterestPeriodEnum.valueOf(interestPeriod);
-                        interestTypeEnum =
-                            InterestEnum.valueOf(interestType);
-                    }
 
                     // Read account reccords
                     int endIndex = accountData.size();
