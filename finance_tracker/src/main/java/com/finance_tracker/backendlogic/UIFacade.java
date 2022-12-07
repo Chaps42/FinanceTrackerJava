@@ -36,6 +36,7 @@ public class UIFacade extends Subject {
         for(GeneralList Item:this.UIElements ){
             Item.DisplayString();
         }
+        this.CentralRef.getData().getFileManager().writeAll();
         
         notifyObserver("UI Updated");
     }

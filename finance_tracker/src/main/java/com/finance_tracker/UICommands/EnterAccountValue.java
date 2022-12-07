@@ -24,6 +24,7 @@ public class EnterAccountValue extends Command{
         boolean AccountFound = false;
         System.out.println("Enter Account name: ");
         String AccName = this.UserInput.nextLine();
+        
         System.out.println("Enter Amount: ");
         double Accvalue = this.UserInput.nextDouble();
         this.UserInput.nextLine();

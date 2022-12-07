@@ -13,9 +13,7 @@ public class CreateFile extends Command{
 
     public void execute(){
         System.out.print("Enter Name: ");
-        String Name = this.UserInput.nextLine();
-        System.out.println("Enter File Destination: ");
-        String Location = this.UserInput.nextLine();
+        this.CentralRef.getData().getFileManager().writeAll();
 
 
 
