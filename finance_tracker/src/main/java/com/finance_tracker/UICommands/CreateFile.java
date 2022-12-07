@@ -11,6 +11,7 @@ public class CreateFile extends Command{
 
     }
 
+    //Allows user to start writing new files for their finance tracker
     public void execute(){
         System.out.print("Enter Name: ");
         this.CentralRef.getData().getFileManager().writeAll();

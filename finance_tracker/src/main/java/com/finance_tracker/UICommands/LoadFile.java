@@ -13,6 +13,8 @@ public class LoadFile extends Command{
         this.Name = "Load File";
 
     }
+
+    //Loads file from the previous files
     public void execute(){
         System.out.println("File Loaded\n");
         try{

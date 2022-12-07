@@ -4,6 +4,8 @@ import java.util.HashMap;
 import com.finance_tracker.account.*;
 import com.finance_tracker.backendlogic.UIFacade;
 
+
+//Class that only displays the accounts saved in the data file
 public class AccountList extends GeneralList{
     private HashMap<String,Account> Data;
     
@@ -12,10 +14,12 @@ public class AccountList extends GeneralList{
         super(FacRef);
     }
 
+    //Function to get the required data for the Accounts UI
     public void RequestData(){
         this.Data =  this.DataRef.getAllAccounts();
     }
 
+    //Funciton to build the display string piece by piece
     public void BuildString(){
         this.DisplayString = "";
         String Substring = "Accounts: ";
@@ -47,6 +51,7 @@ public class AccountList extends GeneralList{
         }
     }
 
+    //Empty Await command in case additional functionality is needed in the future
     public void AwaitCommand(){}
 
 }

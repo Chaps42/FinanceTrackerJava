@@ -25,6 +25,7 @@ public class CreateTransaction extends Command{
 
     }
 
+    //Allows the user to create and populate allcomponents of a transaction
     public void execute(){
         AccountBuilder defaultBuilder = new AccountBuilder("Default", new ArrayList<AccountRecord>());
         TransactionFrequencyEnum FreqEnum = TransactionFrequencyEnum.NONE;
@@ -51,6 +52,9 @@ public class CreateTransaction extends Command{
         switch(EnumType){
             case 1:
                 Type = ( TransactionEnum.ONE_TIME);
+                Type = ( TransactionEnum.ONE_TIME);
+                FreqEnum = TransactionFrequencyEnum.NONE;
+                SkipFrequency = true;
                 break;
             case 2:
                 Type = ( TransactionEnum.RECURRING);
