@@ -1,5 +1,7 @@
 package com.finance_tracker.account;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -192,4 +194,23 @@ public class Account {
     public Date getLastInterestDate() {
         return lastInterestDate;
     }
+
+    public Date getMostRecentDate(Date ThisDate){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        ArrayList<Date> UniqueDates = this.getUniqueDates();
+        Date MostRecent = new Date();
+        try{
+            MostRecent = formatter.parse("02-Jan-1325");
+            }
+        catch(ParseException E){}
+        for(Date D: UniqueDates){
+            if(D.before(ThisDate) && D.after(MostRecent) ){
+                MostRecent = D;
+            }
+            else{}
+
+        }
+        return MostRecent;
+    }
+
 }
