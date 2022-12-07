@@ -279,6 +279,8 @@ public class FileManager {
                     format.format(account.getLastInterestDate())};
                 writer.writeNext(line6);
             } catch (Exception e) {
+                // Can't call format.format(null)
+                // If no interst data from one of these, there is no interest
                 String[] line6 = {null, null, null, null};
                     writer.writeNext(line6);
             }
