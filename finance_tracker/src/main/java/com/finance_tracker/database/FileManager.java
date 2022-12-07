@@ -104,17 +104,11 @@ public class FileManager {
                     String interestType = accountData.get(5)[2];
                     String lastInterestDateStr = accountData.get(5)[3];
 
-                    double interestRate = 0.0;
-                    InterestPeriodEnum interestPeriodEnum = InterestPeriodEnum.NONE;
-                    InterestEnum interestTypeEnum = InterestEnum.NONE;
+                    double interestRate = Double.parseDouble(interestRateStr);
+                    InterestPeriodEnum interestPeriodEnum =
+                        InterestPeriodEnum.valueOf(interestPeriod);
+                    InterestEnum interestTypeEnum = InterestEnum.valueOf(interestType);
                     Date lastInterestDate = format.parse(lastInterestDateStr);
-                    if (!interestTypeEnum.equals(InterestEnum.NONE)) {
-                        interestRate = Double.parseDouble(interestRateStr);
-                        interestPeriodEnum =
-                            InterestPeriodEnum.valueOf(interestPeriod);
-                        interestTypeEnum =
-                            InterestEnum.valueOf(interestType);
-                    }
 
                     // Read account reccords
                     int endIndex = accountData.size();
@@ -360,7 +354,7 @@ public class FileManager {
                 CSVWriter.DEFAULT_LINE_END);
 
             String[] line1 = {"DATE", "NAME", "VALUE", "ACCOUNT", "CATEGORY",
-                "ENUM (ONETIME or REPEATING)", "FREQ"};
+                "ENUM", "FREQ"};
             writer.writeNext(line1);
 
             Mapper databaseMapper = Mapper.getInstance();
@@ -375,10 +369,19 @@ public class FileManager {
             }
             for (Map.Entry<Date, Transaction> entry : sortedMap.entrySet()) {
                 Transaction t = entry.getValue();
+                // Dealing with error when Account data is missing
+                Account account = t.getTransactionAccount();
+                String accountStr = new String();
+                if (account != null) {
+                    accountStr = account.getName().toString();
+                } else {
+                    accountStr = "";
+                }
+                // Create line String
                 String[] line = {format.format(t.getDate()),
                     t.getName(),
                     String.valueOf(t.getValue()),
-                    t.getTransactionAccount().toString(),
+                    accountStr,
                     t.getCategory().toString(),
                     t.getTransactionEnum().toString(),
                     t.getFrequency().toString()

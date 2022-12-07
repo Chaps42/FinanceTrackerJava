@@ -3,7 +3,7 @@ sample_no_interest_account_name,CHECKING
 
 Interest:
 PERCENT,FREQ,TYPE,LAST_INTEREST_DATE
-0.0,NONE,NONE,01-Jan-2022,0.0
+0.0,NONE,NONE,01-Jan-2022
 
 Account Records:
 DATE,AMOUNT
