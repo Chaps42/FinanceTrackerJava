@@ -48,6 +48,7 @@ public class CreateAccount extends Command{
                 Now = new Date();}}
 
         AccountBuilder Builder = new AccountBuilder(AccountName,EmptyList);
+        Builder = Builder.setLastInterestDate(Now);
 
         System.out.println("Enter Account Type (int): ");
         int i =1;
