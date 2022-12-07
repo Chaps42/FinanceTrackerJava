@@ -1,2 +1,2 @@
 DATE,NAME,VALUE,ACCOUNT,CATEGORY,ENUM (ONETIME or REPEATING),FREQ
-01-Jan-1993,asd;lf,33.0,com.finance_tracker.account.Account@681a9515,MISC_SPENDING,RECURRING,WEEKLY
+01-Jan-2022,test,33.0,com.finance_tracker.account.Account@7e6cbb7a,MISC_SPENDING,com.finance_tracker.account.Account@7e6cbb7a,WEEKLY

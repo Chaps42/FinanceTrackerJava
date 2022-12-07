@@ -369,12 +369,21 @@ public class FileManager {
             }
             for (Map.Entry<Date, Transaction> entry : sortedMap.entrySet()) {
                 Transaction t = entry.getValue();
+                // Dealing with error when Account data is missing
+                Account account = t.getTransactionAccount();
+                String accountStr = new String();
+                if (account != null) {
+                    accountStr = account.toString();
+                } else {
+                    accountStr = "";
+                }
+                // Create line String
                 String[] line = {format.format(t.getDate()),
                     t.getName(),
                     String.valueOf(t.getValue()),
                     t.getTransactionAccount().toString(),
                     t.getCategory().toString(),
-                    t.getTransactionEnum().toString(),
+                    accountStr,
                     t.getFrequency().toString()
                 };
                 writer.writeNext(line);
