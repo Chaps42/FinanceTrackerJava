@@ -6,6 +6,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.finance_tracker.account.Account;
+import com.finance_tracker.account.AccountRecord;
 import com.finance_tracker.database.Mapper;
 import com.finance_tracker.transaction.Transaction;
 import com.finance_tracker.transaction.TransactionBuilder;
@@ -94,6 +96,12 @@ public class RecurringTransactionMath {
 
                 Mapper databaseMapper = Mapper.getInstance();
                 databaseMapper.addTransaction(newTransaction);
+
+                // Update accounts with recurring transaction
+                Account account = transaction.getTransactionAccount();
+                AccountRecord record = new AccountRecord(nextTransactionDate,
+                    account.getValue() + transaction.getValue());
+                account.addRecord(record);
 
                 // check if we have to create multiple new transactions
                 // due to long time between log in
