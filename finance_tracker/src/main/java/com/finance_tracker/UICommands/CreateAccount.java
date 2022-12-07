@@ -46,7 +46,7 @@ public class CreateAccount extends Command{
 
         AccountBuilder Builder = new AccountBuilder(AccountName,EmptyList);
 
-        System.out.println("Enter Account Enum (int): ");
+        System.out.println("Enter Account Type (int): ");
         int i =1;
         for(AccountEnum E: AccountEnum.values()){
             System.out.print(String.valueOf(i)+": ");
@@ -85,11 +85,6 @@ public class CreateAccount extends Command{
                 break;
         }
 
-        System.out.println("Enter Account Interest Rate: ");
-        double interestRate = this.UserInput.nextDouble();
-        this.UserInput.nextLine();
-        Builder = Builder.setInterestRate( interestRate);
-
         System.out.println("Enter Account Interest Enum: ");
         int j =1;
         for(InterestEnum E: InterestEnum.values()){
@@ -98,23 +93,40 @@ public class CreateAccount extends Command{
             j++;
         }
 
+        boolean SkipInterest = false;
         EnumType = this.UserInput.nextInt();
         this.UserInput.nextLine();
         switch(EnumType){
             case 1:
-                Builder = Builder.setInterestEnum( InterestEnum.SIMPLE);
+                Builder = Builder.setInterestEnum( InterestEnum.NONE);
+                Builder = Builder.setInterestRate(0.0);
+                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.NONE);
+                SkipInterest = true;
                 break;
             case 2:
-                Builder = Builder.setInterestEnum( InterestEnum.COMPOUND);
+                Builder = Builder.setInterestEnum( InterestEnum.SIMPLE);
                 break;
             case 3:
+                Builder = Builder.setInterestEnum( InterestEnum.COMPOUND);
+                break;
+            case 4:
                 Builder = Builder.setInterestEnum( InterestEnum.CONTINUOUS);
                 break;
             default:
-                Builder = Builder.setInterestEnum( InterestEnum.SIMPLE);
+                Builder = Builder.setInterestEnum( InterestEnum.NONE);
+                Builder = Builder.setInterestRate(0.0);
+                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.NONE);
+                SkipInterest = true;
                 break;
         }
+    
+        if(!SkipInterest){
+        System.out.println("Enter Account Interest Rate: ");
+        double interestRate = this.UserInput.nextDouble();
+        this.UserInput.nextLine();
+        Builder = Builder.setInterestRate(interestRate);
 
+        
         System.out.println("Enter Interest Period: ");
         int k=1;
         for(InterestPeriodEnum E: InterestPeriodEnum.values()){
@@ -127,18 +139,21 @@ public class CreateAccount extends Command{
         this.UserInput.nextLine();
         switch(EnumType){
             case 1:
-                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.DAILY);
+                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.NONE);
                 break;
             case 2:
-                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.MONTHLY);
+                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.DAILY);
                 break;
             case 3:
+                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.MONTHLY);
+                break;
+            case 4:
                 Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.ANNUAL);
                 break;
             default:
-                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.ANNUAL);
+                Builder = Builder.setInterestPeriodEnum( InterestPeriodEnum.NONE);
                 break;
-        }
+        }}
 
         Account AccountA = Builder.buildAccount();
         AccountRecord Today = new AccountRecord(Now, Accvalue);

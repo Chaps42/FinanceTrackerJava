@@ -4,6 +4,7 @@ package com.finance_tracker.account;
 // If there is another way, we did not find it.
 // Apologies for the many small files.
 public enum InterestEnum {
+    NONE,
     SIMPLE,
     COMPOUND,
     CONTINUOUS;
