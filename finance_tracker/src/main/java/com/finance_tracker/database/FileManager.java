@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.CSVReader;
@@ -34,7 +36,7 @@ import com.finance_tracker.transaction.Transaction;
 // Singleton Pattern was used for the File Manager because only one of this
 // utility object is needed.
 public class FileManager {
-    static SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    static SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
     // Create a single object for lazy Singleton pattern
     private static FileManager instance;
 
@@ -252,6 +254,9 @@ public class FileManager {
      *
      * Got help writing to CSVs in Java from this resource:
      * https://www.baeldung.com/opencsv
+     *
+     * Got help sorting AccountRecords before save from:
+     * https://www.geeksforgeeks.org/how-to-iterate-over-a-treemap-in-java/
      */
     private static void writeAccount(Account account) {
         // make it so contents of file are deleted before new save
@@ -268,6 +273,7 @@ public class FileManager {
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.DEFAULT_LINE_END);
 
+            // Write metadata
             String[] line1 = { "NAME", "TYPE"};
             writer.writeNext(line1);
             String[] line2 = {name, account.getAccountEnum().toString()};
@@ -275,11 +281,11 @@ public class FileManager {
             String[] blankLine = {};
             writer.writeNext(blankLine);
 
+            // Write interest info
             String[] line4 = {"Interest:"};
             writer.writeNext(line4);
             String[] line5 = {"PERCENT", "FREQ", "TYPE", "LAST_INTEREST_DATE"};
             writer.writeNext(line5);
-
             try {
                 String[] line6 = {String.valueOf(account.getInterestRate()),
                     account.getInterestPeriodEnum().toString(),
@@ -294,14 +300,23 @@ public class FileManager {
             }
             writer.writeNext(blankLine);
 
+            // Write account Records
             String[] line8 = {"Account Records:"};
             writer.writeNext(line8);
             String[] line9 = {"DATE", "AMOUNT"};
             writer.writeNext(line9);
+            // Sort accounts by Date
             ArrayList<AccountRecord> accountRecords = account.getAccountRecords();
+            Map<Date, Double> sortedMap = new TreeMap<Date, Double>();
             for (AccountRecord r: accountRecords) {
-                String[] line = {format.format(r.getDate()),
-                    String.valueOf(r.getAmount())};
+                Date date = r.getDate();
+                Double value = r.getAmount();
+                // elements automatically sorted when added to TreeMap
+                sortedMap.put(date, value);
+            }
+            for (Map.Entry<Date, Double> entry : sortedMap.entrySet()) {
+                String[] line = {format.format(entry.getKey()),
+                    String.valueOf(entry.getValue())};
                 writer.writeNext(line);
             }
             writer.close();
@@ -345,7 +360,15 @@ public class FileManager {
             Mapper databaseMapper = Mapper.getInstance();
             HashMap<String, Transaction> transactions =
                 databaseMapper.getTransactions();
+            // Sort Transactions by Date
+            Map<Date, Transaction> sortedMap = new TreeMap<Date, Transaction>();
             for (Transaction t: transactions.values()) {
+                Date date = t.getDate();
+                // elements automatically sorted when added to TreeMap
+                sortedMap.put(date, t);
+            }
+            for (Map.Entry<Date, Transaction> entry : sortedMap.entrySet()) {
+                Transaction t = entry.getValue();
                 String[] line = {format.format(t.getDate()),
                     t.getName(),
                     String.valueOf(t.getValue()),
